@@ -73,6 +73,26 @@
       }
     },
     {
+      "finding_id": "402e707c7a3227b2a9afd91de1f50c79",
+      "field_id": "animal.strain",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36820,
+        "end": 36878,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "All mice were bred and\nhoused in the same animal facility.",
+        "anchor_detector": "anchor:section-keyword:EXPERIMENTAL PROCEDURES Mice"
+      }
+    },
+    {
       "finding_id": "c5935ffbcc4032b7d77b718d8975317f",
       "field_id": "animal.sex",
       "code": "GAP_UNPARSEABLE",
@@ -109,6 +129,26 @@
       }
     },
     {
+      "finding_id": "1178a733b402c221a8d393ef0f20cc91",
+      "field_id": "cellline.name",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36596,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+        "anchor_detector": "anchor:methods-head"
+      }
+    },
+    {
       "finding_id": "4136192e05a9b1d5cf039be41c62e668",
       "field_id": "cellline.source_or_rrid",
       "code": "GAP_DEFERRED_TO_REF",
@@ -124,6 +164,66 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'EXPERIMENTAL PROCEDURES\\nMice\\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.' defers to another source (e.g. 'as previously described')"
+      }
+    },
+    {
+      "finding_id": "aa870a6502ec3aaed7b4607199ab55ae",
+      "field_id": "cellline.authentication",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36596,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+        "anchor_detector": "anchor:methods-head"
+      }
+    },
+    {
+      "finding_id": "021209cf19c88dc26c85b6db295fd92c",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36596,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+        "anchor_detector": "anchor:methods-head"
+      }
+    },
+    {
+      "finding_id": "5c540e966441f20d453e923043a507cc",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 39700,
+        "end": 39717,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "ACCESSION NUMBERS",
+        "anchor_detector": "anchor:methods-keyword"
       }
     },
     {
@@ -178,6 +278,86 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'Cells were cultured with apoptotic thymocytes in round-bottom 96-well plates or plated onto high-absorbance flat-bottom plate coated\\nwith various lipids at indicated concentration.' defers to a figure/table, not a stated value"
+      }
+    },
+    {
+      "finding_id": "946d58bb00876c120d8a4533134f633c",
+      "field_id": "treatment.duration",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36596,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+        "anchor_detector": "anchor:methods-head"
+      }
+    },
+    {
+      "finding_id": "35cdad75eab9b2c6b7dcccb18faea0df",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 37820,
+        "end": 37931,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "For frozen brain tissues, RNA was extracted using a RNeasy mini kit according\nto manufacture protocol (QIAGEN).",
+        "anchor_detector": "anchor:section-head:Gene Expression Analysis"
+      }
+    },
+    {
+      "finding_id": "8eeaf3ce10ecd8a46986ceab9dae7555",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36596,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+        "anchor_detector": "anchor:methods-head"
+      }
+    },
+    {
+      "finding_id": "4ebe0c187248f7f66fa24e6ecf9ab0d6",
+      "field_id": "antibody.identifier",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 37732,
+        "end": 37794,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "For detailed procedures, see Extended Experimental Procedures.",
+        "anchor_detector": "anchor:section-head:Immunohistochemistry and Microscopy"
       }
     }
   ]

@@ -63,6 +63,26 @@
       }
     },
     {
+      "finding_id": "2f3dc5111c55d8553625f1c1f5913484",
+      "field_id": "animal.strain",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 73475,
+        "end": 73820,
+        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "iPSCs Induced pluripotent stem cells\nPALOP Portuguese-speaking African Countries\nPC Prostate cancer\nPD Population doubling\nPFA Paraformaldehyde\nPMDA Precision Medicine Diversity array\nRLU Relative light unit\nROCK Rho kinase inhibitor\nSNP Single-Nucleotide Polymorphism\nSSA Sub-Saharan African\nSTR Short tandem repeat\nTCGA The Cancer Genome Atlas",
+        "anchor_detector": "anchor:section-head:IC50 Half-maximal inhibitory concentration"
+      }
+    },
+    {
       "finding_id": "c677a2fc41a2a84c5cededa699af0f90",
       "field_id": "animal.sex",
       "code": "GAP_UNPARSEABLE",
@@ -186,6 +206,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'In the context of cancer, independent groups have been publishing omics\\nstudies for African cancer cohorts, especially for cancer types and subtypes that are more\\nfrequent and aggressive in the SSA versus European ancestry, such as triple-negative breast\\ncancer [18–20] and prostate cancer (PC [21–23]).' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "73c5790da07f21f2a1e83cbe1f86a505",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 93085,
+        "end": 93256,
+        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Prostate cancer cells of increasing metastatic potential\nexhibit diverse contractile forces, cell stiffness, and motility in a microenvironment stiffness-dependent manner.",
+        "anchor_detector": "anchor:methods-keyword"
       }
     }
   ]

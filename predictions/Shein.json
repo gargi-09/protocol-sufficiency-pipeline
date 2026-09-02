@@ -45,6 +45,66 @@
   },
   "findings": [
     {
+      "finding_id": "e25025ecd73d8b1161828ad5b34e2b1b",
+      "field_id": "animal.species",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8176,
+        "end": 8319,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\nSolution Reagent (Promega) as previously reported (20).",
+        "anchor_detector": "anchor:section-head:Cell proliferation"
+      }
+    },
+    {
+      "finding_id": "1d8c66cc624be03dc22527e502915a66",
+      "field_id": "animal.strain",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8176,
+        "end": 8319,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\nSolution Reagent (Promega) as previously reported (20).",
+        "anchor_detector": "anchor:section-head:Cell proliferation"
+      }
+    },
+    {
+      "finding_id": "468a59ee36dc8391c04f7b33469d8485",
+      "field_id": "animal.sex",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8176,
+        "end": 8319,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\nSolution Reagent (Promega) as previously reported (20).",
+        "anchor_detector": "anchor:section-head:Cell proliferation"
+      }
+    },
+    {
       "finding_id": "1e3b8d011ff6560aba8dc3d2143deb6c",
       "field_id": "animal.age_or_weight",
       "code": "GAP_UNPARSEABLE",
@@ -60,6 +120,46 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "'Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\\nSolution Reagent (Promega) as previously reported (20).' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "8f67debe99caf5211498a28ddc5bb9d1",
+      "field_id": "animal.ethics_approval",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8176,
+        "end": 8319,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\nSolution Reagent (Promega) as previously reported (20).",
+        "anchor_detector": "anchor:section-head:Cell proliferation"
+      }
+    },
+    {
+      "finding_id": "dca53267baa788d0be943c3f8fa1acd7",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 7229,
+        "end": 7298,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "We used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
+        "anchor_detector": "anchor:section-keyword:Materials and Methods Cell lines and reagents"
       }
     },
     {
@@ -168,6 +268,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'In particular, IL6 family cytokine\\noncostatin-M (OSM) induced a switch to the EMT phenotype and protected cells from targeted\\ndrug-induced apoptosis in OSM receptors (OSMRs)/JAK1/STAT3-dependent manner.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "5997ea30eecc7406f2c2220168efb338",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 0,
+        "end": 176,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "JAK1/STAT3 activation through a proinflammatory cytokine\npathway leads to resistance to molecularly targeted therapy in\nnon-small cell lung cancer\nKazuhiko Shien1, Vassiliki A.",
+        "anchor_detector": "anchor:methods-head"
       }
     }
   ]

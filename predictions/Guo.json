@@ -55,6 +55,46 @@
   },
   "findings": [
     {
+      "finding_id": "9de6af76f000860d75eaadebddc8ef16",
+      "field_id": "cellline.authentication",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 5855,
+        "end": 5960,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:section-keyword:Cell culture and transfection"
+      }
+    },
+    {
+      "finding_id": "a004adb6cb01ff3d5918f252d87cb310",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 5855,
+        "end": 5960,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:section-keyword:Cell culture and transfection"
+      }
+    },
+    {
       "finding_id": "7927a93a3fac95d26589033dc74db3a2",
       "field_id": "cellline.passage_number",
       "code": "GAP_UNPARSEABLE",
@@ -142,6 +182,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'NEK2 synergized with METTL3 to mediate the malignant phenotype of CC cells.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "48dea7c8207c3d8bd1a76c092b0bcbff",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 0,
+        "end": 335,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "METTL3 facilitates the progression\nof cervical cancer by m6A\nmodification-mediated up-\nregulation of NEK2\nYilin Guo1,2, Yangyang Bai3, Lu Wang1,2, Zhen Xu1,2, Nan Zhang1, Wuliang Wang1,2 &\nHu Zhao1,2\nN6-methyladenosine (m6A) is the most prevalent modification found in eukaryotic RNA and played\na significant role in various cancers.",
+        "anchor_detector": "anchor:methods-head"
       }
     }
   ]

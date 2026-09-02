@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 
 from contract import FieldSpec
-from vagueness import VaguenessChecker, load_vagueness_lexicon
+from vagueness import get_vagueness_checker
 from relevance import check_relevance
 
 
@@ -29,9 +29,6 @@ _DEFERRAL_TO_DISPLAY_PATTERN = re.compile(
     r"(?:see|shown in) (?:Fig|Figure|Table|Supplementary)",
     re.IGNORECASE,
 )
-
-_vagueness_checker = VaguenessChecker(load_vagueness_lexicon())
-
 
 def check_deferral_or_vague(raw_text: str) -> dict | None:
     """Runs BEFORE type-specific validation, for every field type."""
@@ -112,7 +109,7 @@ def validate_field(observation: dict | None, spec: FieldSpec) -> dict:
     if deferral_result is not None:
         return deferral_result
 
-    vagueness_result = _vagueness_checker.check(raw_text)
+    vagueness_result = get_vagueness_checker().check(raw_text)
     if vagueness_result is not None:
         return vagueness_result
 

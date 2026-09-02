@@ -63,6 +63,26 @@
       }
     },
     {
+      "finding_id": "5c9d538dada0c649c7154168ac4dea01",
+      "field_id": "animal.strain",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 19818,
+        "end": 20100,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Compared\nwith the control group, more cells were restrained in G1/G0 stage\nand the fraction of cells that stayed in the G2/M stage was\nsigniﬁcantly decreased in METTL3-silenced cells (Fig. 2F), but no\nobvious difference in cell apoptosis was observed between these\ngroups (Fig. 2G).",
+        "anchor_detector": "anchor:section-keyword:METTL3 was demonstrated in HCT116 and LoVo cell lines using"
+      }
+    },
+    {
       "finding_id": "9cc04c077d6c9f0eca985f0baf9c2b1e",
       "field_id": "animal.sex",
       "code": "GAP_UNPARSEABLE",
@@ -150,6 +170,46 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'B Representative xenograft tumors after subcutaneous injection of HCT116 cells with or without deleted METTL3.' not in declared enum_values ['subcutaneous_flank', 'orthotopic', 'intravenous', 'intraperitoneal', 'other']"
+      }
+    },
+    {
+      "finding_id": "4e07f754a21de6db91d8dfbf050f0d8d",
+      "field_id": "cellline.authentication",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 6341,
+        "end": 6435,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The HCT116 colon cancer\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.",
+        "anchor_detector": "anchor:section-keyword:MATERIALS AND METHODS Cell culture"
+      }
+    },
+    {
+      "finding_id": "36477b21d2e4e8eb840aecfa0edf78e9",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 6341,
+        "end": 6435,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The HCT116 colon cancer\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.",
+        "anchor_detector": "anchor:section-keyword:MATERIALS AND METHODS Cell culture"
       }
     },
     {

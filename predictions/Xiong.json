@@ -50,6 +50,66 @@
   },
   "findings": [
     {
+      "finding_id": "f85dfce52b093624bd011f45e9b73e8d",
+      "field_id": "animal.species",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 11787,
+        "end": 11841,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "chamber of the filter were removed with a cotton swab.",
+        "anchor_detector": "anchor:section-head:After incubation for 24 hours, nonmigrated cells on the upper"
+      }
+    },
+    {
+      "finding_id": "e8169f4fedf22ceeb893cdce4e784a24",
+      "field_id": "animal.strain",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 11787,
+        "end": 11841,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "chamber of the filter were removed with a cotton swab.",
+        "anchor_detector": "anchor:section-head:After incubation for 24 hours, nonmigrated cells on the upper"
+      }
+    },
+    {
+      "finding_id": "7868175154033cf814f342b19fd29cb3",
+      "field_id": "animal.sex",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 11787,
+        "end": 11841,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "chamber of the filter were removed with a cotton swab.",
+        "anchor_detector": "anchor:section-head:After incubation for 24 hours, nonmigrated cells on the upper"
+      }
+    },
+    {
       "finding_id": "f73f325e6fd20f0625a1f0026e36d277",
       "field_id": "animal.age_or_weight",
       "code": "GAP_UNPARSEABLE",
@@ -65,6 +125,46 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "'T o investigate the inhibitory effects of AG490, the upper\\nchamber was filled with 100 μM AG490 or ethanol at an equiva-\\nlent volume (as a vehicle control), respectively.' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "9337ae52be13bc1f4f367b26ae5ea921",
+      "field_id": "cellline.authentication",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 6855,
+        "end": 7022,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+        "anchor_detector": "anchor:section-keyword:Materials and Methods Cell Culture, Treatment with Pharmacologic Agents, and Transient Transfection of STAT3 siRNA"
+      }
+    },
+    {
+      "finding_id": "0d52dd5252007cd5a4675c999348e211",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 6855,
+        "end": 7022,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+        "anchor_detector": "anchor:section-keyword:Materials and Methods Cell Culture, Treatment with Pharmacologic Agents, and Transient Transfection of STAT3 siRNA"
       }
     },
     {
@@ -155,6 +255,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "'In fact,\\nSTAT3 is constitutively activated in various types of human tumors,\\nincluding colorectal cancer, but very few studies have reported abnor-\\nm a le x p r e s s i o no ra c t i v a t i o no fJ A K / S T A Ti nC R C[ 2 2 ] .M aa n d\\ncoworkers showed that the level of activated phospho-STAT3\\n(pSTAT3) increased in 45 primary CRC samples compared to adja-\\ncent normal mucosae [23].' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "1b399703b61ef6b109585f6177b3d396",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 0,
+        "end": 652,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Inhibition of JAK1, 2/STAT3\nSignaling Induces Apoptosis,\nCell Cycle Arrest, and Reduces\nTumor Cell Invasion in Colorectal\nCancer Cells 1\nHua Xiong *, Zhi-Gang Zhang *, Xiao-Qing Tian *,\nDan-Feng Sun*, Qin-Chuan Liang †, Yan-Jie Zhang *,\nRong Lu *, Ying-Xuan Chen * and Jing-Yuan Fang *\n*Department of Gastroenterology, Shanghai Jiao-Tong\nUniversity School of Medicine, Ren-Ji Hospital, Shanghai\nInstitute of Digestive Disease, Shanghai, 200001, China;\n† Department of Neurosurgery, Tangdu Hospital, Fourth\nMilitary Medical University, Xi ’an, 710038, China\nAbstract\nAbnormalities in the STAT3 pathway are involved in the oncogenesis of several cancers.",
+        "anchor_detector": "anchor:methods-head"
       }
     }
   ]

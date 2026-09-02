@@ -9,3 +9,6 @@ Thumbs.db
 papers/
 papers_source/
 gold/
+.claude/
+spec_docs/
+predictions_prev/

@@ -157,3 +157,132 @@ def find_candidate(canonical_text: str, text_sha: str, spec: FieldSpec) -> dict 
         "span": Span(start=start, end=end, text_sha=text_sha),
         "detector": detector_label,
     }
+
+
+# ---------------------------------------------------------------------------
+# Step 5 for ABSENT fields.
+#
+# 02_BUILD_SPEC: "For an absent finding, put the span on the sentence that must
+# contain the value. If there is no such sentence, put the span on the
+# paragraph or on the section. [...] If you have no anchor, remove the finding
+# and write it to the log."
+#
+# Nothing below proposes a VALUE. These functions only locate the place a
+# reader should look, for a field we have already concluded is absent. They are
+# deliberately more permissive than find_candidate -- no digit filter, no
+# relevance gate -- because the bar for "where should I look" is lower than the
+# bar for "is this a usable value".
+# ---------------------------------------------------------------------------
+
+def _tighten(sent_text: str, start: int) -> tuple[str, int, int] | None:
+    """Trim surrounding whitespace and move the span onto the trimmed text.
+
+    Returns None for a blank sentence. This is what guarantees we never hand
+    contract.Span a zero-width range, which it rejects outright.
+    """
+    stripped = sent_text.strip()
+    if not stripped:
+        return None
+    offset = sent_text.index(stripped)
+    return stripped, start + offset, start + offset + len(stripped)
+
+
+def _first_non_empty_sentence(sentences) -> tuple[str, int, int] | None:
+    for sent_text, start, _end in sentences:
+        tightened = _tighten(sent_text, start)
+        if tightened:
+            return tightened
+    return None
+
+
+def _best_scoring_sentence(sentences, weighted_keywords) -> tuple[str, int, int] | None:
+    """Relaxed sibling of _ranked_candidates, for anchoring only.
+
+    Strict `>` on the score means ties break on document order, so this is
+    deterministic for a given text.
+    """
+    best = None
+    best_score = 0
+    for sent_text, start, _end in sentences:
+        low = sent_text.lower()
+        score = sum(weight for kw, weight in weighted_keywords if kw.lower() in low)
+        if score <= best_score:
+            continue
+        tightened = _tighten(sent_text, start)
+        if tightened:
+            best_score = score
+            best = tightened
+    return best
+
+
+def _as_anchor(hit: tuple[str, int, int], text_sha: str, detector: str) -> dict:
+    anchor_text, start, end = hit
+    return {
+        "anchor_text": anchor_text,
+        "span": Span(start=start, end=end, text_sha=text_sha),
+        "detector": detector,
+    }
+
+
+def find_absence_anchor(
+    canonical_text: str, text_sha: str, spec: FieldSpec
+) -> dict | None:
+    """Locate where a reader should look for a field that is not stated.
+
+    Ladder, most specific first:
+      1. best keyword-scoring sentence inside a subsection whose header matches
+         the field's category
+      2. first sentence of that subsection, if nothing in it scores
+      3. best keyword-scoring sentence anywhere in Methods
+      4. first sentence of Methods
+      5. first sentence of the document
+
+    Returns None only when the document contains no non-empty sentence at all.
+    The caller must then drop the finding: a zero-width span is rejected by the
+    contract, and 02_BUILD_SPEC is explicit that a finding with no location
+    "is worse than silence".
+    """
+    m_start, m_end = find_methods_section(canonical_text)
+    methods_text = canonical_text[m_start:m_end]
+    weighted_keywords = field_keywords(spec.field_id)
+
+    subsections = find_subsections(methods_text, m_start)
+    matching = find_relevant_subsections(subsections, spec.field_id)
+
+    # 1 -- most specific: the topical sentence inside a topical subsection.
+    for sub in matching:
+        sentences = split_sentences(
+            canonical_text[sub["start"]:sub["end"]], base_offset=sub["start"]
+        )
+        hit = _best_scoring_sentence(sentences, weighted_keywords)
+        if hit:
+            return _as_anchor(hit, text_sha, f"anchor:section-keyword:{sub['header']}")
+
+    # 2 -- the subsection matched by header, but nothing inside it scored.
+    if matching:
+        sub = matching[0]
+        sentences = split_sentences(
+            canonical_text[sub["start"]:sub["end"]], base_offset=sub["start"]
+        )
+        hit = _first_non_empty_sentence(sentences)
+        if hit:
+            return _as_anchor(hit, text_sha, f"anchor:section-head:{sub['header']}")
+
+    methods_sentences = split_sentences(methods_text, base_offset=m_start)
+
+    # 3 -- no topical subsection; fall back to the topical sentence in Methods.
+    hit = _best_scoring_sentence(methods_sentences, weighted_keywords)
+    if hit:
+        return _as_anchor(hit, text_sha, "anchor:methods-keyword")
+
+    # 4 -- nothing topical anywhere; anchor on the section itself.
+    hit = _first_non_empty_sentence(methods_sentences)
+    if hit:
+        return _as_anchor(hit, text_sha, "anchor:methods-head")
+
+    # 5 -- no Methods section resolved at all.
+    hit = _first_non_empty_sentence(split_sentences(canonical_text, base_offset=0))
+    if hit:
+        return _as_anchor(hit, text_sha, "anchor:document-head")
+
+    return None

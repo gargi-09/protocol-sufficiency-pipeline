@@ -18,11 +18,23 @@ not a bug to chase into a rabbit hole.
 from __future__ import annotations
 
 import re
+from functools import lru_cache
+from pathlib import Path
+
 import yaml
 
+# The lexicon ships beside this module. Resolving against __file__ rather than
+# the process CWD is what lets analyze() be imported from any working
+# directory -- validate.py used to read this file at import time via the bare
+# relative string "vagueness.yaml", which raised FileNotFoundError for any
+# caller whose CWD was not the repo root.
+_DEFAULT_LEXICON_PATH = Path(__file__).resolve().with_name("vagueness.yaml")
 
-def load_vagueness_lexicon(path: str = "vagueness.yaml") -> dict:
-    with open(path, "r", encoding="utf-8") as f:
+
+def load_vagueness_lexicon(path: str | Path | None = None) -> dict:
+    """Read the lexicon YAML. Defaults to the copy next to this module."""
+    resolved = Path(path) if path is not None else _DEFAULT_LEXICON_PATH
+    with open(resolved, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
@@ -62,3 +74,16 @@ class VaguenessChecker:
             }
 
         return None
+
+
+@lru_cache(maxsize=None)
+def get_vagueness_checker(path: str | None = None) -> VaguenessChecker:
+    """Lazily build and memoise the checker.
+
+    Memoised rather than module-level so the YAML is read on first *use*, not
+    on import -- importing validate.py from an arbitrary CWD can no longer
+    fail. The cached object holds only compiled regexes and is never mutated,
+    so this cannot introduce run-to-run variation: the determinism requirement
+    in 01_README.md is unaffected.
+    """
+    return VaguenessChecker(load_vagueness_lexicon(path))

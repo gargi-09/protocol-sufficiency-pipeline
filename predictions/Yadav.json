@@ -99,6 +99,66 @@
       }
     },
     {
+      "finding_id": "66c7e3545a7caa3142e168b85dac02fb",
+      "field_id": "cellline.source_or_rrid",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 26043,
+        "end": 26093,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "stimulated with TNF/H9251or IGF-1 for 5 or 15\nmin.",
+        "anchor_detector": "anchor:section-keyword:SH-SY5Y cells were either unstimulated or"
+      }
+    },
+    {
+      "finding_id": "14c92f60f06aff23de79a654b1b75810",
+      "field_id": "cellline.authentication",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 26043,
+        "end": 26093,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "stimulated with TNF/H9251or IGF-1 for 5 or 15\nmin.",
+        "anchor_detector": "anchor:section-head:SH-SY5Y cells were either unstimulated or"
+      }
+    },
+    {
+      "finding_id": "a1a5cd3604bb48b58d1ff5692b0e71af",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 26043,
+        "end": 26093,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "stimulated with TNF/H9251or IGF-1 for 5 or 15\nmin.",
+        "anchor_detector": "anchor:section-head:SH-SY5Y cells were either unstimulated or"
+      }
+    },
+    {
       "finding_id": "d2b98ecac2542d20cc365c2754c376c5",
       "field_id": "cellline.passage_number",
       "code": "GAP_UNPARSEABLE",

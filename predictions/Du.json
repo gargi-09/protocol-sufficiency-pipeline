@@ -63,6 +63,26 @@
       }
     },
     {
+      "finding_id": "6d773db8cda273c560ec1d1beb21815f",
+      "field_id": "animal.strain",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 10269,
+        "end": 10448,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+        "anchor_detector": "anchor:section-keyword:Tumor-bearing mouse models"
+      }
+    },
+    {
       "finding_id": "ef589c8587f9a1c97ef3c47b2a70bbab",
       "field_id": "animal.sex",
       "code": "GAP_UNPARSEABLE",
@@ -96,6 +116,46 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "'Once the tumors attained a volume of 300 mm3, the animals\\nwere humanely euthanized through CO2 inhalation in concordance with ethical practices.' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "c147ee1a162b2659d14f9c05439afbe7",
+      "field_id": "cellline.authentication",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 19044,
+        "end": 19162,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Through mRNA-seq, we observed the impact of METTL3 or METTL14 knockdown on the mRNA expression\nprofile of EC109 cells.",
+        "anchor_detector": "anchor:section-head:Transcriptome sequencing of METTL3 or METTL14 knockdown cells"
+      }
+    },
+    {
+      "finding_id": "4fb9e6c3b94b9a87b5fb282f5e353637",
+      "field_id": "cellline.mycoplasma",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 19044,
+        "end": 19162,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Through mRNA-seq, we observed the impact of METTL3 or METTL14 knockdown on the mRNA expression\nprofile of EC109 cells.",
+        "anchor_detector": "anchor:section-head:Transcriptome sequencing of METTL3 or METTL14 knockdown cells"
       }
     },
     {

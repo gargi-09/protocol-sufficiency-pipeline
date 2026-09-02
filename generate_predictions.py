@@ -1,72 +1,38 @@
 """
-generate_prediction.py -- Steps 5+6, for real. Builds actual contract.Finding
-objects (not plain dicts) and writes a real predictions/<doc_id>.json file,
-matching the Report schema score.py expects.
+generate_predictions.py -- run analyze() on ONE paper, for fast iteration.
+
+The pipeline itself lives in analyze.py; this is only a driver. Pass a doc_id
+as argv[1], or edit DOC_ID below.
+
+    python generate_predictions.py "Dos et al"
 """
-import json
+from __future__ import annotations
+
+import sys
+
 import yaml
 
-from contract import FieldPack, Finding, Report, StudyProfile, canonicalize, finding_id
-from classify_study import classify_study
-from extract import find_candidate
-from validate import validate_field
+from analyze import analyze
+from contract import FieldPack
 
-DOC_ID = "wang2015_trem2_cell"  # change this to run on a different paper
+DOC_ID = "wang2015_trem2_cell"  # default when no argv[1] is given
 
-with open(f"papers/{DOC_ID}.txt", "r", encoding="utf-8") as f:
-    raw = f.read()
-canonical_text, text_sha = canonicalize(raw)
 
-profile = classify_study(canonical_text, text_sha)
+def main() -> None:
+    doc_id = sys.argv[1] if len(sys.argv) > 1 else DOC_ID
 
-with open("fields/oncobiology_v0.yaml", "r", encoding="utf-8") as f:
-    pack_data = yaml.safe_load(f)
-pack = FieldPack(**pack_data)
+    with open(f"papers/{doc_id}.txt", "r", encoding="utf-8") as f:
+        raw = f.read()
+    with open("fields/oncobiology_v0.yaml", "r", encoding="utf-8") as f:
+        pack = FieldPack(**yaml.safe_load(f))
 
-findings = []
-for spec in pack.applicable(profile):
-    obs = find_candidate(canonical_text, text_sha, spec)
-    outcome = validate_field(obs, spec)
+    report = analyze(raw, doc_id, pack, model=None)
 
-    # FIELD_OK carries no gap -- contract.Finding refuses to be constructed
-    # with an empty code set for FIELD_OK, so we simply don't emit a
-    # Finding for it. Only ABSENT/UNRESOLVED produce a real Finding.
-    if outcome["verdict"] not in ("FIELD_ABSENT", "FIELD_UNRESOLVED"):
-        continue
+    with open(f"predictions/{doc_id}.json", "w", encoding="utf-8") as f:
+        f.write(report.model_dump_json(indent=2))
 
-    span = obs["span"] if obs else None
-    if span is None:
-        # Per the build spec: for an absent field with no anchor sentence
-        # found at all, we'd need to fall back to paragraph/section. For
-        # now, honestly skip rather than fabricate a zero-width span --
-        # the contract explicitly rejects zero-width spans, and a fake
-        # span would be worse than no Finding, per the spec's own words:
-        # "a finding that has no location costs attention and gives
-        # nothing back."
-        continue
+    print(f"Wrote predictions/{doc_id}.json with {len(report.findings)} findings")
 
-    f_id = finding_id(DOC_ID, spec.field_id, outcome["code"], span)
-    finding = Finding(
-        finding_id=f_id,
-        field_id=spec.field_id,
-        code=outcome["code"],
-        span=span,
-        verdict=outcome["verdict"],
-        raw_text=obs["raw_text"] if obs else None,
-        sensitivity=spec.sensitivity,
-        detail={"reason": outcome["reason"]},
-    )
-    findings.append(finding)
 
-report = Report(
-    doc_id=DOC_ID,
-    text_sha=text_sha,
-    field_pack_version=pack_data["version"],
-    profile=profile,
-    findings=findings,
-)
-
-with open(f"predictions/{DOC_ID}.json", "w", encoding="utf-8") as f:
-    f.write(report.model_dump_json(indent=2))
-
-print(f"Wrote predictions/{DOC_ID}.json with {len(findings)} findings")
+if __name__ == "__main__":
+    main()
