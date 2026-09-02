@@ -1,0 +1,67 @@
+version: "0.1-starter"
+
+# Terms that occupy a field without supplying a value.
+#
+# This list is short on purpose. It is a seed, not a solution -- part of the
+# task is deciding how much of this generalizes and how much has to be
+# enumerated. A pure lexicon will not get you far; a pure classifier will
+# overfire on legitimate qualitative text.
+
+# Qualitative substitutes for a quantity.
+qualitative_quantity:
+  - high speed
+  - low speed
+  - maximum speed
+  - full speed
+  - briefly
+  - quickly
+  - rapidly
+  - gently
+  - thoroughly
+  - as needed
+  - appropriate
+  - standard conditions
+  - routine conditions
+  - room temperature      # borderline: often acceptable, sometimes not
+  - on ice                # borderline
+
+# Conditions defined by an observation rather than a value. These are tacit --
+# the value lives in the executor's judgement, not in the text.
+relative_condition:
+  - overnight
+  - until confluent
+  - to confluence
+  - log phase
+  - logarithmic growth
+  - exponential phase
+  - until the desired
+  - when tumours became palpable
+  - until endpoint
+
+# Deferral to another document.
+deferred_reference:
+  patterns:
+    - "as (previously |prev\\.? )?described"
+    - "according to (the )?manufacturer"
+    - "per manufacturer's (instructions|protocol)"
+    - "as in (ref\\.?|reference) ?\\d+"
+    - "following (the )?standard protocol"
+
+# Deferral to a figure or table rather than a value.
+deferred_display:
+  patterns:
+    - "the indicated (times|concentrations|doses|conditions)"
+    - "as indicated"
+    - "(see|shown in) (Fig|Figure|Table|Supplementary)"
+
+# Notes for whoever maintains this file:
+#
+# "room temperature" and "on ice" are marked borderline because both have a
+# real convention behind them in most contexts but not all -- an enzymatic step
+# at "room temperature" in a lab in Chennai and one in Reykjavik are not the
+# same experiment. Decide per field, not globally.
+#
+# "according to the manufacturer" is not automatically a gap when the product
+# is identified by catalogue number, because the protocol is then retrievable.
+# It IS a gap when the product is unidentified. This coupling between the
+# deferral and the identifier field is worth handling.

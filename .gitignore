@@ -1,0 +1,11 @@
+.env
+cache/*.json
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+papers/
+papers_source/
+gold/

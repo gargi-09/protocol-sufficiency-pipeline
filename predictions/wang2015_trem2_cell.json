@@ -1,0 +1,184 @@
+{
+  "doc_id": "wang2015_trem2_cell",
+  "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": true,
+      "has_cell_lines": true,
+      "has_qpcr": true,
+      "has_western_blot": false,
+      "has_ihc": true,
+      "has_flow_cytometry": true,
+      "has_xenograft": false,
+      "has_drug_treatment": true,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_animals": {
+        "start": 6025,
+        "end": 6029,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "has_cell_lines": {
+        "start": 27402,
+        "end": 27416,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "has_qpcr": {
+        "start": 13440,
+        "end": 13444,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "has_ihc": {
+        "start": 37696,
+        "end": 37716,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "has_flow_cytometry": {
+        "start": 13115,
+        "end": 13130,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "has_drug_treatment": {
+        "start": 30110,
+        "end": 30141,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "has_wet_lab": {
+        "start": 6025,
+        "end": 6029,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "6fc9749abcba564a9681f98f39a74f29",
+      "field_id": "animal.species",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 36820,
+        "end": 36878,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "All mice were bred and\nhoused in the same animal facility.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'All mice were bred and\\nhoused in the same animal facility.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
+      }
+    },
+    {
+      "finding_id": "c5935ffbcc4032b7d77b718d8975317f",
+      "field_id": "animal.sex",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 36820,
+        "end": 36878,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "All mice were bred and\nhoused in the same animal facility.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'All mice were bred and\\nhoused in the same animal facility.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "3871d924b2282ab7c485fe78ce417ef3",
+      "field_id": "animal.age_or_weight",
+      "code": "GAP_DEFERRED_TO_REF",
+      "span": {
+        "start": 36624,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Trem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Trem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.' defers to another source (e.g. 'as previously described')"
+      }
+    },
+    {
+      "finding_id": "4136192e05a9b1d5cf039be41c62e668",
+      "field_id": "cellline.source_or_rrid",
+      "code": "GAP_DEFERRED_TO_REF",
+      "span": {
+        "start": 36596,
+        "end": 36819,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'EXPERIMENTAL PROCEDURES\\nMice\\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.' defers to another source (e.g. 'as previously described')"
+      }
+    },
+    {
+      "finding_id": "d8f469c08c1afe33ebb73d4389b24f9a",
+      "field_id": "culture.temperature",
+      "code": "GAP_DEFERRED_TO_REF",
+      "span": {
+        "start": 38476,
+        "end": 38597,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Ex Vivo Microglia Cultures\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Ex Vivo Microglia Cultures\\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).' defers to another source (e.g. 'as previously described')"
+      }
+    },
+    {
+      "finding_id": "5ed4d18518d539affd85b98e17e54744",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_DEFERRED_TO_REF",
+      "span": {
+        "start": 38476,
+        "end": 38597,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Ex Vivo Microglia Cultures\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Ex Vivo Microglia Cultures\\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).' defers to another source (e.g. 'as previously described')"
+      }
+    },
+    {
+      "finding_id": "f69580a1c36c0b9b4c80af0739bd6e92",
+      "field_id": "treatment.concentration",
+      "code": "GAP_DEFERRED_TO_DISPLAY",
+      "span": {
+        "start": 38952,
+        "end": 39132,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Cells were cultured with apoptotic thymocytes in round-bottom 96-well plates or plated onto high-absorbance flat-bottom plate coated\nwith various lipids at indicated concentration.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Cells were cultured with apoptotic thymocytes in round-bottom 96-well plates or plated onto high-absorbance flat-bottom plate coated\\nwith various lipids at indicated concentration.' defers to a figure/table, not a stated value"
+      }
+    }
+  ]
+}

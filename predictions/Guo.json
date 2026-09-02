@@ -1,0 +1,148 @@
+{
+  "doc_id": "Guo",
+  "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": false,
+      "has_cell_lines": true,
+      "has_qpcr": true,
+      "has_western_blot": true,
+      "has_ihc": true,
+      "has_flow_cytometry": true,
+      "has_xenograft": false,
+      "has_drug_treatment": true,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_cell_lines": {
+        "start": 6394,
+        "end": 6405,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "has_qpcr": {
+        "start": 978,
+        "end": 982,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "has_western_blot": {
+        "start": 7407,
+        "end": 7419,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "has_ihc": {
+        "start": 8408,
+        "end": 8428,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "has_flow_cytometry": {
+        "start": 10933,
+        "end": 10947,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "has_drug_treatment": {
+        "start": 8949,
+        "end": 8961,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "has_wet_lab": {
+        "start": 6394,
+        "end": 6405,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "7927a93a3fac95d26589033dc74db3a2",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 531,
+        "end": 631,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "In the present study, we observed a significant upregulation\nof METTL3 in CC tissues and cell lines.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'In the present study, we observed a significant upregulation\\nof METTL3 in CC tissues and cell lines.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "c692b988c1c328bd4280d9c8f4ddc3f5",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 5961,
+        "end": 6096,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "(Wuhan, China) and cultured in DMEM (Solarbio, Beijing) with 10%FBS (Hyclone, Logan, Utah) in a\nhumid atmosphere with 5% CO 2 at 37 °C.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'(Wuhan, China) and cultured in DMEM (Solarbio, Beijing) with 10%FBS (Hyclone, Logan, Utah) in a\\nhumid atmosphere with 5% CO 2 at 37 °C.' did not parse as fraction"
+      }
+    },
+    {
+      "finding_id": "5102ba1f9d74819906dcfc4b735d0922",
+      "field_id": "treatment.concentration",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 2116,
+        "end": 2303,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.' did not parse as concentration"
+      }
+    },
+    {
+      "finding_id": "48fbfcc6f5b2e3464b5f20e67080add1",
+      "field_id": "treatment.duration",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 2116,
+        "end": 2303,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.' did not parse as time"
+      }
+    },
+    {
+      "finding_id": "982d950e1ed1ffa22203d1c7e655de71",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 1088,
+        "end": 1163,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "NEK2 synergized with METTL3 to mediate the malignant phenotype of CC cells.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'NEK2 synergized with METTL3 to mediate the malignant phenotype of CC cells.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    }
+  ]
+}

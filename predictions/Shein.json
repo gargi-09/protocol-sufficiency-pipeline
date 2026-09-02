@@ -1,0 +1,174 @@
+{
+  "doc_id": "Shein",
+  "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": true,
+      "has_cell_lines": true,
+      "has_qpcr": false,
+      "has_western_blot": true,
+      "has_ihc": false,
+      "has_flow_cytometry": false,
+      "has_xenograft": false,
+      "has_drug_treatment": true,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_animals": {
+        "start": 9886,
+        "end": 9891,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "has_cell_lines": {
+        "start": 10378,
+        "end": 10389,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "has_western_blot": {
+        "start": 9313,
+        "end": 9325,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "has_drug_treatment": {
+        "start": 10572,
+        "end": 10584,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "has_wet_lab": {
+        "start": 9886,
+        "end": 9891,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "1e3b8d011ff6560aba8dc3d2143deb6c",
+      "field_id": "animal.age_or_weight",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 8175,
+        "end": 8319,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\nSolution Reagent (Promega) as previously reported (20).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Cell proliferation was quantified by a modified MTS assay with CellTiter 96 AQueous One\\nSolution Reagent (Promega) as previously reported (20).' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "c9d9b972ef9c63556fe76991aa47f374",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 7228,
+        "end": 7298,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "We used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'We used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "a777904c14dd209dd030657877c44fe3",
+      "field_id": "culture.temperature",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10715,
+        "end": 10858,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Enzyme-linked immunosorbent assay\nHBEC3K, NLF, and CAF cells were seeded at 2×105 cells per 60-mm cell culture dish and\nincubated for 72 hours.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Enzyme-linked immunosorbent assay\\nHBEC3K, NLF, and CAF cells were seeded at 2×105 cells per 60-mm cell culture dish and\\nincubated for 72 hours.' did not parse as temperature"
+      }
+    },
+    {
+      "finding_id": "6fc7cf8035ab2b418383561c61936d2f",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10715,
+        "end": 10858,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Enzyme-linked immunosorbent assay\nHBEC3K, NLF, and CAF cells were seeded at 2×105 cells per 60-mm cell culture dish and\nincubated for 72 hours.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Enzyme-linked immunosorbent assay\\nHBEC3K, NLF, and CAF cells were seeded at 2×105 cells per 60-mm cell culture dish and\\nincubated for 72 hours.' did not parse as fraction"
+      }
+    },
+    {
+      "finding_id": "e0249ca7e05bf6bdbc16f00f9192689e",
+      "field_id": "treatment.concentration",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10281,
+        "end": 10497,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Intracellular kinase activation after cytokine treatment\nFor RNA interference assays, cells were transfected with Silencer Select siRNA against\nOSMR, LIFR, JAK1, JAK2, JAK3, Tyk2, or scrambled negative control siRNA.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Intracellular kinase activation after cytokine treatment\\nFor RNA interference assays, cells were transfected with Silencer Select siRNA against\\nOSMR, LIFR, JAK1, JAK2, JAK3, Tyk2, or scrambled negative control siRNA.' did not parse as concentration"
+      }
+    },
+    {
+      "finding_id": "a9ccd49e04e2b68b3e0e0aaccd83fdfd",
+      "field_id": "treatment.duration",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10281,
+        "end": 10497,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Intracellular kinase activation after cytokine treatment\nFor RNA interference assays, cells were transfected with Silencer Select siRNA against\nOSMR, LIFR, JAK1, JAK2, JAK3, Tyk2, or scrambled negative control siRNA.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Intracellular kinase activation after cytokine treatment\\nFor RNA interference assays, cells were transfected with Silencer Select siRNA against\\nOSMR, LIFR, JAK1, JAK2, JAK3, Tyk2, or scrambled negative control siRNA.' did not parse as time"
+      }
+    },
+    {
+      "finding_id": "c9f76dd970b57b83dfd36a885f353c18",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 2921,
+        "end": 3123,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "In particular, IL6 family cytokine\noncostatin-M (OSM) induced a switch to the EMT phenotype and protected cells from targeted\ndrug-induced apoptosis in OSM receptors (OSMRs)/JAK1/STAT3-dependent manner.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'In particular, IL6 family cytokine\\noncostatin-M (OSM) induced a switch to the EMT phenotype and protected cells from targeted\\ndrug-induced apoptosis in OSM receptors (OSMRs)/JAK1/STAT3-dependent manner.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    }
+  ]
+}

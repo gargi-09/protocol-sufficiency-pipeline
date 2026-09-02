@@ -1,0 +1,292 @@
+version: "0.2-starter"
+
+# Changelog
+# 0.2  Added assay.protocol_parameters, centrifugation.force,
+#      antibody.identifier. Each was added because annotating four real papers
+#      surfaced a blocking gap the pack could not express. See the note on each
+#      field for the specific record that earned it.
+#      Requires contract 0.2 (has_wet_lab, applies_when_any).
+#
+# STARTER PACK -- 27 fields, deliberately partial.
+#
+# This is compiled from ARRIVE 2.0, MIQE, and MDAR. "Compiled" means each
+# published checklist item has been decomposed into atomic assertions: one
+# fact, one value, one type. ARRIVE 2.0 item 2a ("provide details of animals
+# used, including species, strain, sex, age") is one published item and four
+# fields here.
+#
+# sensitivity_source is "default" everywhere below. A domain expert has not
+# reviewed these. Treat HIGH as "we have not yet decided", not as a judgment.
+
+fields:
+
+  # -- Animal work (ARRIVE 2.0) ---------------------------------------------
+
+  - field_id: animal.species
+    type: enum
+    enum_values: ["Mus musculus", "Rattus norvegicus", "other"]
+    applies_when: [has_animals]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "2a"}
+      - {guideline: "MDAR", item: "animal_models"}
+    sensitivity: HIGH
+    description: Species of experimental animals.
+
+  - field_id: animal.strain
+    type: identifier
+    applies_when: [has_animals]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "2a"}
+    sensitivity: HIGH
+    description: >
+      Full strain designation. "Nude mice" is FIELD_UNRESOLVED, not FIELD_OK --
+      there are several immunodeficient backgrounds with different engraftment
+      behaviour.
+
+  - field_id: animal.sex
+    type: enum
+    enum_values: ["male", "female", "both", "not_stated"]
+    applies_when: [has_animals]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "2a"}
+      - {guideline: "MDAR", item: "sex_as_variable"}
+    sensitivity: HIGH
+
+  - field_id: animal.age_or_weight
+    type: quantity
+    dimension: time_or_mass
+    applies_when: [has_animals]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "2a"}
+    sensitivity: MED
+
+  - field_id: animal.ethics_approval
+    type: identifier
+    applies_when: [has_animals]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "13"}
+    sensitivity: LOW
+    description: IACUC or equivalent approval, ideally with protocol number.
+
+  - field_id: animal.sample_size_justification
+    type: text
+    applies_when: [has_animals]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "3a"}
+      - {guideline: "MDAR", item: "sample_size"}
+    sensitivity: MED
+
+  - field_id: animal.humane_endpoint
+    type: quantity
+    dimension: volume
+    canonical_unit: mm3
+    applies_when: [has_xenograft]
+    provenance:
+      - {guideline: "ARRIVE 2.0", item: "16"}
+    sensitivity: MED
+    description: Tumour volume or condition triggering euthanasia.
+
+  # -- Xenograft ------------------------------------------------------------
+
+  - field_id: xenograft.cell_number
+    type: quantity
+    dimension: count
+    canonical_unit: cells
+    plausible_range: ["1e4", "1e8"]
+    applies_when: [has_xenograft]
+    provenance:
+      - {guideline: "MDAR", item: "animal_models"}
+    sensitivity: HIGH
+
+  - field_id: xenograft.injection_site
+    type: enum
+    enum_values: ["subcutaneous_flank", "orthotopic", "intravenous",
+                  "intraperitoneal", "other"]
+    applies_when: [has_xenograft]
+    sensitivity: HIGH
+
+  - field_id: xenograft.tumour_measurement_method
+    type: text
+    applies_when: [has_xenograft]
+    sensitivity: HIGH
+    description: >
+      Caliper formula, imaging modality, or both. The volume formula matters:
+      L x W^2 / 2 and L x W x H give materially different curves.
+
+  # -- Cell lines (MDAR) ----------------------------------------------------
+
+  - field_id: cellline.name
+    type: identifier
+    applies_when: [has_cell_lines]
+    provenance:
+      - {guideline: "MDAR", item: "cell_lines"}
+    sensitivity: HIGH
+
+  - field_id: cellline.source_or_rrid
+    type: identifier
+    applies_when: [has_cell_lines]
+    provenance:
+      - {guideline: "MDAR", item: "cell_lines"}
+    sensitivity: HIGH
+    description: RRID (CVCL_...) or vendor plus catalogue number.
+
+  - field_id: cellline.authentication
+    type: text
+    applies_when: [has_cell_lines]
+    provenance:
+      - {guideline: "MDAR", item: "cell_lines"}
+    sensitivity: MED
+    description: STR profiling or equivalent.
+
+  - field_id: cellline.mycoplasma
+    type: boolean
+    applies_when: [has_cell_lines]
+    provenance:
+      - {guideline: "MDAR", item: "cell_lines"}
+    sensitivity: LOW
+
+  - field_id: cellline.passage_number
+    type: quantity
+    dimension: count
+    applies_when: [has_cell_lines]
+    sensitivity: MED
+
+  # -- Culture conditions ---------------------------------------------------
+
+  - field_id: culture.temperature
+    type: quantity
+    dimension: temperature
+    canonical_unit: K
+    plausible_range: ["293.15", "315.15"]
+    applies_when: [has_cell_lines]
+    sensitivity: HIGH
+    description: >
+      Note for the candidate: this field is almost always absent AND almost
+      always recoverable (37 C). It is a good test of whether your system can
+      distinguish "missing" from "missing and consequential". You are not asked
+      to implement that distinction, but do not let it dominate your output.
+
+  - field_id: culture.co2_fraction
+    type: quantity
+    dimension: fraction
+    canonical_unit: percent
+    plausible_range: ["3", "10"]
+    applies_when: [has_cell_lines]
+    sensitivity: MED
+
+  # -- Treatment ------------------------------------------------------------
+
+  - field_id: treatment.concentration
+    type: quantity
+    dimension: concentration
+    canonical_unit: mol/L
+    applies_when: [has_drug_treatment]
+    sensitivity: HIGH
+
+  - field_id: treatment.duration
+    type: quantity
+    dimension: time
+    canonical_unit: s
+    applies_when: [has_drug_treatment]
+    sensitivity: HIGH
+    description: >
+      "for the indicated times" is the canonical failure here. It is present,
+      it refers to a figure, and it is not a value.
+
+  - field_id: treatment.vehicle
+    type: text
+    applies_when: [has_drug_treatment]
+    sensitivity: MED
+    description: DMSO percentage matters; vehicle-only control composition.
+
+  # -- qPCR (MIQE) ----------------------------------------------------------
+
+  - field_id: qpcr.primer_sequences
+    type: sequence
+    applies_when: [has_qpcr]
+    provenance:
+      - {guideline: "MIQE", item: "primer_sequences"}
+    sensitivity: HIGH
+
+  - field_id: qpcr.reference_genes
+    type: identifier
+    applies_when: [has_qpcr]
+    provenance:
+      - {guideline: "MIQE", item: "normalisation"}
+    sensitivity: HIGH
+
+  # -- Statistics -----------------------------------------------------------
+
+  - field_id: stats.replicate_type
+    type: enum
+    enum_values: ["biological", "technical", "both", "not_stated"]
+    applies_when: []
+    provenance:
+      - {guideline: "MDAR", item: "replication"}
+    sensitivity: HIGH
+    description: >
+      Whether reported n refers to biological or technical replicates. Present
+      in almost no papers and changes the interpretation of every error bar.
+
+  - field_id: stats.test_named
+    type: text
+    applies_when: []
+    provenance:
+      - {guideline: "MDAR", item: "statistics"}
+    sensitivity: HIGH
+
+  # -- Added in 0.2 ----------------------------------------------------------
+
+  - field_id: assay.protocol_parameters
+    type: text
+    applies_when: [has_wet_lab]
+    provenance:
+      - {guideline: "MDAR", item: "methods"}
+    sensitivity: HIGH
+    description: >
+      Whether the quantitative readout assays carry their own parameters, or
+      are fully deferred elsewhere. Earned by Kurosawa 2012, where both primary
+      readouts (brain creatine, brain cyclocreatine) are deferred to method
+      papers from 1960 and 1976 with no parameters carried forward, and by
+      Wang 2015, where the Ab ELISA is deferred entirely to a prior paper.
+      Without this field both records looked far cleaner than they are.
+      Expect GAP_DEFERRED_TO_REF, not GAP_ABSENT. A deferral is NOT a gap when
+      the target is a versioned protocol with a DOI or a kit with a catalogue
+      number; it IS a gap when the target is a prose citation, and worse when
+      the target itself defers again.
+
+  - field_id: centrifugation.force
+    type: quantity
+    dimension: relative_centrifugal_force
+    canonical_unit: g_rcf
+    plausible_range: ["100", "200000"]
+    applies_when: [has_wet_lab]
+    sensitivity: HIGH
+    description: >
+      Earned by Ulland 2017 ("14,000 rpm in a tabletop microcentrifuge") and by
+      the absence of any spin conditions for the guanidine/Triton fractionation
+      in Wang 2015.
+      rpm against this field is GAP_DIMENSION_MISMATCH unless a rotor is named:
+      rpm and x g are not interconvertible without a radius, and a system that
+      silently converts them manufactures a value that was never in the record.
+      Do NOT set sensitivity by the mismatch alone. A debris spin at "14,000
+      rpm in a tabletop" is ~16,000 x g in every tabletop ever made and is
+      recoverable; the same phrase on a subcellular fractionation is not. The
+      criticality scorer, not this field, makes that call.
+
+  - field_id: antibody.identifier
+    type: identifier
+    applies_when: [has_wet_lab]
+    applies_when_any: [has_western_blot, has_ihc, has_flow_cytometry]
+    provenance:
+      - {guideline: "MDAR", item: "antibodies"}
+      - {guideline: "RRID", item: "antibody"}
+    sensitivity: HIGH
+    description: >
+      RRID, or vendor plus catalogue number plus clone. Clone is the operative
+      slot: two antibodies to the same target routinely give opposite results.
+      Earned by the Wang 2015 / Ulland 2017 pair, same lab and same model
+      system, where the 2017 STAR Methods Key Resources Table passes cleanly
+      and the 2015 paper names antibodies in prose only. That pair is the
+      sharpest within-lab contrast in the corpus and the pack could not see it.
+      Required applies_when_any, which contract 0.1 could not express.

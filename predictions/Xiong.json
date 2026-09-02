@@ -1,0 +1,161 @@
+{
+  "doc_id": "Xiong",
+  "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": true,
+      "has_cell_lines": true,
+      "has_qpcr": false,
+      "has_western_blot": true,
+      "has_ihc": false,
+      "has_flow_cytometry": true,
+      "has_xenograft": false,
+      "has_drug_treatment": true,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_animals": {
+        "start": 40921,
+        "end": 40925,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "has_cell_lines": {
+        "start": 7796,
+        "end": 7807,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "has_western_blot": {
+        "start": 8049,
+        "end": 8061,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "has_flow_cytometry": {
+        "start": 9884,
+        "end": 9898,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "has_drug_treatment": {
+        "start": 16697,
+        "end": 16709,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "has_wet_lab": {
+        "start": 40921,
+        "end": 40925,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "f73f325e6fd20f0625a1f0026e36d277",
+      "field_id": "animal.age_or_weight",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 11926,
+        "end": 12096,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "T o investigate the inhibitory effects of AG490, the upper\nchamber was filled with 100 μM AG490 or ethanol at an equiva-\nlent volume (as a vehicle control), respectively.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'T o investigate the inhibitory effects of AG490, the upper\\nchamber was filled with 100 μM AG490 or ethanol at an equiva-\\nlent volume (as a vehicle control), respectively.' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "ac00bad103e649d99c5c2ecb6873bd56",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6854,
+        "end": 7022,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "dad3dc281a57c6e51ea5268a471956e4",
+      "field_id": "culture.temperature",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6854,
+        "end": 7022,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as temperature"
+      }
+    },
+    {
+      "finding_id": "7b84a7bd972d4ab8fc76717a2c646fec",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6854,
+        "end": 7022,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as fraction"
+      }
+    },
+    {
+      "finding_id": "8a61bbb4b51e756ec14557bc8f6f8b0c",
+      "field_id": "treatment.duration",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6740,
+        "end": 7022,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Materials and Methods\nCell Culture, Treatment with Pharmacologic Agents, and\nTransient Transfection of STAT3 siRNA\nT wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Materials and Methods\\nCell Culture, Treatment with Pharmacologic Agents, and\\nTransient Transfection of STAT3 siRNA\\nT wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as time"
+      }
+    },
+    {
+      "finding_id": "69eb160ab9172151f026f43c8c7ab303",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 4979,
+        "end": 5364,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "In fact,\nSTAT3 is constitutively activated in various types of human tumors,\nincluding colorectal cancer, but very few studies have reported abnor-\nm a le x p r e s s i o no ra c t i v a t i o no fJ A K / S T A Ti nC R C[ 2 2 ] .M aa n d\ncoworkers showed that the level of activated phospho-STAT3\n(pSTAT3) increased in 45 primary CRC samples compared to adja-\ncent normal mucosae [23].",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'In fact,\\nSTAT3 is constitutively activated in various types of human tumors,\\nincluding colorectal cancer, but very few studies have reported abnor-\\nm a le x p r e s s i o no ra c t i v a t i o no fJ A K / S T A Ti nC R C[ 2 2 ] .M aa n d\\ncoworkers showed that the level of activated phospho-STAT3\\n(pSTAT3) increased in 45 primary CRC samples compared to adja-\\ncent normal mucosae [23].' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    }
+  ]
+}

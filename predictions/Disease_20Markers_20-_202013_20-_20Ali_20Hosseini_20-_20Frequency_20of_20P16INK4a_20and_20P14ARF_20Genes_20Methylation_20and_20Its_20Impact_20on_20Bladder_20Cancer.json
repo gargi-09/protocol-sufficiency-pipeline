@@ -1,0 +1,46 @@
+{
+  "doc_id": "Disease_20Markers_20-_202013_20-_20Ali_20Hosseini_20-_20Frequency_20of_20P16INK4a_20and_20P14ARF_20Genes_20Methylation_20and_20Its_20Impact_20on_20Bladder_20Cancer",
+  "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": false,
+      "has_cell_lines": false,
+      "has_qpcr": false,
+      "has_western_blot": false,
+      "has_ihc": false,
+      "has_flow_cytometry": false,
+      "has_xenograft": false,
+      "has_drug_treatment": false,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_wet_lab": {
+        "start": 11169,
+        "end": 11178,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "9cb5fad957589902b07cd358f4a8d640",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 3814,
+        "end": 3886,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The remainder are squamous tumours,\nadenocarcinomas, and other subtypes.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'The remainder are squamous tumours,\\nadenocarcinomas, and other subtypes.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    }
+  ]
+}

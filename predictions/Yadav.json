@@ -1,0 +1,192 @@
+{
+  "doc_id": "Yadav",
+  "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": true,
+      "has_cell_lines": true,
+      "has_qpcr": false,
+      "has_western_blot": true,
+      "has_ihc": true,
+      "has_flow_cytometry": false,
+      "has_xenograft": false,
+      "has_drug_treatment": false,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_animals": {
+        "start": 5104,
+        "end": 5108,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "has_cell_lines": {
+        "start": 9428,
+        "end": 9439,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "has_western_blot": {
+        "start": 14452,
+        "end": 14464,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "has_ihc": {
+        "start": 21717,
+        "end": 21737,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "has_wet_lab": {
+        "start": 5104,
+        "end": 5108,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "27cd9d63b9ff69dfb8aea5d7442beb7a",
+      "field_id": "animal.species",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 7983,
+        "end": 8184,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\\n12-h light cycle and were allowed to access food and water ad libitum.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
+      }
+    },
+    {
+      "finding_id": "3e5c82ec675281e9bead802dbc8dd106",
+      "field_id": "animal.sex",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 7983,
+        "end": 8184,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\\n12-h light cycle and were allowed to access food and water ad libitum.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "58042f84c71e0d24b895c521696b6e77",
+      "field_id": "animal.age_or_weight",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 15173,
+        "end": 15386,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Proteins concentrations were determined by Pierce BCA assay\nkit. 100 /H9262g of protein samples along with pre-stained protein molecular\nweight markers were electrophoresed on denaturing SDS-polyacryl-\namide gels.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Proteins concentrations were determined by Pierce BCA assay\\nkit. 100 /H9262g of protein samples along with pre-stained protein molecular\\nweight markers were electrophoresed on denaturing SDS-polyacryl-\\namide gels.' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "d2b98ecac2542d20cc365c2754c376c5",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 12180,
+        "end": 12229,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The cells were discarded\nafter about 15 passages.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'The cells were discarded\\nafter about 15 passages.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "fad78817e178f94e4ec968756bdefd33",
+      "field_id": "culture.temperature",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 8442,
+        "end": 8549,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Primary Neuronal Cell Culture—The protocol followed was adapted\nfrom a procedure described previously (17).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Primary Neuronal Cell Culture—The protocol followed was adapted\\nfrom a procedure described previously (17).' did not parse as temperature"
+      }
+    },
+    {
+      "finding_id": "77d0d5980745df4200fd4017473cf99e",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 8442,
+        "end": 8549,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Primary Neuronal Cell Culture—The protocol followed was adapted\nfrom a procedure described previously (17).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Primary Neuronal Cell Culture—The protocol followed was adapted\\nfrom a procedure described previously (17).' did not parse as fraction"
+      }
+    },
+    {
+      "finding_id": "ab3f9df7582a68edf3b27d3b59106709",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 27639,
+        "end": 27846,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "STAT3 Is Associated with IGF Receptor and JAK1— It has\nbeen shown previously in other cell types that STATs can be\nactivated by IGFR upon IGF-1 stimulation, and JAKs are es-\nsential for this activation (23).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'STAT3 Is Associated with IGF Receptor and JAK1— It has\\nbeen shown previously in other cell types that STATs can be\\nactivated by IGFR upon IGF-1 stimulation, and JAKs are es-\\nsential for this activation (23).' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "dce2f47402133a98b41e28f4cdda7929",
+      "field_id": "centrifugation.force",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 17697,
+        "end": 17779,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "After centrifugation\n(30,000 /H11003g), the supernatant contained nuclear extract.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'After centrifugation\\n(30,000 /H11003g), the supernatant contained nuclear extract.' did not parse as relative_centrifugal_force"
+      }
+    }
+  ]
+}

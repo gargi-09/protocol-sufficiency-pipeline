@@ -1,0 +1,174 @@
+{
+  "doc_id": "Du",
+  "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": true,
+      "has_cell_lines": true,
+      "has_qpcr": false,
+      "has_western_blot": true,
+      "has_ihc": false,
+      "has_flow_cytometry": true,
+      "has_xenograft": false,
+      "has_drug_treatment": false,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_animals": {
+        "start": 10549,
+        "end": 10553,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "has_cell_lines": {
+        "start": 17798,
+        "end": 17809,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "has_western_blot": {
+        "start": 8307,
+        "end": 8319,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "has_flow_cytometry": {
+        "start": 18478,
+        "end": 18492,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "has_wet_lab": {
+        "start": 10549,
+        "end": 10553,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "72b0c05b01f4d5ded83578cedc0e4c6a",
+      "field_id": "animal.species",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10268,
+        "end": 10448,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\\ncal College, ensuring adherence to all pertinent guidelines and regulations.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
+      }
+    },
+    {
+      "finding_id": "ef589c8587f9a1c97ef3c47b2a70bbab",
+      "field_id": "animal.sex",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10268,
+        "end": 10448,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\\ncal College, ensuring adherence to all pertinent guidelines and regulations.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "76ea82269c5cb1d662d0b22bd3a58503",
+      "field_id": "animal.age_or_weight",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 10972,
+        "end": 11117,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Once the tumors attained a volume of 300 mm3, the animals\nwere humanely euthanized through CO2 inhalation in concordance with ethical practices.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Once the tumors attained a volume of 300 mm3, the animals\\nwere humanely euthanized through CO2 inhalation in concordance with ethical practices.' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "6e7869db7b1a98360bed4b12ed92ff2b",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 5808,
+        "end": 6017,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "In our current study, employing a pan-cancer analytical approach, we developed METTL3 and\nMETTL14 knockdown EC109 esophageal cancer cell lines to explore the impact of gene silencing on cellular\nproliferation.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'In our current study, employing a pan-cancer analytical approach, we developed METTL3 and\\nMETTL14 knockdown EC109 esophageal cancer cell lines to explore the impact of gene silencing on cellular\\nproliferation.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "794d4f80b6c633e10a64ad0691993bb7",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 7519,
+        "end": 7651,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The cells were cultured in high-glucose DMEM medium, incubated at 37 °C in a 5% CO2\nincubator, with the medium containing 10% serum.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'The cells were cultured in high-glucose DMEM medium, incubated at 37 °C in a 5% CO2\\nincubator, with the medium containing 10% serum.' did not parse as fraction"
+      }
+    },
+    {
+      "finding_id": "74681d2724bbef273fa2e4285e26fc27",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6198,
+        "end": 6413,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "We retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'We retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "cdca0da07c212ce1cad9c23492d4040f",
+      "field_id": "centrifugation.force",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 20905,
+        "end": 21000,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "It further reinforced our hypothesis that METTL3 has independent binding partners\nfrom METTL14.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'It further reinforced our hypothesis that METTL3 has independent binding partners\\nfrom METTL14.' did not parse as relative_centrifugal_force"
+      }
+    }
+  ]
+}

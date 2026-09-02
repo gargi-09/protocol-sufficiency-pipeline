@@ -1,0 +1,246 @@
+{
+  "doc_id": "Sun",
+  "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": true,
+      "has_cell_lines": true,
+      "has_qpcr": false,
+      "has_western_blot": true,
+      "has_ihc": false,
+      "has_flow_cytometry": false,
+      "has_xenograft": true,
+      "has_drug_treatment": false,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_animals": {
+        "start": 15664,
+        "end": 15668,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "has_cell_lines": {
+        "start": 9622,
+        "end": 9633,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "has_western_blot": {
+        "start": 8177,
+        "end": 8189,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "has_xenograft": {
+        "start": 38306,
+        "end": 38315,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "has_wet_lab": {
+        "start": 15664,
+        "end": 15668,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "525f1ce8cb86f720558ef013337ea074",
+      "field_id": "animal.species",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 15454,
+        "end": 15588,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Animal models\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Animal models\\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\\nmatrigel (Yeasen, China) at the volume ratio of 4:1.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
+      }
+    },
+    {
+      "finding_id": "9cc04c077d6c9f0eca985f0baf9c2b1e",
+      "field_id": "animal.sex",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 15454,
+        "end": 15588,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Animal models\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Animal models\\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\\nmatrigel (Yeasen, China) at the volume ratio of 4:1.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "9b241b28b5c32467dd6cab05b44015aa",
+      "field_id": "animal.age_or_weight",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 19818,
+        "end": 20100,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Compared\nwith the control group, more cells were restrained in G1/G0 stage\nand the fraction of cells that stayed in the G2/M stage was\nsigniﬁcantly decreased in METTL3-silenced cells (Fig. 2F), but no\nobvious difference in cell apoptosis was observed between these\ngroups (Fig. 2G).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Compared\\nwith the control group, more cells were restrained in G1/G0 stage\\nand the fraction of cells that stayed in the G2/M stage was\\nsigniﬁcantly decreased in METTL3-silenced cells (Fig. 2F), but no\\nobvious difference in cell apoptosis was observed between these\\ngroups (Fig. 2G).' did not parse as time_or_mass"
+      }
+    },
+    {
+      "finding_id": "25b3652a6f4ed18261650079c755da88",
+      "field_id": "animal.humane_endpoint",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 15454,
+        "end": 15588,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Animal models\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'Animal models\\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\\nmatrigel (Yeasen, China) at the volume ratio of 4:1.' did not parse as volume"
+      }
+    },
+    {
+      "finding_id": "41b0402a9c9ce0fa9b20883d152546fb",
+      "field_id": "xenograft.cell_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 35643,
+        "end": 35729,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "M The number of cells at mitotic phase was diminished in YTHDF1-silenced cancer cells.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'M The number of cells at mitotic phase was diminished in YTHDF1-silenced cancer cells.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "88bec5c997acb21abea6284fd1dd8a70",
+      "field_id": "xenograft.injection_site",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 38324,
+        "end": 38434,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "B Representative xenograft tumors after subcutaneous injection of HCT116 cells with or without deleted METTL3.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'B Representative xenograft tumors after subcutaneous injection of HCT116 cells with or without deleted METTL3.' not in declared enum_values ['subcutaneous_flank', 'orthotopic', 'intravenous', 'intraperitoneal', 'other']"
+      }
+    },
+    {
+      "finding_id": "49d58a298467203a4bab79f8be0c1167",
+      "field_id": "cellline.passage_number",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6341,
+        "end": 6435,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The HCT116 colon cancer\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'The HCT116 colon cancer\\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.' did not parse as count"
+      }
+    },
+    {
+      "finding_id": "1ef26709ccf7189fde4174e27ca46974",
+      "field_id": "culture.co2_fraction",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 6436,
+        "end": 6691,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "HCT116\nand 293T cells were cultured in Dulbecco ’s modi ﬁed Eagle ’s medium\n(Gibco, USA), and LoVo cells were cultured in RPMI 1640 medium (Gibco,\nUSA) supplemented with 10% fetal bovine serum (Gibco, USA) at 37 °C in a\nhumidiﬁed atmosphere with 5% CO 2.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "'HCT116\\nand 293T cells were cultured in Dulbecco ’s modi ﬁed Eagle ’s medium\\n(Gibco, USA), and LoVo cells were cultured in RPMI 1640 medium (Gibco,\\nUSA) supplemented with 10% fetal bovine serum (Gibco, USA) at 37 °C in a\\nhumidiﬁed atmosphere with 5% CO 2.' did not parse as fraction"
+      }
+    },
+    {
+      "finding_id": "8fe5e53be66c01cc4763482763082e15",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_UNPARSEABLE",
+      "span": {
+        "start": 14682,
+        "end": 14802,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Then, the wild-type or the mutant\nconstruct with pRL-TK plasmid was co-transfected into HCT116 cells with\n70% conﬂuence.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Then, the wild-type or the mutant\\nconstruct with pRL-TK plasmid was co-transfected into HCT116 cells with\\n70% conﬂuence.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+      }
+    },
+    {
+      "finding_id": "8c65c3e7ab3e55e6982edddc5d7f5696",
+      "field_id": "centrifugation.force",
+      "code": "GAP_DIMENSION_MISMATCH",
+      "span": {
+        "start": 8292,
+        "end": 8509,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "After centrifugation, the protein lysate was\nseparated in 10% sodium dodecyl-sulfate polyacrylamide gel electro-\nphoresis and electrotransferred to a 0.4 μmp o l y v i n y l i d e n eﬂuoride\nmembrane (Millipore, USA).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'After centrifugation, the protein lysate was\\nseparated in 10% sodium dodecyl-sulfate polyacrylamide gel electro-\\nphoresis and electrotransferred to a 0.4 μmp o l y v i n y l i d e n eﬂuoride\\nmembrane (Millipore, USA).' is a fraction, field needs relative_centrifugal_force"
+      }
+    },
+    {
+      "finding_id": "fb251c5563cfaa1fb0fd4eeb168f92c0",
+      "field_id": "antibody.identifier",
+      "code": "GAP_VAGUE",
+      "span": {
+        "start": 11088,
+        "end": 11236,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Rabbit anti-m 6A\nantibody (Beyotime Biotechnology, Beijing, China) diluted 1:1000 in PBST\nwas added to the membrane and incubated overnight at 4 °C.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'Rabbit anti-m 6A\\nantibody (Beyotime Biotechnology, Beijing, China) diluted 1:1000 in PBST\\nwas added to the membrane and incubated overnight at 4 °C.' contains 'overnight', a relative condition defined by observation, not a stated value"
+      }
+    }
+  ]
+}
