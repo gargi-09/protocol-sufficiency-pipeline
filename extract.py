@@ -20,29 +20,109 @@ from __future__ import annotations
 import re
 
 from contract import FieldSpec, Span
-from sections import find_subsections, find_relevant_subsections
+from sections import build_tree, find_subsections, find_relevant_subsections
+from node_select import select_node
+from vagueness import get_trigger_lexicon
 from relevance import check_relevance
 
-_METHODS_HEADERS = [r"EXPERIMENTAL PROCEDURES", r"MATERIALS AND METHODS", r"\bMETHODS\b"]
-_METHODS_END_HEADERS = [r"\bDISCUSSION\b", r"\bREFERENCES\b", r"ACKNOWLEDGMENTS?"]
+# Methods-section boundaries.
+#
+# These were previously uppercase literals matched case-sensitively, which found
+# a heading in only 3 of the 9 dev papers -- the other 6 use mixed case
+# ("Materials and Methods") and silently fell back to searching the whole
+# document, title block and reference list included.
+#
+# Case-insensitivity alone is not enough, because the bare word also occurs in
+# running prose ("methods described earlier (Visvanathan et al., 2017)") and in
+# figure legends ("as per the protocol given under 'Materials and Methods.'").
+# So a heading must occupy a line of its own, optionally numbered and optionally
+# followed by a colon. That rejects both without needing a per-paper exception.
+_METHODS_HEADERS = [
+    r"experimental procedures?",
+    r"materials and methods",
+    r"methods and materials",
+    r"methods",
+]
+
+# Enumerating heading forms is a generalisation trap: the list above misses
+# "Patients and Methods" (standard in clinical oncology), "Online Methods"
+# (Nature family), "Materials & Methods", "Subjects and Methods",
+# "Experimental Section" and "Methodology". Rather than growing the list one
+# journal at a time, fall back to a SHAPE rule -- a short line, optionally
+# numbered, whose head ends in a methods-ish word. Tried only after the
+# specific forms above, so precision is unaffected when they match.
+_METHODS_HEADER_GENERIC = (
+    r"^[ \t]*(?:\d+(?:\.\d+)*\.?[ \t]*)?"
+    r"(?:[A-Za-z&][A-Za-z& ]{0,44})?"
+    r"\b(?:methods?|methodology|experimental[ \t]+(?:procedures?|section))\b"
+    r"[ \t]*:?[ \t]*$"
+)
+
+# A structured abstract can carry a bare "Methods" heading on its own line.
+# Requiring the resulting window to hold real content rejects it: an abstract's
+# methods block runs a few hundred characters before "Results", whereas the
+# smallest true Methods section in the dev set is 3,123 characters.
+_MIN_METHODS_CHARS = 400
+
+# Any of these legitimately terminates Methods. "results" is included because
+# most journals order Methods before Results, and without it the Methods window
+# swallowed the entire Results section -- which is how figure-legend and
+# results-narrative sentences were reaching the candidate pool.
+_METHODS_END_HEADERS = [
+    r"results and discussion",
+    r"results",
+    r"discussion",
+    r"references",
+    r"bibliography",
+    r"acknowledge?ments?",
+    r"conflicts? of interest",
+    r"author contributions?",
+    r"data availability",
+    r"supplementary (?:material|information|data)",
+]
+
+
+def _heading_pattern(word: str) -> str:
+    """A heading alone on its line: optional numbering, optional trailing colon."""
+    return rf"^[ \t]*(?:\d+(?:\.\d+)*\.?[ \t]*)?{word}[ \t]*:?[ \t]*$"
 
 
 def find_methods_section(text: str) -> tuple[int, int]:
-    start = None
-    for pat in _METHODS_HEADERS:
-        m = re.search(pat, text)
-        if m:
+    """Locate the Methods section as (start, end) offsets into canonical text.
+
+    Falls back to the whole document when no heading is found. That is the
+    honest answer for a paper whose structure we cannot read, but it is an
+    expensive miss: every absence anchor for that paper then degrades toward the
+    title block, so the fallback firing is worth logging in a diagnostic pass.
+    """
+    patterns = [_heading_pattern(w) for w in _METHODS_HEADERS]
+    patterns.append(_METHODS_HEADER_GENERIC)
+
+    # Ordered, not min(): specific headings take precedence over the generic
+    # shape rule, so a paper containing both resolves to the specific one.
+    for pattern in patterns:
+        for m in re.finditer(pattern, text, re.IGNORECASE | re.MULTILINE):
             start = m.start()
-            break
-    if start is None:
-        return 0, len(text)
-    end = len(text)
-    for pat in _METHODS_END_HEADERS:
-        m = re.search(pat, text[start:])
-        if m:
-            end = start + m.start()
-            break
-    return start, end
+            end = _find_section_end(text, start)
+            if end - start >= _MIN_METHODS_CHARS:
+                return start, end
+    return 0, len(text)
+
+
+def _find_section_end(text: str, start: int) -> int:
+    """Earliest terminator after `start`, or end of document.
+
+    min(), not list order: any of these legitimately terminates Methods, so the
+    nearest one wins. The old code returned the first pattern in list order,
+    which gave the wrong boundary for a paper whose References precede its
+    Discussion.
+    """
+    ends = []
+    for word in _METHODS_END_HEADERS:
+        m = re.search(_heading_pattern(word), text[start:], re.IGNORECASE | re.MULTILINE)
+        if m and m.start() > 0:
+            ends.append(start + m.start())
+    return min(ends) if ends else len(text)
 
 
 _SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z(])")
@@ -116,7 +196,7 @@ def find_candidate(canonical_text: str, text_sha: str, spec: FieldSpec) -> dict 
     m_start, m_end = find_methods_section(canonical_text)
     methods_text = canonical_text[m_start:m_end]
 
-    subsections = find_subsections(methods_text, m_start)
+    subsections = find_subsections(methods_text, m_start, full_text=canonical_text)
     weighted_keywords = field_keywords(spec.field_id)
     matching_subsections = find_relevant_subsections(subsections, spec.field_id)
 
@@ -149,6 +229,12 @@ def find_candidate(canonical_text: str, text_sha: str, spec: FieldSpec) -> dict 
             detector_label = "keyword:fallback-whole-methods"
 
     if best_overall is None:
+        found = _trigger_driven_candidate(canonical_text, m_start, m_end, spec)
+        if found:
+            best_overall = found
+            detector_label = "trigger:fills-slot"
+
+    if best_overall is None:
         return None
 
     sent_text, start, end = best_overall
@@ -157,6 +243,48 @@ def find_candidate(canonical_text: str, text_sha: str, spec: FieldSpec) -> dict 
         "span": Span(start=start, end=end, text_sha=text_sha),
         "detector": detector_label,
     }
+
+
+def _trigger_driven_candidate(canonical_text, m_start, m_end, spec):
+    """Last-resort retrieval: find a sentence holding a trigger for THIS slot.
+
+    Keyword retrieval requires the field's own vocabulary in the sentence, and
+    the canonical vagueness cases do not contain it. treatment.duration is
+    gold-labelled GAP_VAGUE on "Reporter cells were assessed after overnight
+    incubation." -- a sentence with neither "treatment" nor "duration" in it, so
+    it scored zero and was never a candidate. The gap was unreachable no matter
+    how good Layer 2 became.
+
+    The typed trigger table already knows which slots each trigger can fill, so
+    it can drive retrieval as well as validation: for a field of dimension
+    `time`, any sentence containing a time-filling trigger is a candidate.
+
+    Deliberately a FALLBACK, reached only when keyword retrieval found nothing.
+    Running it alongside the keyword pass would let a trigger anywhere in
+    Methods outrank a sentence that genuinely discusses the field.
+
+    GAP_VAGUE triggers ONLY -- deferrals are excluded, and that exclusion is
+    load-bearing. A vagueness trigger names the slot it fills: "overnight" IS a
+    duration, so the sentence containing it is genuinely about duration. A
+    deferral is a property of the sentence, not of any one slot -- "the culture
+    was generated as previously described" does not mean the cell line's NAME is
+    deferred, it means the derivation procedure is. Allowing deferrals here took
+    GAP_DEFERRED_TO_REF from 1 to 27 across nine papers, because every
+    identifier and text field with no keyword hit grabbed the first
+    "as previously described" sentence in Methods.
+    """
+    lexicon = get_trigger_lexicon()
+    for sent_text, start, end in split_sentences(
+        canonical_text[m_start:m_end], base_offset=m_start
+    ):
+        if not sent_text.strip():
+            continue
+        for trigger in lexicon.find_all(sent_text):
+            if trigger.code != "GAP_VAGUE":
+                continue
+            if trigger.can_fill(spec.dimension, spec.type):
+                return sent_text, start, end
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -174,6 +302,19 @@ def find_candidate(canonical_text: str, text_sha: str, spec: FieldSpec) -> dict 
 # bar for "is this a usable value".
 # ---------------------------------------------------------------------------
 
+# An anchor has to be readable. The sentence splitter turns a numbered heading
+# ("2. Materials and Methods") into a two-character sentence "2.", and three
+# findings were anchored on that bare numeral -- a location that, in
+# 02_BUILD_SPEC's words, "costs attention and gives nothing back". Require at
+# least one real word and enough characters to orient a reader.
+_MIN_ANCHOR_CHARS = 10
+_ANCHOR_HAS_WORD = re.compile(r"[A-Za-z]{3,}")
+
+
+def _is_substantive(text: str) -> bool:
+    return len(text) >= _MIN_ANCHOR_CHARS and bool(_ANCHOR_HAS_WORD.search(text))
+
+
 def _tighten(sent_text: str, start: int) -> tuple[str, int, int] | None:
     """Trim surrounding whitespace and move the span onto the trimmed text.
 
@@ -188,9 +329,10 @@ def _tighten(sent_text: str, start: int) -> tuple[str, int, int] | None:
 
 
 def _first_non_empty_sentence(sentences) -> tuple[str, int, int] | None:
+    """First sentence carrying enough text to serve as a location."""
     for sent_text, start, _end in sentences:
         tightened = _tighten(sent_text, start)
-        if tightened:
+        if tightened and _is_substantive(tightened[0]):
             return tightened
     return None
 
@@ -225,64 +367,57 @@ def _as_anchor(hit: tuple[str, int, int], text_sha: str, detector: str) -> dict:
 
 
 def find_absence_anchor(
-    canonical_text: str, text_sha: str, spec: FieldSpec
+    canonical_text: str,
+    text_sha: str,
+    spec: FieldSpec,
+    model=None,
 ) -> dict | None:
     """Locate where a reader should look for a field that is not stated.
 
-    Ladder, most specific first:
-      1. best keyword-scoring sentence inside a subsection whose header matches
-         the field's category
-      2. first sentence of that subsection, if nothing in it scores
-      3. best keyword-scoring sentence anywhere in Methods
-      4. first sentence of Methods
-      5. first sentence of the document
+    This is a walk up the document tree. Pick the deepest node that ought to
+    contain the field, then climb toward the root until a node yields a
+    sentence:
 
-    Returns None only when the document contains no non-empty sentence at all.
-    The caller must then drop the finding: a zero-width span is rejected by the
-    contract, and 02_BUILD_SPEC is explicit that a finding with no location
+        subsection -> methods -> document
+
+    Each level is tried twice: first for a sentence scoring on the field's
+    keywords, then for the node's own first sentence. The second attempt is the
+    one that usually fires for an absent field, and that is not a weakness --
+    for an absent field the field's vocabulary is by definition NOT in the text,
+    so "the first sentence of the right subsection" is the correct answer.
+    Measured: scoring subsection bodies against field keywords returned zero for
+    every field tested on wang2015, because "mycoplasma" appears nowhere in a
+    paper that never mentions mycoplasma.
+
+    Replaces a hardcoded 5-rung ladder. Same behaviour when the tree is two
+    levels deep, but it now generalises to any depth for free.
+
+    `model`, when supplied, is used ONLY to choose the subsection -- see
+    node_select. Returns None only when the document contains no non-empty
+    sentence at all; the caller must then drop the finding, since the contract
+    rejects zero-width spans and 02_BUILD_SPEC says a finding with no location
     "is worse than silence".
     """
     m_start, m_end = find_methods_section(canonical_text)
-    methods_text = canonical_text[m_start:m_end]
     weighted_keywords = field_keywords(spec.field_id)
 
-    subsections = find_subsections(methods_text, m_start)
-    matching = find_relevant_subsections(subsections, spec.field_id)
+    root = build_tree(canonical_text, m_start, m_end)
+    methods = root.children[0]
 
-    # 1 -- most specific: the topical sentence inside a topical subsection.
-    for sub in matching:
+    node, how = select_node(
+        spec, methods.children, model=model, canonical_text=canonical_text
+    )
+    chain = list(node.walk_up()) if node is not None else [methods, root]
+
+    for level in chain:
         sentences = split_sentences(
-            canonical_text[sub["start"]:sub["end"]], base_offset=sub["start"]
+            canonical_text[level.start:level.end], base_offset=level.start
         )
         hit = _best_scoring_sentence(sentences, weighted_keywords)
         if hit:
-            return _as_anchor(hit, text_sha, f"anchor:section-keyword:{sub['header']}")
-
-    # 2 -- the subsection matched by header, but nothing inside it scored.
-    if matching:
-        sub = matching[0]
-        sentences = split_sentences(
-            canonical_text[sub["start"]:sub["end"]], base_offset=sub["start"]
-        )
+            return _as_anchor(hit, text_sha, f"anchor:{how}:kw:{level.title[:34]}")
         hit = _first_non_empty_sentence(sentences)
         if hit:
-            return _as_anchor(hit, text_sha, f"anchor:section-head:{sub['header']}")
-
-    methods_sentences = split_sentences(methods_text, base_offset=m_start)
-
-    # 3 -- no topical subsection; fall back to the topical sentence in Methods.
-    hit = _best_scoring_sentence(methods_sentences, weighted_keywords)
-    if hit:
-        return _as_anchor(hit, text_sha, "anchor:methods-keyword")
-
-    # 4 -- nothing topical anywhere; anchor on the section itself.
-    hit = _first_non_empty_sentence(methods_sentences)
-    if hit:
-        return _as_anchor(hit, text_sha, "anchor:methods-head")
-
-    # 5 -- no Methods section resolved at all.
-    hit = _first_non_empty_sentence(split_sentences(canonical_text, base_offset=0))
-    if hit:
-        return _as_anchor(hit, text_sha, "anchor:document-head")
+            return _as_anchor(hit, text_sha, f"anchor:{how}:head:{level.title[:34]}")
 
     return None

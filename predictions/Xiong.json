@@ -5,30 +5,30 @@
   "field_pack_version": "0.2-starter",
   "profile": {
     "features": {
-      "has_animals": true,
+      "has_animals": false,
       "has_cell_lines": true,
       "has_qpcr": false,
       "has_western_blot": true,
-      "has_ihc": false,
+      "has_ihc": true,
       "has_flow_cytometry": true,
       "has_xenograft": false,
       "has_drug_treatment": true,
       "has_wet_lab": true
     },
     "evidence": {
-      "has_animals": {
-        "start": 40921,
-        "end": 40925,
-        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
-      },
       "has_cell_lines": {
-        "start": 7796,
-        "end": 7807,
+        "start": 6827,
+        "end": 6839,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
       "has_western_blot": {
         "start": 8049,
         "end": 8061,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "has_ihc": {
+        "start": 12849,
+        "end": 12868,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
       "has_flow_cytometry": {
@@ -37,244 +37,182 @@
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
       "has_drug_treatment": {
-        "start": 16697,
-        "end": 16709,
+        "start": 6776,
+        "end": 6802,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
       "has_wet_lab": {
-        "start": 40921,
-        "end": 40925,
+        "start": 6827,
+        "end": 6839,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       }
     }
   },
   "findings": [
     {
-      "finding_id": "f85dfce52b093624bd011f45e9b73e8d",
-      "field_id": "animal.species",
-      "code": "GAP_ABSENT",
+      "finding_id": "96c8951135b7d2bd69c0638794dfe2c3",
+      "field_id": "cellline.authentication",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 11787,
-        "end": 11841,
-        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
-      },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "chamber of the filter were removed with a cotton swab.",
-        "anchor_detector": "anchor:section-head:After incubation for 24 hours, nonmigrated cells on the upper"
-      }
-    },
-    {
-      "finding_id": "e8169f4fedf22ceeb893cdce4e784a24",
-      "field_id": "animal.strain",
-      "code": "GAP_ABSENT",
-      "span": {
-        "start": 11787,
-        "end": 11841,
-        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
-      },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "chamber of the filter were removed with a cotton swab.",
-        "anchor_detector": "anchor:section-head:After incubation for 24 hours, nonmigrated cells on the upper"
-      }
-    },
-    {
-      "finding_id": "7868175154033cf814f342b19fd29cb3",
-      "field_id": "animal.sex",
-      "code": "GAP_ABSENT",
-      "span": {
-        "start": 11787,
-        "end": 11841,
-        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
-      },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "chamber of the filter were removed with a cotton swab.",
-        "anchor_detector": "anchor:section-head:After incubation for 24 hours, nonmigrated cells on the upper"
-      }
-    },
-    {
-      "finding_id": "f73f325e6fd20f0625a1f0026e36d277",
-      "field_id": "animal.age_or_weight",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 11926,
-        "end": 12096,
+        "start": 8582,
+        "end": 8649,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
       "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "T o investigate the inhibitory effects of AG490, the upper\nchamber was filled with 100 μM AG490 or ethanol at an equiva-\nlent volume (as a vehicle control), respectively.",
+      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'T o investigate the inhibitory effects of AG490, the upper\\nchamber was filled with 100 μM AG490 or ethanol at an equiva-\\nlent volume (as a vehicle control), respectively.' did not parse as time_or_mass"
+        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.authentication slot without supplying a value",
+        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
       }
     },
     {
-      "finding_id": "9337ae52be13bc1f4f367b26ae5ea921",
-      "field_id": "cellline.authentication",
-      "code": "GAP_ABSENT",
-      "span": {
-        "start": 6855,
-        "end": 7022,
-        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
-      },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
-        "anchor_detector": "anchor:section-keyword:Materials and Methods Cell Culture, Treatment with Pharmacologic Agents, and Transient Transfection of STAT3 siRNA"
-      }
-    },
-    {
-      "finding_id": "0d52dd5252007cd5a4675c999348e211",
+      "finding_id": "2e0f27c7323fb8c5690ddd9cf39cde39",
       "field_id": "cellline.mycoplasma",
-      "code": "GAP_ABSENT",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 6855,
-        "end": 7022,
+        "start": 8582,
+        "end": 8649,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "LOW",
       "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
-        "anchor_detector": "anchor:section-keyword:Materials and Methods Cell Culture, Treatment with Pharmacologic Agents, and Transient Transfection of STAT3 siRNA"
+        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.mycoplasma slot without supplying a value",
+        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
       }
     },
     {
-      "finding_id": "ac00bad103e649d99c5c2ecb6873bd56",
+      "finding_id": "b1816165e76ed3f8a0f136db83c2c21b",
       "field_id": "cellline.passage_number",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 6854,
         "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as count"
+        "reason": "no count value stated in 'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.'"
       }
     },
     {
-      "finding_id": "dad3dc281a57c6e51ea5268a471956e4",
+      "finding_id": "ca56e31878f89fde04151510c4d14cdd",
       "field_id": "culture.temperature",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 6854,
         "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as temperature"
+        "reason": "no temperature value stated in 'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.'"
       }
     },
     {
-      "finding_id": "7b84a7bd972d4ab8fc76717a2c646fec",
+      "finding_id": "308a7dad7159c5b2a86873751e20e549",
       "field_id": "culture.co2_fraction",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 6854,
         "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as fraction"
+        "reason": "no fraction value stated in 'T wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.'"
       }
     },
     {
-      "finding_id": "8a61bbb4b51e756ec14557bc8f6f8b0c",
+      "finding_id": "fa470cc5fa020a84332146b8ad279a70",
       "field_id": "treatment.duration",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 6740,
         "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "Materials and Methods\nCell Culture, Treatment with Pharmacologic Agents, and\nTransient Transfection of STAT3 siRNA\nT wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'Materials and Methods\\nCell Culture, Treatment with Pharmacologic Agents, and\\nTransient Transfection of STAT3 siRNA\\nT wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.' did not parse as time"
+        "reason": "no time value stated in 'Materials and Methods\\nCell Culture, Treatment with Pharmacologic Agents, and\\nTransient Transfection of STAT3 siRNA\\nT wo human colorectal cancer cell lines (SW1116 and HT29) were\\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\\nCA) or McCoy ’s 5A medium (Sigma, St.'"
       }
     },
     {
-      "finding_id": "69eb160ab9172151f026f43c8c7ab303",
+      "finding_id": "53a48b9506ad842d607760a5732e60cc",
       "field_id": "stats.replicate_type",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 4979,
-        "end": 5364,
-        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "In fact,\nSTAT3 is constitutively activated in various types of human tumors,\nincluding colorectal cancer, but very few studies have reported abnor-\nm a le x p r e s s i o no ra c t i v a t i o no fJ A K / S T A Ti nC R C[ 2 2 ] .M aa n d\ncoworkers showed that the level of activated phospho-STAT3\n(pSTAT3) increased in 45 primary CRC samples compared to adja-\ncent normal mucosae [23].",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'In fact,\\nSTAT3 is constitutively activated in various types of human tumors,\\nincluding colorectal cancer, but very few studies have reported abnor-\\nm a le x p r e s s i o no ra c t i v a t i o no fJ A K / S T A Ti nC R C[ 2 2 ] .M aa n d\\ncoworkers showed that the level of activated phospho-STAT3\\n(pSTAT3) increased in 45 primary CRC samples compared to adja-\\ncent normal mucosae [23].' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
-      }
-    },
-    {
-      "finding_id": "1b399703b61ef6b109585f6177b3d396",
-      "field_id": "centrifugation.force",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 0,
-        "end": 652,
+        "start": 13366,
+        "end": 13636,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
       "verdict": "FIELD_ABSENT",
-      "raw_text": null,
+      "raw_text": "Each adenocarcinoma was assigned a\nhistologic type according to the World Health Organization classifi-\ncation as follows: well-differentia ted adenocarcinoma, moderately\ndifferentiated adenocarcinoma, poorly differentiated adenocarci-\nnoma, and mucinous adenocarcinoma.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "Inhibition of JAK1, 2/STAT3\nSignaling Induces Apoptosis,\nCell Cycle Arrest, and Reduces\nTumor Cell Invasion in Colorectal\nCancer Cells 1\nHua Xiong *, Zhi-Gang Zhang *, Xiao-Qing Tian *,\nDan-Feng Sun*, Qin-Chuan Liang †, Yan-Jie Zhang *,\nRong Lu *, Ying-Xuan Chen * and Jing-Yuan Fang *\n*Department of Gastroenterology, Shanghai Jiao-Tong\nUniversity School of Medicine, Ren-Ji Hospital, Shanghai\nInstitute of Digestive Disease, Shanghai, 200001, China;\n† Department of Neurosurgery, Tangdu Hospital, Fourth\nMilitary Medical University, Xi ’an, 710038, China\nAbstract\nAbnormalities in the STAT3 pathway are involved in the oncogenesis of several cancers.",
-        "anchor_detector": "anchor:methods-head"
+        "reason": "none of ['biological', 'technical', 'both', 'not_stated'] is stated in 'Each adenocarcinoma was assigned a\\nhistologic type according to the World Health Organization classifi-\\ncation as follows: well-differentia ted adenocarcinoma, moderately\\ndifferentiated adenocarcinoma, poorly differentiated adenocarci-\\nnoma, and mucinous adenocarcinoma.'"
+      }
+    },
+    {
+      "finding_id": "c59f197ad4f903329a4a4c0282761b64",
+      "field_id": "stats.test_named",
+      "code": "GAP_VAGUE",
+      "span": {
+        "start": 8582,
+        "end": 8649,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'appropriate' (qualitative_quantity) occupies the stats.test_named slot without supplying a value",
+        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
+      }
+    },
+    {
+      "finding_id": "26d9892eda62bb31ba98d5ea4db06b44",
+      "field_id": "centrifugation.force",
+      "code": "GAP_VAGUE",
+      "span": {
+        "start": 8582,
+        "end": 8649,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'appropriate' (qualitative_quantity) occupies the centrifugation.force slot without supplying a value",
+        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
       }
     }
   ]

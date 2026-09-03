@@ -14,11 +14,16 @@ Purity, per 01_README.md's mandatory requirements:
     singleton resolved against its own file location. See
     vagueness.get_vagueness_checker.
 
-The `model` parameter is accepted and currently threaded nowhere. Every verdict
-in this system is produced by regex, lexicon, or arithmetic, so
-analyze(..., model=None) and analyze(..., model=<client>) return identical
-Reports by construction. That is the honest deterministic floor 01_README.md
-asks to see reported ("it is not a failure condition"), not a placeholder.
+The `model` parameter reaches exactly one place: node_select.select_node, which
+chooses WHICH subsection an absent field should have been stated in. It returns
+an index into a list the code built, so the model can never emit a value, a
+unit, a verdict, or a span. Every verdict in this system is still produced by
+regex, lexicon, or arithmetic.
+
+analyze(..., model=None) runs the same code path with the deterministic branch
+only. That is the honest floor 01_README.md asks to see reported ("it is not a
+failure condition"), and it is what every prediction in predictions/ is
+currently generated with.
 """
 from __future__ import annotations
 
@@ -29,6 +34,7 @@ from contract import (
     Finding,
     ModelClient,
     Report,
+    Span,
     canonicalize,
     finding_id,
 )
@@ -76,12 +82,25 @@ def analyze(
 
         if obs is not None:
             span = obs["span"]
+            # Step 5, present-but-unusable branch: "put the span on the
+            # incorrect phrase." When the validator identified a trigger it
+            # returns that trigger's offsets within the candidate, so rebase
+            # them onto canonical text and narrow the span. A sentence-wide
+            # span misses the scorer's 20-character tolerance even when the
+            # field and code are both right.
+            phrase = outcome.get("offset")
+            if phrase is not None:
+                start = span.start + phrase[0]
+                end = span.start + phrase[1]
+                if span.start <= start < end <= span.end:
+                    span = Span(start=start, end=end, text_sha=text_sha)
+                    detail["phrase"] = canonical_text[start:end]
         else:
             # The field is absent, so there is no observed text to point at.
             # Anchor on the place a reader should look instead. Dropping the
             # finding here would forfeit GAP_ABSENT entirely, and that is
             # roughly two thirds of the gold labels.
-            anchor = find_absence_anchor(canonical_text, text_sha, spec)
+            anchor = find_absence_anchor(canonical_text, text_sha, spec, model=model)
             if anchor is None:
                 # No non-empty sentence anywhere in the document. Unreachable
                 # for any real paper; the contract rejects a zero-width span

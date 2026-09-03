@@ -17,13 +17,13 @@
     },
     "evidence": {
       "has_cell_lines": {
-        "start": 6394,
-        "end": 6405,
+        "start": 5842,
+        "end": 5854,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "has_qpcr": {
-        "start": 978,
-        "end": 982,
+        "start": 6620,
+        "end": 6627,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "has_western_blot": {
@@ -47,161 +47,161 @@
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "has_wet_lab": {
-        "start": 6394,
-        "end": 6405,
+        "start": 5842,
+        "end": 5854,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       }
     }
   },
   "findings": [
     {
-      "finding_id": "9de6af76f000860d75eaadebddc8ef16",
+      "finding_id": "8447461bbd88d960c17769644c22bfbc",
       "field_id": "cellline.authentication",
-      "code": "GAP_ABSENT",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 5855,
-        "end": 5960,
+        "start": 8294,
+        "end": 8371,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
-        "anchor_detector": "anchor:section-keyword:Cell culture and transfection"
+        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.authentication slot without supplying a value",
+        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
       }
     },
     {
-      "finding_id": "a004adb6cb01ff3d5918f252d87cb310",
+      "finding_id": "8b58905448b0bc041dd4549de39f7d3c",
       "field_id": "cellline.mycoplasma",
-      "code": "GAP_ABSENT",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 5855,
-        "end": 5960,
+        "start": 8294,
+        "end": 8371,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "LOW",
       "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
-        "anchor_detector": "anchor:section-keyword:Cell culture and transfection"
+        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.mycoplasma slot without supplying a value",
+        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
       }
     },
     {
-      "finding_id": "7927a93a3fac95d26589033dc74db3a2",
+      "finding_id": "2addd47ab004bb765e17ca0470863909",
       "field_id": "cellline.passage_number",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 531,
-        "end": 631,
+        "start": 8294,
+        "end": 8371,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "In the present study, we observed a significant upregulation\nof METTL3 in CC tissues and cell lines.",
+      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'In the present study, we observed a significant upregulation\\nof METTL3 in CC tissues and cell lines.' did not parse as count"
+        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.passage_number slot without supplying a value",
+        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
       }
     },
     {
-      "finding_id": "c692b988c1c328bd4280d9c8f4ddc3f5",
-      "field_id": "culture.co2_fraction",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 5961,
-        "end": 6096,
-        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "(Wuhan, China) and cultured in DMEM (Solarbio, Beijing) with 10%FBS (Hyclone, Logan, Utah) in a\nhumid atmosphere with 5% CO 2 at 37 °C.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "'(Wuhan, China) and cultured in DMEM (Solarbio, Beijing) with 10%FBS (Hyclone, Logan, Utah) in a\\nhumid atmosphere with 5% CO 2 at 37 °C.' did not parse as fraction"
-      }
-    },
-    {
-      "finding_id": "5102ba1f9d74819906dcfc4b735d0922",
-      "field_id": "treatment.concentration",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 2116,
-        "end": 2303,
-        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.' did not parse as concentration"
-      }
-    },
-    {
-      "finding_id": "48fbfcc6f5b2e3464b5f20e67080add1",
+      "finding_id": "76a4d144a3e86b9caa80c0434a0fc61a",
       "field_id": "treatment.duration",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 2116,
-        "end": 2303,
+        "start": 8251,
+        "end": 8272,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.",
+      "raw_text": "After blocking with 5% skimmed milk, the\nmembranes were incubated with primary antibodies: METTL3 (1:1000, ab195352, Abcam, UK), NEK2 (1:1000,\nab227958, Abcam, UK), β-catenin (1:1000, R22820, ZenBio, China), Bax (1:1000, 200958, ZenBio, China), BCL2\n(1:1000, 381702, ZenBio, China), WNT1 (1:500, E1A0392C-1, EnoGene, China) and GAPDH (1:2500, ab9485,\nAbcam, UK) overnight at 4℃.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'Patients diagnosed with CC at an early stage who receive prompt treatment exhibit a better\\nprognosis; conversely, the prognosis for recurrent and metastatic CC remains unsatisfactory 4,5.' did not parse as time"
+        "reason": "'overnight' (relative_condition) occupies the treatment.duration slot without supplying a value",
+        "phrase": " UK) overnight at 4℃."
       }
     },
     {
-      "finding_id": "982d950e1ed1ffa22203d1c7e655de71",
-      "field_id": "stats.replicate_type",
-      "code": "GAP_UNPARSEABLE",
+      "finding_id": "e086be13f6163c2e6d11d11873b7c5c0",
+      "field_id": "treatment.vehicle",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 1088,
-        "end": 1163,
+        "start": 8294,
+        "end": 8371,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "NEK2 synergized with METTL3 to mediate the malignant phenotype of CC cells.",
+      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
       "canonical_value": null,
       "canonical_unit": null,
-      "sensitivity": "HIGH",
+      "sensitivity": "MED",
       "detail": {
-        "reason": "'NEK2 synergized with METTL3 to mediate the malignant phenotype of CC cells.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+        "reason": "'appropriate' (qualitative_quantity) occupies the treatment.vehicle slot without supplying a value",
+        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
       }
     },
     {
-      "finding_id": "48dea7c8207c3d8bd1a76c092b0bcbff",
-      "field_id": "centrifugation.force",
+      "finding_id": "9d608b4f78d33cf1c36e3290d84764a6",
+      "field_id": "qpcr.primer_sequences",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 0,
-        "end": 335,
+        "start": 7347,
+        "end": 7406,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
       "verdict": "FIELD_ABSENT",
-      "raw_text": null,
+      "raw_text": "Primer sequences\nwere displayed in (Supplementary Table 2).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "METTL3 facilitates the progression\nof cervical cancer by m6A\nmodification-mediated up-\nregulation of NEK2\nYilin Guo1,2, Yangyang Bai3, Lu Wang1,2, Zhen Xu1,2, Nan Zhang1, Wuliang Wang1,2 &\nHu Zhao1,2\nN6-methyladenosine (m6A) is the most prevalent modification found in eukaryotic RNA and played\na significant role in various cancers.",
-        "anchor_detector": "anchor:methods-head"
+        "reason": "no sequence stated in 'Primer sequences\\nwere displayed in (Supplementary Table 2).'"
+      }
+    },
+    {
+      "finding_id": "575a88a0f3c8aa6beaf1d512a8d11338",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 11894,
+        "end": 12080,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": "Luciferase reporter assay\nThe sequences of METTL3 containing either the wild-type (WT) or mutant (MUT) binding site of NEK2\nwere designed and synthesized by GenePharma (Shanghai, China).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "none of ['biological', 'technical', 'both', 'not_stated'] is stated in 'Luciferase reporter assay\\nThe sequences of METTL3 containing either the wild-type (WT) or mutant (MUT) binding site of NEK2\\nwere designed and synthesized by GenePharma (Shanghai, China).'"
+      }
+    },
+    {
+      "finding_id": "c84268ed22791f6af221b5000455cf5a",
+      "field_id": "centrifugation.force",
+      "code": "GAP_VAGUE",
+      "span": {
+        "start": 8294,
+        "end": 8371,
+        "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'appropriate' (qualitative_quantity) occupies the centrifugation.force slot without supplying a value",
+        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
       }
     }
   ]

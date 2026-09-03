@@ -25,21 +25,23 @@
   },
   "findings": [
     {
-      "finding_id": "9cb5fad957589902b07cd358f4a8d640",
+      "finding_id": "6246a0d9734fea90ad2edcb19ccb0110",
       "field_id": "stats.replicate_type",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 3814,
-        "end": 3886,
+        "start": 13058,
+        "end": 13145,
         "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The remainder are squamous tumours,\nadenocarcinomas, and other subtypes.",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'The remainder are squamous tumours,\\nadenocarcinomas, and other subtypes.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+        "reason": "no candidate text found",
+        "anchor_text": "Statistical analysis was carried out with SPSS 11.5\nand EPI info 3.2 software programs.",
+        "anchor_detector": "anchor:node:det-unique:head:Statistical analysis"
       }
     },
     {
@@ -59,16 +61,16 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Statistical analysis was carried out with SPSS 11.5\nand EPI info 3.2 software programs.",
-        "anchor_detector": "anchor:section-head:Statistical analysis"
+        "anchor_detector": "anchor:node:det-unique:head:Statistical analysis"
       }
     },
     {
-      "finding_id": "bad3d600af878e6dcfea389622fb6bc5",
-      "field_id": "centrifugation.force",
+      "finding_id": "115889e265636861c95ea5055e132fac",
+      "field_id": "assay.protocol_parameters",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 0,
-        "end": 673,
+        "start": 8431,
+        "end": 8457,
         "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
       },
       "verdict": "FIELD_ABSENT",
@@ -78,8 +80,28 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Disease Markers 28 (2010) 361–368 361\nDOI 10.3233/DMA-2010-0716\nIOS Press\nFrequency of P16INK4a and P14ARF genes\nmethylation and its impact on bladder cancer\ncases in north Indian population\nSeyed Ali Hosseinia,b,∗, Ranbir Chander Sobtia,∗, Kianoosh Malekzadeha, Shrawan Kumar Singhc and\nKusum Joshid\naDepartment of Biotechnology, Panjab University, Chandigarh, India\nbDepartment of Medical Genetics, National Institute of Genetic Engineering and Biotechnology, Tehran, Iran\ncDepartment of Urology, Post Graduate of Medical Education and Research, Chandigarh, India\ndDepartment of Histopathology, Post Graduate of Medical Education and Research, Chandigarh, India\nAbstract.",
-        "anchor_detector": "anchor:methods-head"
+        "anchor_text": "Materials and methods\n2.1.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
+      }
+    },
+    {
+      "finding_id": "c951ccc0f103d2de4474607de67e0722",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8431,
+        "end": 8457,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Materials and methods\n2.1.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     }
   ]

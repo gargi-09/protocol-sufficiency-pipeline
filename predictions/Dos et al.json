@@ -5,7 +5,7 @@
   "field_pack_version": "0.2-starter",
   "profile": {
     "features": {
-      "has_animals": true,
+      "has_animals": false,
       "has_cell_lines": true,
       "has_qpcr": false,
       "has_western_blot": false,
@@ -16,14 +16,9 @@
       "has_wet_lab": true
     },
     "evidence": {
-      "has_animals": {
-        "start": 12480,
-        "end": 12485,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
       "has_cell_lines": {
-        "start": 65528,
-        "end": 65550,
+        "start": 19024,
+        "end": 19034,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
       "has_ihc": {
@@ -32,110 +27,18 @@
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
       "has_drug_treatment": {
-        "start": 23907,
-        "end": 23919,
+        "start": 31947,
+        "end": 31951,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
       "has_wet_lab": {
-        "start": 12480,
-        "end": 12485,
+        "start": 19024,
+        "end": 19034,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       }
     }
   },
   "findings": [
-    {
-      "finding_id": "ff7ba0094afd8fe16dc8b2b0041f9a07",
-      "field_id": "animal.species",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 57781,
-        "end": 57950,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "In\naddition, anthracyclines such as epirubicin generate reactive oxygen species [92,93], leading\nto oxidative DNA damage that can occur independently of DNA replication.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'In\\naddition, anthracyclines such as epirubicin generate reactive oxygen species [92,93], leading\\nto oxidative DNA damage that can occur independently of DNA replication.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
-      }
-    },
-    {
-      "finding_id": "2f3dc5111c55d8553625f1c1f5913484",
-      "field_id": "animal.strain",
-      "code": "GAP_ABSENT",
-      "span": {
-        "start": 73475,
-        "end": 73820,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "iPSCs Induced pluripotent stem cells\nPALOP Portuguese-speaking African Countries\nPC Prostate cancer\nPD Population doubling\nPFA Paraformaldehyde\nPMDA Precision Medicine Diversity array\nRLU Relative light unit\nROCK Rho kinase inhibitor\nSNP Single-Nucleotide Polymorphism\nSSA Sub-Saharan African\nSTR Short tandem repeat\nTCGA The Cancer Genome Atlas",
-        "anchor_detector": "anchor:section-head:IC50 Half-maximal inhibitory concentration"
-      }
-    },
-    {
-      "finding_id": "c677a2fc41a2a84c5cededa699af0f90",
-      "field_id": "animal.sex",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 37928,
-        "end": 38076,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Regarding the karyotype characterization, all the established SSA-PC cell lines have a\nnormal karyotype, and the male sex was confirmed (Figure 2C).",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'Regarding the karyotype characterization, all the established SSA-PC cell lines have a\\nnormal karyotype, and the male sex was confirmed (Figure 2C).' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
-      }
-    },
-    {
-      "finding_id": "7b6751fb8857fa6fe0e43b97ed434d90",
-      "field_id": "animal.age_or_weight",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 3548,
-        "end": 3830,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Methods: CR was applied to five\nSSA-PC samples, and successfully propagated samples were authenticated by STR and\n~1 million SNP profiling, and extensively characterized for proliferative capacity, migratory\nbehaviour, karyotyping and epithelial and prostate tumour lineage markers.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "'Methods: CR was applied to five\\nSSA-PC samples, and successfully propagated samples were authenticated by STR and\\n~1 million SNP profiling, and extensively characterized for proliferative capacity, migratory\\nbehaviour, karyotyping and epithelial and prostate tumour lineage markers.' did not parse as time_or_mass"
-      }
-    },
-    {
-      "finding_id": "856dcb0e26ab05a6f82ace23b1066f2b",
-      "field_id": "cellline.passage_number",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 18570,
-        "end": 18756,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Around 1× 106 epithelial cells were plated in a T25 flask for a second passage\nof co-culture with irradiated feeder cells (2.5× 105 cells), and the process continued till\ngrowth stopped.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "'Around 1× 106 epithelial cells were plated in a T25 flask for a second passage\\nof co-culture with irradiated feeder cells (2.5× 105 cells), and the process continued till\\ngrowth stopped.' did not parse as count"
-      }
-    },
     {
       "finding_id": "0a1847febd762105f8ccbc791d7a1d7b",
       "field_id": "culture.temperature",
@@ -155,66 +58,30 @@
       }
     },
     {
-      "finding_id": "400a1819642f06882e8a59a46da051fd",
-      "field_id": "culture.co2_fraction",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 15002,
-        "end": 15311,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Mouse fibroblasts 3T3-J2 (#P0011008, AddexBio, San Diego, CA, USA) were main-\ntained in culture at 37◦C and 5% CO2 in DMEM (Thermo Fisher Scientific, Waltham, MA,\nUSA) supplemented with 10% Foetal Bovine Serum (FBS—Biowest, Nuaillé, France) and\n1% Penicillin–Streptomycin (Pen/Strep—Gibco, Waltham, MA, USA).",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "'Mouse fibroblasts 3T3-J2 (#P0011008, AddexBio, San Diego, CA, USA) were main-\\ntained in culture at 37◦C and 5% CO2 in DMEM (Thermo Fisher Scientific, Waltham, MA,\\nUSA) supplemented with 10% Foetal Bovine Serum (FBS—Biowest, Nuaillé, France) and\\n1% Penicillin–Streptomycin (Pen/Strep—Gibco, Waltham, MA, USA).' did not parse as fraction"
-      }
-    },
-    {
-      "finding_id": "152ad09779410bf69ea2f6435cc1acf0",
-      "field_id": "treatment.duration",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 47642,
-        "end": 47887,
-        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Unexpectedly, drugs present in the Prestwick Chemical Library that are FDA-approved\nfor PC treatment (https://www.cancer.gov/about-Cancer/treatment/drugs/prostate, ac-\ncessed on 28 December 2025; Supplementary Table S4) were not hits in the HTS.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'Unexpectedly, drugs present in the Prestwick Chemical Library that are FDA-approved\\nfor PC treatment (https://www.cancer.gov/about-Cancer/treatment/drugs/prostate, ac-\\ncessed on 28 December 2025; Supplementary Table S4) were not hits in the HTS.' did not parse as time"
-      }
-    },
-    {
-      "finding_id": "ef34009bd70bba3984f3dadfec057f98",
+      "finding_id": "f06edb1b184bb9b904290487d6061c15",
       "field_id": "stats.replicate_type",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 6216,
-        "end": 6519,
+        "start": 21215,
+        "end": 21500,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "In the context of cancer, independent groups have been publishing omics\nstudies for African cancer cohorts, especially for cancer types and subtypes that are more\nfrequent and aggressive in the SSA versus European ancestry, such as triple-negative breast\ncancer [18–20] and prostate cancer (PC [21–23]).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": "The newly established cell lines were screened for >850,000 variants included in the\nAxiom™ Precision Medicine Diversity Array (PMDA, Thermo Fisher Scientific, Waltham,\nMA, USA), which was genotyped in the GeneTitan MC Fast Scan Instrument (Thermo\nFisher Scientific, Waltham, MA, USA).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'In the context of cancer, independent groups have been publishing omics\\nstudies for African cancer cohorts, especially for cancer types and subtypes that are more\\nfrequent and aggressive in the SSA versus European ancestry, such as triple-negative breast\\ncancer [18–20] and prostate cancer (PC [21–23]).' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+        "reason": "none of ['biological', 'technical', 'both', 'not_stated'] is stated in 'The newly established cell lines were screened for >850,000 variants included in the\\nAxiom™ Precision Medicine Diversity Array (PMDA, Thermo Fisher Scientific, Waltham,\\nMA, USA), which was genotyped in the GeneTitan MC Fast Scan Instrument (Thermo\\nFisher Scientific, Waltham, MA, USA).'"
       }
     },
     {
-      "finding_id": "73c5790da07f21f2a1e83cbe1f86a505",
+      "finding_id": "c25e7b1e2b138fd1380c327163c4468f",
       "field_id": "centrifugation.force",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 93085,
-        "end": 93256,
+        "start": 12961,
+        "end": 12987,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
       "verdict": "FIELD_ABSENT",
@@ -224,8 +91,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Prostate cancer cells of increasing metastatic potential\nexhibit diverse contractile forces, cell stiffness, and motility in a microenvironment stiffness-dependent manner.",
-        "anchor_detector": "anchor:methods-keyword"
+        "anchor_text": "Materials and Methods\n2.1.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     }
   ]

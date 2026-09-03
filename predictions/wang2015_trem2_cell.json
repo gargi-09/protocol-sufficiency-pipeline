@@ -17,18 +17,18 @@
     },
     "evidence": {
       "has_animals": {
-        "start": 6025,
-        "end": 6029,
+        "start": 36620,
+        "end": 36624,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "has_cell_lines": {
-        "start": 27402,
-        "end": 27416,
+        "start": 38877,
+        "end": 38893,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "has_qpcr": {
-        "start": 13440,
-        "end": 13444,
+        "start": 38140,
+        "end": 38144,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "has_ihc": {
@@ -37,41 +37,23 @@
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "has_flow_cytometry": {
-        "start": 13115,
-        "end": 13130,
+        "start": 37983,
+        "end": 37987,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "has_drug_treatment": {
-        "start": 30110,
-        "end": 30141,
+        "start": 39105,
+        "end": 39131,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "has_wet_lab": {
-        "start": 6025,
-        "end": 6029,
+        "start": 36620,
+        "end": 36624,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       }
     }
   },
   "findings": [
-    {
-      "finding_id": "6fc9749abcba564a9681f98f39a74f29",
-      "field_id": "animal.species",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 36820,
-        "end": 36878,
-        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "All mice were bred and\nhoused in the same animal facility.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'All mice were bred and\\nhoused in the same animal facility.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
-      }
-    },
     {
       "finding_id": "402e707c7a3227b2a9afd91de1f50c79",
       "field_id": "animal.strain",
@@ -89,43 +71,43 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "All mice were bred and\nhoused in the same animal facility.",
-        "anchor_detector": "anchor:section-keyword:EXPERIMENTAL PROCEDURES Mice"
+        "anchor_detector": "anchor:node:det-unique:kw:EXPERIMENTAL PROCEDURES Mice"
       }
     },
     {
-      "finding_id": "c5935ffbcc4032b7d77b718d8975317f",
+      "finding_id": "cb5fe64f9f05f2e61ce20ad8ee387a9d",
       "field_id": "animal.sex",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 36820,
         "end": 36878,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "All mice were bred and\nhoused in the same animal facility.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'All mice were bred and\\nhoused in the same animal facility.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+        "reason": "none of ['male', 'female', 'both', 'not_stated'] is stated in 'All mice were bred and\\nhoused in the same animal facility.'"
       }
     },
     {
-      "finding_id": "3871d924b2282ab7c485fe78ce417ef3",
+      "finding_id": "e10e3b66f53c5a62940a7dd9b56a2794",
       "field_id": "animal.age_or_weight",
-      "code": "GAP_DEFERRED_TO_REF",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 36624,
         "end": 36819,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "Trem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'Trem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.' defers to another source (e.g. 'as previously described')"
+        "reason": "no time_or_mass value stated in 'Trem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.'"
       }
     },
     {
@@ -145,16 +127,16 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:methods-head"
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     },
     {
-      "finding_id": "4136192e05a9b1d5cf039be41c62e668",
+      "finding_id": "c86226db39427e6b831197276072f41c",
       "field_id": "cellline.source_or_rrid",
       "code": "GAP_DEFERRED_TO_REF",
       "span": {
         "start": 36596,
-        "end": 36819,
+        "end": 36741,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "verdict": "FIELD_UNRESOLVED",
@@ -163,7 +145,8 @@
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'EXPERIMENTAL PROCEDURES\\nMice\\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.' defers to another source (e.g. 'as previously described')"
+        "reason": "'as previously described' (deferred_reference) occupies the cellline.source_or_rrid slot without supplying a value",
+        "phrase": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) "
       }
     },
     {
@@ -183,7 +166,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:methods-head"
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     },
     {
@@ -203,7 +186,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:methods-head"
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     },
     {
@@ -223,51 +206,51 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "ACCESSION NUMBERS",
-        "anchor_detector": "anchor:methods-keyword"
+        "anchor_detector": "anchor:node:det-none:kw:methods"
       }
     },
     {
-      "finding_id": "d8f469c08c1afe33ebb73d4389b24f9a",
+      "finding_id": "ff533e30ff822e5259eb698054d74bd9",
       "field_id": "culture.temperature",
-      "code": "GAP_DEFERRED_TO_REF",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 38476,
+        "start": 38502,
         "end": 38597,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Ex Vivo Microglia Cultures\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": "Primary adult microglia culture was generated as previously described (Butovsky et al., 2014).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'Ex Vivo Microglia Cultures\\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).' defers to another source (e.g. 'as previously described')"
+        "reason": "no temperature value stated in 'Primary adult microglia culture was generated as previously described (Butovsky et al., 2014).'"
       }
     },
     {
-      "finding_id": "5ed4d18518d539affd85b98e17e54744",
+      "finding_id": "2ff1d54a5078974d3ac9a490ee4be489",
       "field_id": "culture.co2_fraction",
-      "code": "GAP_DEFERRED_TO_REF",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 38476,
+        "start": 38502,
         "end": 38597,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Ex Vivo Microglia Cultures\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": "Primary adult microglia culture was generated as previously described (Butovsky et al., 2014).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'Ex Vivo Microglia Cultures\\nPrimary adult microglia culture was generated as previously described (Butovsky et al., 2014).' defers to another source (e.g. 'as previously described')"
+        "reason": "no fraction value stated in 'Primary adult microglia culture was generated as previously described (Butovsky et al., 2014).'"
       }
     },
     {
-      "finding_id": "f69580a1c36c0b9b4c80af0739bd6e92",
+      "finding_id": "4120ddf83e6b4df356b45fd1e7d38ef2",
       "field_id": "treatment.concentration",
       "code": "GAP_DEFERRED_TO_DISPLAY",
       "span": {
-        "start": 38952,
+        "start": 39031,
         "end": 39132,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
@@ -277,27 +260,65 @@
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'Cells were cultured with apoptotic thymocytes in round-bottom 96-well plates or plated onto high-absorbance flat-bottom plate coated\\nwith various lipids at indicated concentration.' defers to a figure/table, not a stated value"
+        "reason": "'indicated concentration' (deferred_display) occupies the treatment.concentration slot without supplying a value",
+        "phrase": " plated onto high-absorbance flat-bottom plate coated\nwith various lipids at indicated concentration."
       }
     },
     {
-      "finding_id": "946d58bb00876c120d8a4533134f633c",
+      "finding_id": "25214af0a971794e46ec6845c96f109e",
       "field_id": "treatment.duration",
-      "code": "GAP_ABSENT",
+      "code": "GAP_VAGUE",
       "span": {
-        "start": 36596,
-        "end": 36819,
+        "start": 37257,
+        "end": 37312,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
-      "verdict": "FIELD_ABSENT",
-      "raw_text": null,
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Right-brain hemispheres were fixed in 4% PFA overnight and placed in 30%\nsucrose before freezing and cutting on a freezing sliding microtome.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "no candidate text found",
-        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:methods-head"
+        "reason": "'overnight' (relative_condition) occupies the treatment.duration slot without supplying a value",
+        "phrase": "Right-brain hemispheres were fixed in 4% PFA overnight "
+      }
+    },
+    {
+      "finding_id": "f4b96808ec3ede3a85eeacdb18afb598",
+      "field_id": "qpcr.primer_sequences",
+      "code": "GAP_DEFERRED_TO_DISPLAY",
+      "span": {
+        "start": 38128,
+        "end": 38179,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Primers for qPCR analysis are provided in Table S1.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'provided in Table' (deferred_display) occupies the qpcr.primer_sequences slot without supplying a value",
+        "phrase": "Primers for qPCR analysis are provided in Table S1."
+      }
+    },
+    {
+      "finding_id": "d07312d8f430ffb9224f02c17d6e3c0c",
+      "field_id": "qpcr.reference_genes",
+      "code": "GAP_DEFERRED_TO_DISPLAY",
+      "span": {
+        "start": 38128,
+        "end": 38179,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_UNRESOLVED",
+      "raw_text": "Primers for qPCR analysis are provided in Table S1.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "'provided in Table' (deferred_display) occupies the qpcr.reference_genes slot without supplying a value",
+        "phrase": "Primers for qPCR analysis are provided in Table S1."
       }
     },
     {
@@ -317,7 +338,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "For frozen brain tissues, RNA was extracted using a RNeasy mini kit according\nto manufacture protocol (QIAGEN).",
-        "anchor_detector": "anchor:section-head:Gene Expression Analysis"
+        "anchor_detector": "anchor:node:det-first-of-2:head:Gene Expression Analysis"
       }
     },
     {
@@ -337,7 +358,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:methods-head"
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     },
     {
@@ -357,7 +378,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "For detailed procedures, see Extended Experimental Procedures.",
-        "anchor_detector": "anchor:section-head:Immunohistochemistry and Microscopy"
+        "anchor_detector": "anchor:node:det-unique:head:Immunohistochemistry and Microscop"
       }
     }
   ]

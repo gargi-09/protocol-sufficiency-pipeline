@@ -11,7 +11,7 @@
       "has_western_blot": true,
       "has_ihc": false,
       "has_flow_cytometry": true,
-      "has_xenograft": false,
+      "has_xenograft": true,
       "has_drug_treatment": false,
       "has_wet_lab": true
     },
@@ -22,8 +22,8 @@
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "has_cell_lines": {
-        "start": 17798,
-        "end": 17809,
+        "start": 7378,
+        "end": 7390,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "has_western_blot": {
@@ -32,8 +32,13 @@
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "has_flow_cytometry": {
-        "start": 18478,
-        "end": 18492,
+        "start": 11361,
+        "end": 11370,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "has_xenograft": {
+        "start": 10242,
+        "end": 10255,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "has_wet_lab": {
@@ -44,24 +49,6 @@
     }
   },
   "findings": [
-    {
-      "finding_id": "72b0c05b01f4d5ded83578cedc0e4c6a",
-      "field_id": "animal.species",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 10268,
-        "end": 10448,
-        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\\ncal College, ensuring adherence to all pertinent guidelines and regulations.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
-      }
-    },
     {
       "finding_id": "6d773db8cda273c560ec1d1beb21815f",
       "field_id": "animal.strain",
@@ -79,52 +66,90 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
-        "anchor_detector": "anchor:section-keyword:Tumor-bearing mouse models"
+        "anchor_detector": "anchor:node:det-unique:kw:Tumor-bearing mouse models"
       }
     },
     {
-      "finding_id": "ef589c8587f9a1c97ef3c47b2a70bbab",
+      "finding_id": "2cf31489a28034984fbc2153521f7d17",
       "field_id": "animal.sex",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 10268,
         "end": 10448,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\\ncal College, ensuring adherence to all pertinent guidelines and regulations.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+        "reason": "none of ['male', 'female', 'both', 'not_stated'] is stated in 'The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\\ncal College, ensuring adherence to all pertinent guidelines and regulations.'"
       }
     },
     {
-      "finding_id": "76ea82269c5cb1d662d0b22bd3a58503",
+      "finding_id": "5ef52c7d2892092c01c38c621094cc4c",
       "field_id": "animal.age_or_weight",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 10972,
         "end": 11117,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "Once the tumors attained a volume of 300 mm3, the animals\nwere humanely euthanized through CO2 inhalation in concordance with ethical practices.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'Once the tumors attained a volume of 300 mm3, the animals\\nwere humanely euthanized through CO2 inhalation in concordance with ethical practices.' did not parse as time_or_mass"
+        "reason": "no time_or_mass value stated in 'Once the tumors attained a volume of 300 mm3, the animals\\nwere humanely euthanized through CO2 inhalation in concordance with ethical practices.'"
       }
     },
     {
-      "finding_id": "c147ee1a162b2659d14f9c05439afbe7",
+      "finding_id": "f865d9cd3c1c46d4c8d597bb11db27e4",
+      "field_id": "xenograft.injection_site",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 10889,
+        "end": 10971,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": "Subsequent to the injection,\ntumor size and survival rate were monitored bi-daily.",
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "none of ['subcutaneous_flank', 'orthotopic', 'intravenous', 'intraperitoneal', 'other'] is stated in 'Subsequent to the injection,\\ntumor size and survival rate were monitored bi-daily.'"
+      }
+    },
+    {
+      "finding_id": "c995133ca716eb2761b8e0213d7f5156",
+      "field_id": "cellline.name",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 7391,
+        "end": 7518,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The EC109 cells utilized in the experiments were obtained from the Cell Resource Center, Peking Union Medi-\ncal College (PCRC).",
+        "anchor_detector": "anchor:node:det-unique:head:Transfection"
+      }
+    },
+    {
+      "finding_id": "8e89f9d63479b801734034d28f6f799d",
       "field_id": "cellline.authentication",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 19044,
-        "end": 19162,
+        "start": 7391,
+        "end": 7518,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "verdict": "FIELD_ABSENT",
@@ -134,17 +159,17 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Through mRNA-seq, we observed the impact of METTL3 or METTL14 knockdown on the mRNA expression\nprofile of EC109 cells.",
-        "anchor_detector": "anchor:section-head:Transcriptome sequencing of METTL3 or METTL14 knockdown cells"
+        "anchor_text": "The EC109 cells utilized in the experiments were obtained from the Cell Resource Center, Peking Union Medi-\ncal College (PCRC).",
+        "anchor_detector": "anchor:node:det-unique:head:Transfection"
       }
     },
     {
-      "finding_id": "4fb9e6c3b94b9a87b5fb282f5e353637",
+      "finding_id": "1e6b55c5201addad1505b3d8806ee774",
       "field_id": "cellline.mycoplasma",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 19044,
-        "end": 19162,
+        "start": 7391,
+        "end": 7518,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "verdict": "FIELD_ABSENT",
@@ -154,80 +179,86 @@
       "sensitivity": "LOW",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Through mRNA-seq, we observed the impact of METTL3 or METTL14 knockdown on the mRNA expression\nprofile of EC109 cells.",
-        "anchor_detector": "anchor:section-head:Transcriptome sequencing of METTL3 or METTL14 knockdown cells"
+        "anchor_text": "The EC109 cells utilized in the experiments were obtained from the Cell Resource Center, Peking Union Medi-\ncal College (PCRC).",
+        "anchor_detector": "anchor:node:det-unique:head:Transfection"
       }
     },
     {
-      "finding_id": "6e7869db7b1a98360bed4b12ed92ff2b",
+      "finding_id": "87309c3535a2135967d7f11a534f4caf",
       "field_id": "cellline.passage_number",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 5808,
-        "end": 6017,
+        "start": 7391,
+        "end": 7518,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "In our current study, employing a pan-cancer analytical approach, we developed METTL3 and\nMETTL14 knockdown EC109 esophageal cancer cell lines to explore the impact of gene silencing on cellular\nproliferation.",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'In our current study, employing a pan-cancer analytical approach, we developed METTL3 and\\nMETTL14 knockdown EC109 esophageal cancer cell lines to explore the impact of gene silencing on cellular\\nproliferation.' did not parse as count"
+        "reason": "no candidate text found",
+        "anchor_text": "The EC109 cells utilized in the experiments were obtained from the Cell Resource Center, Peking Union Medi-\ncal College (PCRC).",
+        "anchor_detector": "anchor:node:det-unique:head:Transfection"
       }
     },
     {
-      "finding_id": "794d4f80b6c633e10a64ad0691993bb7",
-      "field_id": "culture.co2_fraction",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 7519,
-        "end": 7651,
-        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The cells were cultured in high-glucose DMEM medium, incubated at 37 °C in a 5% CO2\nincubator, with the medium containing 10% serum.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "'The cells were cultured in high-glucose DMEM medium, incubated at 37 °C in a 5% CO2\\nincubator, with the medium containing 10% serum.' did not parse as fraction"
-      }
-    },
-    {
-      "finding_id": "74681d2724bbef273fa2e4285e26fc27",
+      "finding_id": "3463fce5aa9a2b0e8587ba92194f13fc",
       "field_id": "stats.replicate_type",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 6198,
         "end": 6413,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "We retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'We retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+        "reason": "none of ['biological', 'technical', 'both', 'not_stated'] is stated in 'We retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.'"
       }
     },
     {
-      "finding_id": "cdca0da07c212ce1cad9c23492d4040f",
+      "finding_id": "bbbe6d95fd76c237fd66de72129a6f41",
       "field_id": "centrifugation.force",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 20905,
-        "end": 21000,
+        "start": 6157,
+        "end": 6413,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "It further reinforced our hypothesis that METTL3 has independent binding partners\nfrom METTL14.",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'It further reinforced our hypothesis that METTL3 has independent binding partners\\nfrom METTL14.' did not parse as relative_centrifugal_force"
+        "reason": "no candidate text found",
+        "anchor_text": "Materials and methods\nPan-cancer analysis\nWe retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
+      }
+    },
+    {
+      "finding_id": "d248276412d29a050a478f7ef9a64e10",
+      "field_id": "antibody.identifier",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8320,
+        "end": 8439,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "To isolate total protein from esophageal carcinoma cells, RIPA lysis buffer (Beyotime, Shanghai, China) was uti-\nlized.",
+        "anchor_detector": "anchor:node:det-first-of-2:head:Western blot"
       }
     }
   ]

@@ -1,0 +1,68 @@
+# Scores from 06_score.py on the dev set
+#
+# Reproduce (works in PowerShell and in bash):
+#   python resolve_gold_anchors.py
+#   python -X utf8 score.py --pred predictions/ --gold gold_resolved/ --pack fields/oncobiology_v0.yaml
+#
+# -X utf8 is required on Windows: score.py reads its inputs with
+# Path.read_text() and no encoding=, so it falls back to the locale codec and
+# dies on the non-Latin-1 characters our predictions quote. See
+# defects_found.md D0.
+#
+# CONFIGURATION: model=None.
+# Every prediction is produced by the deterministic layer alone, so the primary
+# result and the model=None ablation are the same run. The model path
+# (node_select.py) is built and exercised via mock_client.py but not wired to a
+# live client, so there is no second column yet.
+#
+# Gold is 1 paper / 18 labels -- the only labelled paper supplied. Field rows
+# with n=0 are fields where gold has no label and we emit anyway: pure
+# precision cost with no upside on this paper.
+#
+# 'False-positive rate on non-blocking findings' is NOT interpretable: the
+# supplied gold carries no 'blocking' flag, so score.py treats every label as
+# non-blocking and the metric pins at 1.000 regardless of accuracy.
+#   See defects_found.md D1.
+
+
+BY GAP CODE
+key                                         P      R     F1      n
+------------------------------------------------------------------
+code:GAP_ABSENT                         0.083  0.077  0.080     13
+code:GAP_DEFERRED_TO_DISPLAY            0.333  1.000  0.500      1
+code:GAP_DEFERRED_TO_REF                0.000  0.000  0.000      2
+code:GAP_DIMENSION_MISMATCH             0.000  0.000  0.000      1
+code:GAP_VAGUE                          0.000  0.000  0.000      1
+
+BY FIELD
+key                                         P      R     F1      n
+------------------------------------------------------------------
+animal.age_or_weight                    0.000  0.000  0.000      0
+animal.ethics_approval                  0.000  0.000  0.000      1
+animal.sample_size_justification        0.000  0.000  0.000      1
+animal.sex                              1.000  1.000  1.000      1
+animal.strain                           0.000  0.000  0.000      1
+antibody.identifier                     0.000  0.000  0.000      1
+assay.protocol_parameters               0.000  0.000  0.000      1
+cellline.authentication                 0.000  0.000  0.000      1
+cellline.mycoplasma                     0.000  0.000  0.000      1
+cellline.name                           0.000  0.000  0.000      0
+cellline.passage_number                 0.000  0.000  0.000      1
+cellline.source_or_rrid                 0.000  0.000  0.000      1
+centrifugation.force                    0.000  0.000  0.000      1
+culture.co2_fraction                    0.000  0.000  0.000      1
+culture.temperature                     0.000  0.000  0.000      1
+qpcr.primer_sequences                   0.000  0.000  0.000      0
+qpcr.reference_genes                    0.000  0.000  0.000      1
+stats.replicate_type                    0.000  0.000  0.000      0
+treatment.concentration                 1.000  0.500  0.667      2
+treatment.duration                      0.000  0.000  0.000      1
+treatment.vehicle                       0.000  0.000  0.000      1
+
+PRIMARY SLICE
+slice                                       P      R     F1      n
+------------------------------------------------------------------
+ABSENT                                  0.083  0.077  0.080     13
+PRESENT_BUT_UNUSABLE                    0.200  0.200  0.200      5
+
+False-positive rate on non-blocking findings: 1.000

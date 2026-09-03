@@ -7,23 +7,28 @@
     "features": {
       "has_animals": true,
       "has_cell_lines": true,
-      "has_qpcr": false,
+      "has_qpcr": true,
       "has_western_blot": true,
       "has_ihc": true,
       "has_flow_cytometry": false,
       "has_xenograft": false,
-      "has_drug_treatment": false,
+      "has_drug_treatment": true,
       "has_wet_lab": true
     },
     "evidence": {
       "has_animals": {
-        "start": 5104,
-        "end": 5108,
+        "start": 15648,
+        "end": 15653,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
       "has_cell_lines": {
         "start": 9428,
         "end": 9439,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "has_qpcr": {
+        "start": 19656,
+        "end": 19669,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
       "has_western_blot": {
@@ -36,75 +41,62 @@
         "end": 21737,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
+      "has_drug_treatment": {
+        "start": 8936,
+        "end": 8951,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
       "has_wet_lab": {
-        "start": 5104,
-        "end": 5108,
+        "start": 15648,
+        "end": 15653,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       }
     }
   },
   "findings": [
     {
-      "finding_id": "27cd9d63b9ff69dfb8aea5d7442beb7a",
-      "field_id": "animal.species",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 7983,
-        "end": 8184,
-        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "HIGH",
-      "detail": {
-        "reason": "'Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\\n12-h light cycle and were allowed to access food and water ad libitum.' not in declared enum_values ['Mus musculus', 'Rattus norvegicus', 'other']"
-      }
-    },
-    {
-      "finding_id": "3e5c82ec675281e9bead802dbc8dd106",
+      "finding_id": "d29452126750be87bb11c9a6c4a2d05c",
       "field_id": "animal.sex",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 7983,
         "end": 8184,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\\n12-h light cycle and were allowed to access food and water ad libitum.' not in declared enum_values ['male', 'female', 'both', 'not_stated']"
+        "reason": "none of ['male', 'female', 'both', 'not_stated'] is stated in 'Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\\n12-h light cycle and were allowed to access food and water ad libitum.'"
       }
     },
     {
-      "finding_id": "58042f84c71e0d24b895c521696b6e77",
+      "finding_id": "a8075ef24321bcb5f2f5419a1d7e2386",
       "field_id": "animal.age_or_weight",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 15173,
-        "end": 15386,
+        "start": 7983,
+        "end": 8184,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Proteins concentrations were determined by Pierce BCA assay\nkit. 100 /H9262g of protein samples along with pre-stained protein molecular\nweight markers were electrophoresed on denaturing SDS-polyacryl-\namide gels.",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'Proteins concentrations were determined by Pierce BCA assay\\nkit. 100 /H9262g of protein samples along with pre-stained protein molecular\\nweight markers were electrophoresed on denaturing SDS-polyacryl-\\namide gels.' did not parse as time_or_mass"
+        "reason": "no time_or_mass value stated in 'Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\\n12-h light cycle and were allowed to access food and water ad libitum.'"
       }
     },
     {
-      "finding_id": "66c7e3545a7caa3142e168b85dac02fb",
+      "finding_id": "f318881b8287a169b0e0593b27bd1ff4",
       "field_id": "cellline.source_or_rrid",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 26043,
-        "end": 26093,
+        "start": 7521,
+        "end": 7692,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
       "verdict": "FIELD_ABSENT",
@@ -114,17 +106,17 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "stimulated with TNF/H9251or IGF-1 for 5 or 15\nmin.",
-        "anchor_detector": "anchor:section-keyword:SH-SY5Y cells were either unstimulated or"
+        "anchor_text": "Anti-mouse horseradish peroxidase, anti-\nrabbit horseradish peroxidase, and anti-rabbit-FITC were from Pierce,\nand anti-rabbit Texas Red was from The Jackson Laboratories.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
       }
     },
     {
-      "finding_id": "14c92f60f06aff23de79a654b1b75810",
+      "finding_id": "2365bd18ebf84753f95db49cd8a0cd6b",
       "field_id": "cellline.authentication",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 26043,
-        "end": 26093,
+        "start": 11795,
+        "end": 12014,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
       "verdict": "FIELD_ABSENT",
@@ -134,17 +126,17 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "stimulated with TNF/H9251or IGF-1 for 5 or 15\nmin.",
-        "anchor_detector": "anchor:section-head:SH-SY5Y cells were either unstimulated or"
+        "anchor_text": "Cell Line Culture—SH-SY5Y human neuroblastoma cells were cul-\ntured in Dulbecco’s modified Eagle’s medium with high glucose, 10%\nfetal bovine serum, antibiotic, antimycotics, essential amino acids, and\n5m ML -glutamine.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
       }
     },
     {
-      "finding_id": "a1a5cd3604bb48b58d1ff5692b0e71af",
+      "finding_id": "78cb78857e33d188ac823c55ad2115a2",
       "field_id": "cellline.mycoplasma",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 26043,
-        "end": 26093,
+        "start": 11795,
+        "end": 12014,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
       "verdict": "FIELD_ABSENT",
@@ -154,98 +146,122 @@
       "sensitivity": "LOW",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "stimulated with TNF/H9251or IGF-1 for 5 or 15\nmin.",
-        "anchor_detector": "anchor:section-head:SH-SY5Y cells were either unstimulated or"
+        "anchor_text": "Cell Line Culture—SH-SY5Y human neuroblastoma cells were cul-\ntured in Dulbecco’s modified Eagle’s medium with high glucose, 10%\nfetal bovine serum, antibiotic, antimycotics, essential amino acids, and\n5m ML -glutamine.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
       }
     },
     {
-      "finding_id": "d2b98ecac2542d20cc365c2754c376c5",
-      "field_id": "cellline.passage_number",
-      "code": "GAP_UNPARSEABLE",
-      "span": {
-        "start": 12180,
-        "end": 12229,
-        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
-      },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The cells were discarded\nafter about 15 passages.",
-      "canonical_value": null,
-      "canonical_unit": null,
-      "sensitivity": "MED",
-      "detail": {
-        "reason": "'The cells were discarded\\nafter about 15 passages.' did not parse as count"
-      }
-    },
-    {
-      "finding_id": "fad78817e178f94e4ec968756bdefd33",
+      "finding_id": "7c71fabacb49250cf49e83fdd9065278",
       "field_id": "culture.temperature",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 8442,
         "end": 8549,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "Primary Neuronal Cell Culture—The protocol followed was adapted\nfrom a procedure described previously (17).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'Primary Neuronal Cell Culture—The protocol followed was adapted\\nfrom a procedure described previously (17).' did not parse as temperature"
+        "reason": "no temperature value stated in 'Primary Neuronal Cell Culture—The protocol followed was adapted\\nfrom a procedure described previously (17).'"
       }
     },
     {
-      "finding_id": "77d0d5980745df4200fd4017473cf99e",
+      "finding_id": "0bec699d09b160e920f55cef604bb211",
       "field_id": "culture.co2_fraction",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 8442,
         "end": 8549,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "Primary Neuronal Cell Culture—The protocol followed was adapted\nfrom a procedure described previously (17).",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'Primary Neuronal Cell Culture—The protocol followed was adapted\\nfrom a procedure described previously (17).' did not parse as fraction"
+        "reason": "no fraction value stated in 'Primary Neuronal Cell Culture—The protocol followed was adapted\\nfrom a procedure described previously (17).'"
       }
     },
     {
-      "finding_id": "ab3f9df7582a68edf3b27d3b59106709",
-      "field_id": "stats.replicate_type",
-      "code": "GAP_UNPARSEABLE",
+      "finding_id": "b63233ba53872c56515429b99ae82f5e",
+      "field_id": "qpcr.reference_genes",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 27639,
-        "end": 27846,
+        "start": 7133,
+        "end": 7224,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "STAT3 Is Associated with IGF Receptor and JAK1— It has\nbeen shown previously in other cell types that STATs can be\nactivated by IGFR upon IGF-1 stimulation, and JAKs are es-\nsential for this activation (23).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'STAT3 Is Associated with IGF Receptor and JAK1— It has\\nbeen shown previously in other cell types that STATs can be\\nactivated by IGFR upon IGF-1 stimulation, and JAKs are es-\\nsential for this activation (23).' not in declared enum_values ['biological', 'technical', 'both', 'not_stated']"
+        "reason": "no candidate text found",
+        "anchor_text": "MATERIALS AND METHODS\nReagents—TNF /H9251, IGF-1, and IL-6 were purchased from CytoLab\nLtd.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     },
     {
-      "finding_id": "dce2f47402133a98b41e28f4cdda7929",
+      "finding_id": "683be373de9a892b19a81ec1733e9ffc",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 7133,
+        "end": 7224,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "MATERIALS AND METHODS\nReagents—TNF /H9251, IGF-1, and IL-6 were purchased from CytoLab\nLtd.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
+      }
+    },
+    {
+      "finding_id": "c63b6495f566f10f31998c5890e1b8fb",
       "field_id": "centrifugation.force",
-      "code": "GAP_UNPARSEABLE",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 17697,
         "end": 17779,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
-      "verdict": "FIELD_UNRESOLVED",
+      "verdict": "FIELD_ABSENT",
       "raw_text": "After centrifugation\n(30,000 /H11003g), the supernatant contained nuclear extract.",
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'After centrifugation\\n(30,000 /H11003g), the supernatant contained nuclear extract.' did not parse as relative_centrifugal_force"
+        "reason": "no relative_centrifugal_force value stated in 'After centrifugation\\n(30,000 /H11003g), the supernatant contained nuclear extract.'"
+      }
+    },
+    {
+      "finding_id": "4d3b81a393ca6d95b8b5679d7fa0f079",
+      "field_id": "antibody.identifier",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 21412,
+        "end": 21457,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "blotted with anti-phospho-STAT3 anti-\nbodies.",
+        "anchor_detector": "anchor:node:det-unique:head:SDS-polyacrylamide gel and Western"
       }
     }
   ]
