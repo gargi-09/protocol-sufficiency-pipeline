@@ -39,6 +39,25 @@ GOLD_DIR = "gold"
 OUT_DIR = "gold_resolved"
 PAPERS_DIR = "papers"
 
+# The R3 annotations use citation-style doc_ids; papers/ uses the source
+# filenames. score.py matches predictions to gold by FILE STEM, so a resolved
+# file has to be named for the paper, not for the annotation.
+DOC_ID_ALIASES = {
+    "dossantos2026_ssa_pc_celllines": "Dos et al",
+    "du2024_mettl3_escc_scirep": "Du",
+    "hosseini2010_bladder_mspcr":
+        "Disease_20Markers_20-_202013_20-_20Ali_20Hosseini_20-_20Frequency_20of_20"
+        "P16INK4a_20and_20P14ARF_20Genes_20Methylation_20and_20Its_20Impact_20on_20"
+        "Bladder_20Cancer",
+    "shien2017_nsclc_jak1stat3_mct": "Shein",
+    "xiong2008_crc_jakstat3_neoplasia": "Xiong",
+    "yadav2005_jakstat_socs3_jbc": "Yadav",
+}
+
+
+def paper_for(doc_id: str) -> str:
+    return DOC_ID_ALIASES.get(doc_id, doc_id)
+
 
 def resolve(anchor: str, text: str) -> tuple[int, int] | None:
     """Offsets of `anchor` in `text`, tolerating whitespace differences."""
@@ -60,17 +79,36 @@ def resolve(anchor: str, text: str) -> tuple[int, int] | None:
 
 
 def main() -> int:
-    os.makedirs(OUT_DIR, exist_ok=True)
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Resolve gold anchor_text into the character spans score.py needs.")
+    parser.add_argument("--gold", default=GOLD_DIR,
+                        help=f"directory of label files, searched recursively (default: {GOLD_DIR})")
+    parser.add_argument("--out", default=OUT_DIR,
+                        help=f"output directory (default: {OUT_DIR})")
+    args = parser.parse_args()
+
+    os.makedirs(args.out, exist_ok=True)
 
     total = resolved_count = 0
     unresolved: list[tuple[str, str, str]] = []
+    no_anchor: list[tuple[str, str]] = []
 
-    for filename in sorted(os.listdir(GOLD_DIR)):
-        if not filename.endswith(".json"):
-            continue
+    # Recursive: the R3 annotations are nested one directory per paper.
+    sources = sorted(
+        os.path.join(root, name)
+        for root, _dirs, names in os.walk(args.gold)
+        for name in names if name.endswith(".json")
+    )
 
-        gold = json.loads(open(os.path.join(GOLD_DIR, filename), encoding="utf-8").read())
-        doc_id = gold.get("doc_id") or filename[:-5]
+    for source in sources:
+        filename = os.path.basename(source)
+        gold = json.loads(open(source, encoding="utf-8").read())
+        if not gold.get("labels"):
+            continue  # e.g. the "ambiguity bank" files carry `entries`, not labels
+
+        doc_id = paper_for(gold.get("doc_id") or filename[:-5])
 
         paper_path = os.path.join(PAPERS_DIR, f"{doc_id}.txt")
         if not os.path.exists(paper_path):
@@ -83,6 +121,13 @@ def main() -> int:
         for label in gold.get("labels", []):
             total += 1
             anchor = label.get("anchor_text") or ""
+            if not anchor.strip():
+                # 25 of the 83 R3 labels carry no anchor_text at all. They are
+                # unscoreable by construction rather than a resolver failure, so
+                # they are counted separately -- lumping them in with genuine
+                # misses would misattribute a data gap to our matching.
+                no_anchor.append((doc_id, label.get("field_id", "?")))
+                continue
             span = resolve(anchor, text)
             if span is None:
                 unresolved.append((doc_id, label.get("field_id", "?"), anchor[:70]))
@@ -98,15 +143,23 @@ def main() -> int:
             "profile": gold.get("profile", {}),
             "labels": out_labels,
         }
-        with open(os.path.join(OUT_DIR, f"{doc_id}.json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(args.out, f"{doc_id}.json"), "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2)
-        print(f"{doc_id[:58]:<60} {len(out_labels):>3}/{len(gold.get('labels', []))} labels resolved")
+        n_blocking = sum(1 for label in out_labels if label.get("blocking"))
+        print(f"{doc_id[:46]:<48} {len(out_labels):>3}/{len(gold.get('labels', []))} resolved"
+              f"   blocking={n_blocking}")
 
-    print(f"\nresolved {resolved_count}/{total} anchors -> {OUT_DIR}/")
+    print(f"\nresolved {resolved_count}/{total} anchors -> {args.out}/")
+
+    if no_anchor:
+        print(f"\nNO ANCHOR TEXT ({len(no_anchor)}) -- unscoreable by construction, "
+              f"not a matching failure:")
+        for doc_id, field_id in no_anchor:
+            print(f"   {doc_id[:26]:<28} {field_id}")
 
     if unresolved:
-        print(f"\nUNRESOLVED ({len(unresolved)}) -- these labels are absent from the "
-              f"scored set, so any score computed below is optimistic:")
+        print(f"\nUNRESOLVED ({len(unresolved)}) -- anchor text present but not found "
+              f"in the paper. Any score computed below is optimistic:")
         for doc_id, field_id, anchor in unresolved:
             print(f"   {doc_id[:26]:<28} {field_id:<30} {anchor!r}")
 
@@ -116,8 +169,8 @@ def main() -> int:
     # say so rather than letting the number be read as a result.
     if not any(
         "blocking" in label
-        for filename in os.listdir(OUT_DIR) if filename.endswith(".json")
-        for label in json.loads(open(os.path.join(OUT_DIR, filename), encoding="utf-8").read())["labels"]
+        for filename in os.listdir(args.out) if filename.endswith(".json")
+        for label in json.loads(open(os.path.join(args.out, filename), encoding="utf-8").read())["labels"]
     ):
         print("\nNOTE: no label carries a `blocking` flag, so score.py's "
               "false-positive-rate-on-non-blocking is not interpretable here.")

@@ -142,7 +142,7 @@ _CATEGORY_HEADER_KEYWORDS = {
     # the corpus, spin steps live inside lysis, immunoprecipitation and
     # protein-extraction sections -- Sun's are under "Western blot" and "RNA
     # associated immunoprecipitation". Four of seven papers state no spin in
-    # their methods at all, so for those no keyword can help and GAP_ABSENT
+    # the given methods at all, so for those no keyword can help and GAP_ABSENT
     # anchored at the section level is the honest answer.
     "centrifugation": ["centrifug", "fractionation", "extraction", "lysis",
                        "lysate", "immunoprecipitat", "homogen", "subcellular"],
@@ -295,10 +295,10 @@ class Node:
 
     Inspired by PageIndex (github.com/VectifyAI/PageIndex): index a document by
     its own structure and navigate that, instead of flat search over the whole
-    text. Two things carry over cleanly from their design -- the unit is a
+    text. Two things carry over cleanly from the design -- the unit is a
     natural section rather than a fixed-size chunk, and the structure is derived
-    from layout with no model involved. Their *retrieval* half does not carry
-    over: they search the tree for content that exists, whereas our hardest case
+    from layout with no model involved. The *retrieval* half does not carry
+    over: they search the tree for content that exists, whereas here hardest case
     is a field that is absent, which by definition leaves no text to retrieve.
     So here the tree is not a search index, it is an ADDRESS SPACE FOR ABSENCES
     -- it names the places where a missing item ought to have been stated, so a

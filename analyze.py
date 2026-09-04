@@ -82,6 +82,14 @@ def analyze(
 
         if obs is not None:
             span = obs["span"]
+            # Step 3: "Make a record of the detector that made each observation.
+            # You will need this record later." The absent branch below already
+            # recorded its anchor's detector; the observation branch computed one
+            # and threw it away, which is the half of the record the spec
+            # actually asks for. Kept under a separate key from anchor_detector
+            # because they answer different questions -- what found the value,
+            # versus what found the place the value should have been.
+            detail["detector"] = obs["detector"]
             # Step 5, present-but-unusable branch: "put the span on the
             # incorrect phrase." When the validator identified a trigger it
             # returns that trigger's offsets within the candidate, so rebase

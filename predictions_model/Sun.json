@@ -84,11 +84,11 @@
       }
     },
     {
-      "finding_id": "bfc03a0604158d1e0064117b362ec09f",
+      "finding_id": "ab2a451128bf99644d380d90817153e5",
       "field_id": "animal.strain",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 15468,
+        "start": 15454,
         "end": 15588,
         "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
       },
@@ -99,8 +99,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
-        "anchor_detector": "anchor:node:det-unique:head:Animal models"
+        "anchor_text": "Animal models\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -142,11 +142,11 @@
       }
     },
     {
-      "finding_id": "cfa31316d43a39c32f98db03e5e8f00e",
+      "finding_id": "e2871c3fa403ebd104a8f143aaa778df",
       "field_id": "animal.ethics_approval",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 15468,
+        "start": 15454,
         "end": 15588,
         "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
       },
@@ -157,17 +157,17 @@
       "sensitivity": "LOW",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
-        "anchor_detector": "anchor:node:det-unique:head:Animal models"
+        "anchor_text": "Animal models\nAbout 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
-      "finding_id": "11798ff1ef85709407bd427279947100",
+      "finding_id": "6b90d1976b63a671ea4a02a5441496b7",
       "field_id": "animal.sample_size_justification",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 15468,
-        "end": 15588,
+        "start": 7389,
+        "end": 7608,
         "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
       },
       "verdict": "FIELD_ABSENT",
@@ -177,8 +177,8 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
-        "anchor_detector": "anchor:node:det-unique:head:Animal models"
+        "anchor_text": "Transwell\nIn an 8 μm pore size transwell system (Corning, USA), the upper chamber\nwas seeded with 5 × 10 4 cells cultured in 500 μl serum-free medium, and\nthe bottom well was added with 1 ml 10% complete culture medium.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -201,12 +201,12 @@
       }
     },
     {
-      "finding_id": "2c8cb01cb8b1b6e312389461ba7675c2",
+      "finding_id": "7295edeba20cd39dffa86d6124a6a92b",
       "field_id": "xenograft.tumour_measurement_method",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 15468,
-        "end": 15588,
+        "start": 6188,
+        "end": 6340,
         "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
       },
       "verdict": "FIELD_ABSENT",
@@ -216,8 +216,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
-        "anchor_detector": "anchor:node:det-unique:head:Animal models"
+        "anchor_text": "MATERIALS AND METHODS\nCell culture\nLoVo colon cancer cells and 293T cells were kindly provided by Shanghai\nCell Collection, Chinese Academy of Sciences.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -237,7 +237,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "The HCT116 colon cancer\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.",
-        "anchor_detector": "anchor:node:det-first-of-2:kw:MATERIALS AND METHODS Cell culture"
+        "anchor_detector": "anchor:det-confident(score=3):no-model-call"
       }
     },
     {
@@ -257,7 +257,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "The HCT116 colon cancer\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.",
-        "anchor_detector": "anchor:node:det-first-of-2:kw:MATERIALS AND METHODS Cell culture"
+        "anchor_detector": "anchor:node:model-1of15:kw:MATERIALS AND METHODS Cell culture"
       }
     },
     {
@@ -277,7 +277,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "The HCT116 colon cancer\ncell line was a gift from Zhang ’s laboratory, at Zhejiang University.",
-        "anchor_detector": "anchor:node:det-first-of-2:kw:MATERIALS AND METHODS Cell culture"
+        "anchor_detector": "anchor:node:model-1of15:kw:MATERIALS AND METHODS Cell culture"
       }
     },
     {
@@ -335,7 +335,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "The cells that successfully\nexpressed shRNAs were screened out using puromycin treatment (MCE,\nUSA) at the concentration of 5 μg/ml.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {

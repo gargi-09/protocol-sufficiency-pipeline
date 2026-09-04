@@ -45,11 +45,11 @@
   },
   "findings": [
     {
-      "finding_id": "dca53267baa788d0be943c3f8fa1acd7",
+      "finding_id": "1b5d63f9f24615155a4871bfeb832831",
       "field_id": "cellline.mycoplasma",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 7229,
+        "start": 7183,
         "end": 7298,
         "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
       },
@@ -60,8 +60,8 @@
       "sensitivity": "LOW",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "We used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
-        "anchor_detector": "anchor:node:det-first-of-2:kw:Materials and Methods Cell lines a"
+        "anchor_text": "Materials and Methods\nCell lines and reagents\nWe used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -160,12 +160,12 @@
       }
     },
     {
-      "finding_id": "dd4b60970c937d9e9dcb473f97a546b9",
+      "finding_id": "591b132600ed3acd6ebe12cee02a395b",
       "field_id": "treatment.vehicle",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 7229,
-        "end": 7298,
+        "start": 10281,
+        "end": 10497,
         "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
       },
       "verdict": "FIELD_ABSENT",
@@ -175,8 +175,8 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "We used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
-        "anchor_detector": "anchor:node:det-first-of-2:head:Materials and Methods Cell lines a"
+        "anchor_text": "Intracellular kinase activation after cytokine treatment\nFor RNA interference assays, cells were transfected with Silencer Select siRNA against\nOSMR, LIFR, JAK1, JAK2, JAK3, Tyk2, or scrambled negative control siRNA.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -196,7 +196,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Materials and Methods\nCell lines and reagents\nWe used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_detector": "anchor:node:model-whole-section:head:methods"
       }
     },
     {
@@ -216,7 +216,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Materials and Methods\nCell lines and reagents\nWe used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_detector": "anchor:node:model-whole-section:head:methods"
       }
     },
     {
@@ -239,12 +239,12 @@
       }
     },
     {
-      "finding_id": "ba8fe579a497621bf6abff24c1e64be9",
+      "finding_id": "558073075b226c44918ae67ab3aa4e22",
       "field_id": "centrifugation.force",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 7183,
-        "end": 7298,
+        "start": 9339,
+        "end": 9728,
         "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
       },
       "verdict": "FIELD_ABSENT",
@@ -254,8 +254,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Materials and Methods\nCell lines and reagents\nWe used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "The primary antibodies were as follows: anti-STAT3, p-STAT3 (Tyr705), IL6ST (Gp130), E-\ncadherin, Vimentin (R28), ZEB1, Snail, Axl, AKT, p-AKT (Ser473), p44/p42 mitogen-\nactivated protein kinase (ERK), p-p44/p42 MAPK (p-ERK1/2), JAK1, p-JAK1, JAK2, p-\nJAK2, JAK3, Tyk2 (a JAK family menber), PARP, and c-PARP (Cell Signaling Technology)\nand IL6R, OSMR, and LIFR (Santa Cruz Biotechnology).",
+        "anchor_detector": "anchor:node:model-3of9:head:Western blotting analysis"
       }
     }
   ]

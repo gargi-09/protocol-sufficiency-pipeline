@@ -10,6 +10,13 @@ from relevance import check_relevance
 
 _NUM = r"\d[\d,]*(?:\.\d+)?"
 
+# A cell-line token sitting between the magnitude and its unit: "5 x 10^6 EC109
+# cells". Required to contain BOTH a digit and a letter, which admits EC109,
+# A549, 4T1 and MDA-MB-231 while rejecting the ordinary words that would
+# otherwise let a magnitude bind to a far-away unit -- "100 ml of cells" must
+# not read as 100 cells.
+_LINE_TOKEN = r"(?=[A-Za-z0-9./-]*\d)(?=[A-Za-z0-9./-]*[A-Za-z])[A-Za-z0-9./-]+"
+
 _FRACTION_UNIT = re.compile(rf"({_NUM})\s*%")
 _TEMPERATURE_UNIT = re.compile(rf"({_NUM})\s*(°C|C\b|celsius)", re.IGNORECASE)
 # Molar units are deliberately CASE-SENSITIVE. Under re.IGNORECASE the bare "M"
@@ -38,7 +45,8 @@ _VOLUME_UNIT = re.compile(
     rf"({_NUM})\s*(mm\s*3|mm³|cm\s*3|cm³|nl|µl|μl|ul|ml|mL|l|L)\b", re.IGNORECASE
 )
 _COUNT_UNIT = re.compile(
-    rf"({_NUM}(?:\s*[×x✕]\s*10\s*\^?\s*\d+)?)\s*(cells?|passages?|copies)\b"
+    rf"({_NUM}(?:\s*[×x✕]\s*10\s*\^?\s*\d+)?)\s*(?:\s{_LINE_TOKEN})?"
+    rf"\s*(cells?|passages?|copies)\b"
     rf"|\bpassage\s*(?:number\s*)?({_NUM})\b",
     re.IGNORECASE,
 )
@@ -98,6 +106,152 @@ def _states_range(pattern: re.Pattern, raw_text: str) -> bool:
             if low < high:
                 return True
     return False
+
+
+# --------------------------------------------------------------------------
+# plausible_range -> GAP_OUT_OF_RANGE
+#
+# The pack declares plausible_range on four fields and contract.FieldSpec has
+# carried the attribute since 0.1, but nothing read it, so GAP_OUT_OF_RANGE was
+# structurally unreachable -- a supplied constraint on four fields silently
+# ignored. 02_BUILD_SPEC puts this on the code side of the line it draws:
+# "To check a range is a comparison. The model does none of these operations."
+#
+# Comparing against the range needs the value in the pack's canonical_unit, so
+# each conversion is keyed on (dimension, canonical_unit) rather than dimension
+# alone. That is deliberate: a future pack that declares culture.temperature in
+# C instead of K gets NO key and therefore no range check, rather than a
+# silent +273.15 against the wrong baseline. Failing to check beats checking
+# against a unit we only assumed.
+#
+# This is a within-dimension scale conversion, not the rpm -> x g conversion the
+# spec forbids. C and K measure the same dimension with a known offset; rpm and
+# x g do not, which is why that case stays a GAP_DIMENSION_MISMATCH above.
+_CANONICAL_CONVERSION = {
+    # _TEMPERATURE_UNIT only matches Celsius forms, so a match is always C.
+    ("temperature", "K"): lambda n: n + 273.15,
+    ("fraction", "percent"): lambda n: n,
+    ("count", "cells"): lambda n: n,
+    ("relative_centrifugal_force", "g_rcf"): lambda n: n,
+}
+
+# "1 x 10^6", and the flattened "1 x 10 6" that PDF extraction leaves behind
+# when it drops the superscript.
+_SCIENTIFIC = re.compile(rf"({_NUM})\s*[×x✕]\s*10\s*\^?\s*(\d+)", re.IGNORECASE)
+
+
+def _embedded_in_identifier(raw_text: str, start: int) -> bool:
+    """True if the number at `start` is part of a token that contains letters.
+
+    "EC109 cells were injected" read as a count of 109 cells, so
+    xenograft.cell_number returned a confident verdict about a cell-line name.
+    A lookbehind in _NUM cannot express this: MDA-MB-231 puts a hyphen, not a
+    letter, immediately left of the digits, and excluding the hyphen too would
+    break the "1000-4000" range forms, whose second number legitimately follows
+    one. Python's re has no variable-length lookbehind, so walk the token
+    instead -- the run of alphanumerics and hyphens to the left. A letter
+    anywhere in that run means these digits belong to a name.
+
+    Same class as the "rat" inside "proliferation" fix in sections.py: a match
+    that is textually real and semantically nothing.
+    """
+    index = start
+    while index > 0 and (raw_text[index - 1].isalnum() or raw_text[index - 1] == "-"):
+        index -= 1
+    return any(character.isalpha() for character in raw_text[index:start])
+
+
+def _magnitude(token: str) -> float | None:
+    """Numeric value of a captured token, or None if it is not a number."""
+    token = token.strip()
+    scientific = _SCIENTIFIC.fullmatch(token)
+    if scientific:
+        return float(scientific.group(1).replace(",", "")) * 10 ** int(scientific.group(2))
+    try:
+        return float(token.replace(",", ""))
+    except ValueError:
+        return None
+
+
+def _magnitude_spans(match: re.Match) -> list[tuple[float, int]]:
+    """(value, offset) for each group of `match` that reads as a number.
+
+    The number is group 1 for most patterns but group 3 for _COUNT_UNIT's
+    "passage N" alternative, and _RCF_UNIT's bare "rcf" alternative captures no
+    number at all. Scanning the groups keeps the index out of the call sites.
+    """
+    spans: list[tuple[float, int]] = []
+    for index in range(1, (match.re.groups or 0) + 1):
+        token = match.group(index)
+        if token is None:
+            continue
+        value = _magnitude(token)
+        if value is not None:
+            spans.append((value, match.start(index)))
+    return spans
+
+
+def _dimension_matches(pattern: re.Pattern, raw_text: str) -> list[re.Match]:
+    """Matches whose magnitude is a real quantity rather than part of a name.
+
+    A match with no readable magnitude is kept: a bare "rcf" states the unit and
+    no value, which is a different failure from a value we refused to read.
+    """
+    kept: list[re.Match] = []
+    for match in pattern.finditer(raw_text):
+        spans = _magnitude_spans(match)
+        if not spans or any(not _embedded_in_identifier(raw_text, offset)
+                            for _, offset in spans):
+            kept.append(match)
+    return kept
+
+
+def _canonical_values(pattern: re.Pattern, raw_text: str, spec: FieldSpec) -> list[float]:
+    """Every readable value of the field's dimension, in its canonical unit."""
+    convert = _CANONICAL_CONVERSION.get((spec.dimension, spec.canonical_unit))
+    if convert is None:
+        return []
+    return [convert(value)
+            for match in _dimension_matches(pattern, raw_text)
+            for value, offset in _magnitude_spans(match)
+            if not _embedded_in_identifier(raw_text, offset)]
+
+
+def _check_plausible_range(pattern: re.Pattern, raw_text: str, spec: FieldSpec) -> dict:
+    """FIELD_OK, or GAP_OUT_OF_RANGE if no stated value could be the real one.
+
+    Called only once the dimension already matched, so the question here is
+    narrower than "is this the right kind of value" -- it is "could this number
+    be this field's value at all".
+
+    A candidate sentence routinely carries several values of one dimension:
+    "grown to 80% confluence in 5% CO2" holds two fractions and only the second
+    is the CO2 fraction. So ANY value inside the range returns FIELD_OK, and the
+    gap is emitted only when EVERY readable value of the dimension is outside
+    it. Firing on the first out-of-range number instead would turn correct
+    protocols into findings, and a false GAP_OUT_OF_RANGE is worse than a missed
+    one: it does not merely add noise, it replaces a correct FIELD_OK.
+    """
+    ok = {"verdict": "FIELD_OK", "code": None,
+          "reason": f"{raw_text!r} matches expected dimension {spec.dimension}"}
+    if spec.plausible_range is None:
+        return ok
+
+    low, high = float(spec.plausible_range[0]), float(spec.plausible_range[1])
+    values = _canonical_values(pattern, raw_text, spec)
+    if not values:
+        # Dimension matched but no magnitude is readable -- an unregistered
+        # canonical unit, or a unit-only match like a bare "rcf". Not evidence
+        # of implausibility, so keep the pre-existing verdict.
+        return ok
+    if any(low <= value <= high for value in values):
+        return ok
+
+    stated = ", ".join(f"{value:g}" for value in values)
+    unit = spec.canonical_unit or spec.dimension
+    return {"verdict": "FIELD_UNRESOLVED", "code": "GAP_OUT_OF_RANGE",
+            "reason": f"{raw_text!r} states {spec.dimension} of {stated} {unit}, "
+                      f"outside the plausible range {low:g}-{high:g} {unit}"}
 
 def _target_position(raw_text: str, spec: FieldSpec) -> int | None:
     """Where in the sentence this field's own content sits -- ConText's target.
@@ -211,9 +365,12 @@ def validate_quantity(raw_text: str, spec: FieldSpec) -> dict:
             return {"verdict": "FIELD_UNRESOLVED", "code": "GAP_RANGE_NOT_POINT",
                     "reason": f"{raw_text!r} gives a range where a single "
                               f"{spec.dimension} value is required"}
-        if correct_pattern.search(raw_text):
-            return {"verdict": "FIELD_OK", "code": None,
-                    "reason": f"{raw_text!r} matches expected dimension {spec.dimension}"}
+        # _dimension_matches, not .search: a magnitude buried in a cell-line
+        # name is not a statement of this dimension at all.
+        if _dimension_matches(correct_pattern, raw_text):
+            # Right dimension. The remaining question is whether the number
+            # could be this field's value -- the pack's plausible_range.
+            return _check_plausible_range(correct_pattern, raw_text, spec)
 
     # rpm in a slot that wants x g. The pack names this case explicitly.
     if spec.dimension == "relative_centrifugal_force" and _RPM_UNIT.search(raw_text):

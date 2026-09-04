@@ -1,0 +1,204 @@
+{
+  "doc_id": "Yadav",
+  "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a",
+  "profile": {
+    "has_wet_lab": true,
+    "has_animals": true,
+    "has_cell_lines": true,
+    "has_qpcr": true,
+    "has_flow_cytometry": false,
+    "has_western_blot": true,
+    "has_ihc": false,
+    "has_xenograft": false,
+    "has_drug_treatment": true
+  },
+  "labels": [
+    {
+      "label_id": "L02",
+      "field_id": "animal.ethics_approval",
+      "instance": "all",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "Animal procedures were approved by the Institutional Animal Ethics Committee.",
+      "anchor_section": "Animals",
+      "blocking": false,
+      "confidence": "high",
+      "rationale": "Approval is asserted with no protocol number and no named institution. Same form as the Hosseini paper. Documentation debt, sensitivity LOW in the pack, does not stop execution.",
+      "span": {
+        "start": 8364,
+        "end": 8441,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L07",
+      "field_id": "cellline.passage_number",
+      "instance": "SH-SY5Y",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "The cells were discarded after about 15 passages.",
+      "anchor_section": "Cell Line Culture",
+      "blocking": false,
+      "confidence": "medium",
+      "rationale": "This is a discard policy with a hedge, not a passage number for any experiment. It is still more than most papers give, and it bounds the range. Non-blocking because a replicator working under the same rule stays inside the same window. See AMB-124.",
+      "span": {
+        "start": 12180,
+        "end": 12229,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L08",
+      "field_id": "treatment.concentration",
+      "instance": "figure legend doses",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_DIMENSION_MISMATCH",
+      "anchor_text": "stimulated with 10, 20, 50, and 100 ng of IGF-1",
+      "anchor_section": "Figure 1 legend",
+      "blocking": false,
+      "confidence": "medium",
+      "rationale": "Mass where a concentration is required. The same form appears in the Figure 2 legend for 20, 50 and 100 ng of TNF alpha or IGF-1. A mass is not a dose without a volume. Non-blocking because the Methods and the Results give the same doses in ng/ml, so the units are recoverable by internal cross-reference. Recorded because the mismatch is real and a validator will fire on it correctly.",
+      "span": {
+        "start": 9218,
+        "end": 9265,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L09",
+      "field_id": "treatment.duration",
+      "instance": "post-transfection stimulation delay",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_RANGE_NOT_POINT",
+      "anchor_text": "The cells were stimulated after 24",
+      "anchor_section": "Transient Transfections",
+      "blocking": true,
+      "confidence": "medium",
+      "rationale": "Stimulation occurs at 24 to 48 hours after transfection, and the same range is given for the primary cells. Transgene expression roughly doubles across that window. Figures 8 and 9 measure the effect of SOCS-3 overexpression, so the level of the thing being tested is set by the unstated choice inside this range. The serum starvation range of 12 to 14 hours elsewhere in the paper is narrow and non-blocking. This is the first use of GAP_RANGE_NOT_POINT in the corpus, the code that contract 0.2 added.",
+      "span": {
+        "start": 14011,
+        "end": 14045,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L10",
+      "field_id": "treatment.vehicle",
+      "instance": "tyrphostin AG490",
+      "verdict": "FIELD_ABSENT",
+      "code": "GAP_ABSENT",
+      "anchor_text": "Both SY5Y and primary neuronal cells were treated with increasing doses of the inhibitor",
+      "anchor_section": "Results, JAK/STAT Is a Major Pathway for Neuronal Cell Survival",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "AG490 is dosed to 50 micromolar and its solvent is never named. The Figure 5 control is described as no inhibitor and no IGF-1, so there is no vehicle-only arm. The paper then reports that its cells died at a quarter of the usual dose, noting that a dose between 40 and 100 micromolar is generally used. Without a solvent identity and a vehicle control, that result cannot be attributed to AG490 rather than to the carrier. This is the pack note on this field acting exactly as written.",
+      "span": {
+        "start": 28852,
+        "end": 28940,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L11",
+      "field_id": "assay.protocol_parameters",
+      "instance": "transient_transfection",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_DEFERRED_TO_REF",
+      "anchor_text": "was transfected into the cells using Lipofectamine 2000 (Invitrogen) as",
+      "anchor_section": "Transient Transfections",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "No plasmid mass, no DNA to reagent ratio and no transfection efficiency, for either Lipofectamine 2000 in the cell line or Effectene in the primary cells. Everything is deferred to the manufacturer's instructions, which do not fix the DNA amount. Transfection is the intervention in Figures 8 and 9 and the dose of that intervention is unstated.",
+      "span": {
+        "start": 13770,
+        "end": 13841,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L12",
+      "field_id": "assay.protocol_parameters",
+      "instance": "subcellular_fractionation",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_DEFERRED_TO_REF",
+      "anchor_text": "An extraction kit from Geno-technology (St. Louis, MO) was used to extract proteins from the",
+      "anchor_section": "Nuclear and Cytoplasmic Protein Extraction",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "A vendor and a city, with no kit name and no catalogue number. This is weaker than the Wizard case in the Dos Santos paper, which at least named a product family. Figure 3A is the nuclear translocation result and it rests entirely on this fractionation. The loading control shown is total STAT3, which is present in both compartments, so no compartment purity marker validates the separation. A replicator cannot obtain the kit and cannot check the separation.",
+      "span": {
+        "start": 17143,
+        "end": 17235,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L13",
+      "field_id": "assay.protocol_parameters",
+      "instance": "northern_hybridisation",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "in sodium phosphate, SDS, EDTA prehybridization",
+      "anchor_section": "RNA Extraction and Northern Blot Analysis",
+      "blocking": true,
+      "confidence": "medium",
+      "rationale": "Three buffer components named and not one concentration given, in the step that sets hybridisation stringency. The 60 C temperature is given, and stringency depends on salt and temperature together. The final wash at 42 C carries no duration. Figure 6B is a Northern blot comparing SOCS-3 induction across four treatments, so stringency sets the signal.",
+      "span": {
+        "start": 19119,
+        "end": 19166,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L14",
+      "field_id": "assay.protocol_parameters",
+      "instance": "primary_culture_protocol",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_DEFERRED_TO_REF",
+      "anchor_text": "The protocol followed was adapted from a procedure described previously (17).",
+      "anchor_section": "Primary Neuronal Cell Culture",
+      "blocking": false,
+      "confidence": "medium",
+      "rationale": "The deferral target is a book chapter, and the word adapted says the authors changed it without saying how. Non-blocking because the paragraph then supplies most of the adaptation itself: trypsin and DNase percentages, trituration method, spin conditions, serum composition, poly-L-lysine coating, seeding density and AraC. A deferral that is immediately superseded by the text is different from one that stands alone. See AMB-123.",
+      "span": {
+        "start": 8472,
+        "end": 8549,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L15",
+      "field_id": "assay.protocol_parameters",
+      "instance": "immunoprecipitation",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_DEFERRED_TO_REF",
+      "anchor_text": "blotted as described previously",
+      "anchor_section": "Immunoprecipitation",
+      "blocking": false,
+      "confidence": "medium",
+      "rationale": "A deferral with no citation attached, which is a recurring blocking class in the earlier batch. It is non-blocking here for a reason worth recording: the target is not another paper but the Western Blotting section two paragraphs above, in the same document. The same paragraph also says treated as described previously with no citation, and then gives the full RIPA composition. An internal deferral and an external one look identical in the sentence. See AMB-122.",
+      "span": {
+        "start": 17067,
+        "end": 17098,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    },
+    {
+      "label_id": "L17",
+      "field_id": "stats.replicate_type",
+      "instance": "all",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "An average of four different fields were taken.",
+      "anchor_section": "Figure 5 legend",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "The symbol n = 3 covers at least three different things in this paper. In Figure 1 it sits beside representative data from three sets of independent experiments. In Figure 6C it sits beside each sample was run in triplicate, which is technical. In Figure 5 it sits beside an average of four different fields were taken, which is neither. Elsewhere 8 to 10 fields were viewed. A reader cannot tell what any error bar represents, which is the failure the pack note describes.",
+      "span": {
+        "start": 30603,
+        "end": 30650,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      }
+    }
+  ]
+}

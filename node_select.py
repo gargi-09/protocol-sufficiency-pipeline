@@ -205,7 +205,12 @@ def select_node(
     candidates = nodes[:_MAX_NODES]
     prompt = _build_prompt(spec, candidates, canonical_text)
     try:
-        response = model.complete(prompt, max_tokens=8)
+        # 8 tokens was enough for a bare integer, but thinking is ON BY DEFAULT
+        # on current models and thinking tokens come out of this budget. At 8 the
+        # model can spend the whole allowance reasoning and return no text, so
+        # every call would silently fall through to the deterministic branch.
+        # Billing is on tokens actually produced, not on this ceiling.
+        response = model.complete(prompt, max_tokens=512)
     except Exception:
         # A model failure must never take down a deterministic pipeline.
         return (matched[0], "node:model-error-fellback") if matched else (None, "node:model-error")

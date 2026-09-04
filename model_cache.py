@@ -50,15 +50,55 @@ class CachedModelClient:
         self.inner = inner
         self.cache_path = cache_path
         self._cache: dict[str, str] = {}
+        # Hit/miss accounting, so "the cache is working" is a number rather than
+        # an assumption. chars_saved is a proxy for prompt tokens avoided.
+        self.hits = 0
+        self.misses = 0
+        self.chars_saved = 0
         self._load()
 
     def _load(self) -> None:
-        if os.path.exists(self.cache_path):
+        if not os.path.exists(self.cache_path):
+            return
+        try:
             with open(self.cache_path, "r", encoding="utf-8") as f:
                 self._cache = json.load(f)
+        except (OSError, ValueError) as exc:
+            # A truncated or corrupt cache used to raise here and take the whole
+            # pipeline down -- the cache is an optimisation, so failing to read
+            # it must never be fatal. But it is not free either: an empty cache
+            # means every prompt gets re-called and re-paid for, so say so
+            # loudly rather than starting a silent spend.
+            print(f"WARNING: could not read {self.cache_path} ({exc}). "
+                  f"Continuing with an empty cache -- every prompt will be "
+                  f"re-called and re-billed.")
+            self._cache = {}
 
     def _save(self) -> None:
         os.makedirs(os.path.dirname(self.cache_path) or ".", exist_ok=True)
+
+        # Merge with whatever is on disk NOW rather than writing our own
+        # snapshot. Two runs whose lifetimes overlap each hold an independent
+        # dict loaded at construction, so a plain overwrite makes the last
+        # writer discard everything the other one paid for -- silently, and
+        # visible only as a surprise bill on the next run. Entries are
+        # content-addressed on the prompt hash, so a merge can never conflict:
+        # the same key always maps to the same response.
+        #
+        # `--fresh` still clears the cache; it deletes the file outright rather
+        # than writing an empty one, so intentional invalidation is unaffected.
+        merged: dict[str, str] = {}
+        if os.path.exists(self.cache_path):
+            try:
+                with open(self.cache_path, "r", encoding="utf-8") as f:
+                    merged = json.load(f)
+            except (OSError, ValueError):
+                # A corrupt or half-written cache must not take the run down;
+                # the worst case is re-calling prompts we already had.
+                merged = {}
+        merged.update(self._cache)
+        self._cache = merged
+
         # Write to a temp file then replace, so a crash mid-write never
         # corrupts the existing cache.
         tmp = self.cache_path + ".tmp"
@@ -74,8 +114,11 @@ class CachedModelClient:
     def complete(self, prompt: str, *, max_tokens: int = 1024) -> str:
         key = self._key(prompt, max_tokens)
         if key in self._cache:
+            self.hits += 1
+            self.chars_saved += len(prompt)
             return self._cache[key]
 
+        self.misses += 1
         response = self.inner.complete(prompt, max_tokens=max_tokens)
         self._cache[key] = response
         self._save()
@@ -85,4 +128,11 @@ class CachedModelClient:
         """For your own visibility while building -- how much is cached,
         so you can see cost protection actually working as you iterate.
         """
-        return {"cached_prompts": len(self._cache), "cache_path": self.cache_path}
+        return {
+            "cached_prompts": len(self._cache),
+            "cache_path": self.cache_path,
+            "hits": self.hits,
+            "misses": self.misses,
+            "hit_rate": f"{self.hits / (self.hits + self.misses):.0%}" if (self.hits + self.misses) else "n/a",
+            "prompt_chars_avoided": self.chars_saved,
+        }

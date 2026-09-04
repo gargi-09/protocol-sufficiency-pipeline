@@ -1,0 +1,136 @@
+{
+  "doc_id": "Xiong",
+  "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7",
+  "profile": {
+    "has_wet_lab": true,
+    "has_animals": false,
+    "has_cell_lines": true,
+    "has_qpcr": false,
+    "has_flow_cytometry": true,
+    "has_western_blot": true,
+    "has_ihc": true,
+    "has_xenograft": false,
+    "has_drug_treatment": true
+  },
+  "labels": [
+    {
+      "label_id": "L05",
+      "field_id": "treatment.duration",
+      "instance": "seeding_to_treatment_interval",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_RANGE_NOT_POINT",
+      "anchor_text": "It was added at 16 to 24 hours after",
+      "anchor_section": "Cell Culture, Treatment with Pharmacologic Agents, and Transient Transfection of STAT3 siRNA",
+      "blocking": false,
+      "confidence": "medium",
+      "rationale": "A range where a point is required. The interval sets confluency at the time of dosing, and confluency changes sensitivity to a cytotoxic agent. Marked non-blocking because the range governs a covariate rather than the intervention itself, which is the distinction that separates this from the blocking range in Yadav L09, where 24 to 48 hours set the expression level of the thing being measured.",
+      "span": {
+        "start": 7290,
+        "end": 7326,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    },
+    {
+      "label_id": "L06",
+      "field_id": "treatment.duration",
+      "instance": "viability_and_cell_cycle_timepoints",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_DEFERRED_TO_DISPLAY",
+      "anchor_text": "At specified time points, 10 \u03bcl of CCK-8 solution was added",
+      "anchor_section": "Cell Viability Assay",
+      "blocking": false,
+      "confidence": "medium",
+      "rationale": "The canonical form of this code. Specified time points appears twice, in the viability assay and in the cell cycle analysis, and no time is given in the Methods for either. Non-blocking because both are recoverable from the displays: Figure 3A carries a day axis and the Figure 3B legend gives 24 hours.",
+      "span": {
+        "start": 9471,
+        "end": 9530,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    },
+    {
+      "label_id": "L09",
+      "field_id": "assay.protocol_parameters",
+      "instance": "western_protein_load",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_RANGE_NOT_POINT",
+      "anchor_text": "Equal amounts of protein (50-200 \u03bcg/lane)",
+      "anchor_section": "Western Blot and Antibodies",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "A four-fold range, and the sentence that states it also asserts that the amounts are equal. The two halves of the sentence contradict each other. This matters because every Western figure in the paper reports relative band density quantified against GAPDH, so the load is not a background detail but the denominator of the reported measurement. See AMB-130.",
+      "span": {
+        "start": 8296,
+        "end": 8337,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    },
+    {
+      "label_id": "L10",
+      "field_id": "assay.protocol_parameters",
+      "instance": "propidium_iodide_staining",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "then incubated with propidium iodide (PI) for 30 minutes",
+      "anchor_section": "Cell Cycle Analysis Using Propidium Iodide and Flow Cytometry",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "No propidium iodide concentration, no buffer, no temperature, and no RNase treatment. Propidium iodide binds double-stranded RNA as well as DNA, so without RNase the histogram does not report DNA content. Figure 3B reports G1, G2 and S percentages to one decimal place from these histograms. This is not a missing parameter that a competent lab would fill from convention; it is a missing step, and its absence changes what the readout measures. See AMB-134.",
+      "span": {
+        "start": 10031,
+        "end": 10087,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    },
+    {
+      "label_id": "L11",
+      "field_id": "assay.protocol_parameters",
+      "instance": "ihc_antigen_retrieval",
+      "verdict": "FIELD_ABSENT",
+      "code": "GAP_ABSENT",
+      "anchor_text": "A three-step streptavidin-biotin",
+      "anchor_section": "Tissue Microarray and Immunohistochemical Staining",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "Deparaffinisation and rehydration are described and the method then goes straight to the detection step. No antigen retrieval of any kind is stated: no buffer, no pH, no heat method, no time. Phospho-epitopes such as pSTAT3 Tyr705 and pJAK2 Tyr1007/1008 are strongly retrieval-dependent, and the entire clinical result in Table 1 is the frequency of staining for those two antigens.",
+      "span": {
+        "start": 14015,
+        "end": 14047,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    },
+    {
+      "label_id": "L12",
+      "field_id": "assay.protocol_parameters",
+      "instance": "invasion_cell_counting",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "Migrated cells on the bottom surface of the filter were fixed, stained and counted.",
+      "anchor_section": "In Vitro Invasion Assay",
+      "blocking": true,
+      "confidence": "medium",
+      "rationale": "No fixative, no stain, no magnification, no number of fields and no counting rule, for a readout reported as a precise percentage such as 73.5%, 57.4% and 47.5%. Fixing and staining are recoverable by convention. The number of fields counted is not, and it sets the variance of the reported numbers.",
+      "span": {
+        "start": 11842,
+        "end": 11925,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    },
+    {
+      "label_id": "L13",
+      "field_id": "stats.test_named",
+      "instance": "post_hoc",
+      "verdict": "FIELD_UNRESOLVED",
+      "code": "GAP_VAGUE",
+      "anchor_text": "The data were analyzed for significance by analysis of variance.",
+      "anchor_section": "Statistical Analysis",
+      "blocking": true,
+      "confidence": "high",
+      "rationale": "Analysis of variance and chi-square are named, which is more than nothing. But every figure marks pairwise comparisons with asterisks, and analysis of variance does not produce pairwise P values. The post hoc test is never named, so none of the marked comparisons can be recomputed. Same shape as the unnamed p-value adjustment in the Dos Santos paper, and marked blocking for the same reason.",
+      "span": {
+        "start": 14823,
+        "end": 14887,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      }
+    }
+  ]
+}

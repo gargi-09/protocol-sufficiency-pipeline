@@ -117,11 +117,18 @@ def acceptance_criteria(pack: FieldPack) -> None:
 def model_contract() -> None:
     print("\n02_BUILD_SPEC.md -- model proposes, code decides")
 
-    # Python sources only -- WRITEUP.md quotes this very command.
-    hits = subprocess.run(["git", "grep", "-l", "model.complete", "--", "*.py"],
+    # Search for the CALL SITE "model.complete(" rather than the bare string.
+    # Two files legitimately mention the string without calling it: WRITEUP.md
+    # quotes this command as evidence, and verify.py contains it as this very
+    # search term. Both self-matched earlier and produced a false failure.
+    # Client implementations are excluded too -- they *define* complete(), which
+    # is the opposite of calling the model from business logic.
+    hits = subprocess.run(["git", "grep", "-l", "model.complete(", "--", "*.py"],
                           capture_output=True, encoding="utf-8", errors="replace")
+    implementations = ("mock_client", "model_cache", "anthropic_client",
+                       "test_", "verify", "stress_test")
     files = {f for f in hits.stdout.split("\n")
-             if f.strip() and not f.startswith(("mock_client", "model_cache", "test_"))}
+             if f.strip() and not f.startswith(implementations)}
     check(files <= {"node_select.py"},
           "model is confined to node_select.py", ", ".join(sorted(files)))
 
@@ -176,6 +183,69 @@ def coverage(pack: FieldPack) -> None:
                    if f["detail"].get("anchor_detector"))
     check(anchored > 0, f"{anchored} absent findings carry an anchor provenance label")
 
+    # 02_BUILD_SPEC Step 3: "Make a record of the detector that made each
+    # observation." Every finding must say what found it -- the observation's
+    # detector when there was one, the anchor's when the field was absent. This
+    # was met on the absence path only, and 51 of 99 findings shipped without it.
+    undocumented = [(name, f["field_id"]) for name, r in reports.items()
+                    for f in r["findings"]
+                    if not f["detail"].get("detector")
+                    and not f["detail"].get("anchor_detector")]
+    check(not undocumented,
+          "every finding records the detector that produced it (Step 3)",
+          f"{len(undocumented)} without one: {undocumented[:3]}" if undocumented else "")
+
+
+# (field_id, candidate text, expected code) -- `None` means FIELD_OK, no finding.
+#
+# GAP_OUT_OF_RANGE emits zero times on this corpus: no paper states an
+# implausible value. Without these cases the whole path would be untested, and a
+# regression in it would be invisible in every other check here. The last two
+# are the ones that must NOT fire -- a candidate sentence usually carries
+# several values of one dimension, and only one of them is the field's.
+_RANGE_CASES = [
+    ("culture.temperature",   "cells were maintained at 37 °C",           None),
+    ("culture.temperature",   "incubated at 4 C before lysis",            "GAP_OUT_OF_RANGE"),
+    ("culture.temperature",   "heat-inactivated at 56 °C for 30 min",     "GAP_OUT_OF_RANGE"),
+    ("culture.co2_fraction",  "in a humidified 5% CO2 incubator",         None),
+    ("centrifugation.force",  "spun at 12,000 × g for 10 min",            None),
+    ("centrifugation.force",  "spun at 5 × g",                            "GAP_OUT_OF_RANGE"),
+    ("centrifugation.force",  "spun at 5000 rpm",                         "GAP_DIMENSION_MISMATCH"),
+    ("xenograft.cell_number", "1 × 10^6 cells were injected",             None),
+    ("xenograft.cell_number", "12 cells were injected",                   "GAP_OUT_OF_RANGE"),
+    ("xenograft.cell_number", "1000-4000 cells were injected",            "GAP_RANGE_NOT_POINT"),
+    # digits inside a cell-line name are not a quantity
+    ("xenograft.cell_number", "EC109 cells were injected",                "GAP_ABSENT"),
+    ("xenograft.cell_number", "MDA-MB-231 cells were injected",           "GAP_ABSENT"),
+    # ...but a real magnitude must still reach its unit past that name
+    ("xenograft.cell_number", "5 x 10^6 EC109 cells were injected",       None),
+    ("xenograft.cell_number", "2 × 10^6 MDA-MB-231 cells were injected",  None),
+    # a second value of the same dimension rescues an out-of-range first one
+    ("culture.co2_fraction",  "grown to 80% confluence in 5% CO2",        None),
+    ("culture.temperature",   "A549 and HCT116 grown at 37 °C",           None),
+]
+
+
+def range_and_identifier_logic(pack: FieldPack) -> None:
+    print("\nplausible_range and identifier guards (unit cases, not corpus)")
+
+    from validate import validate_quantity
+
+    specs = {f.field_id: f for f in pack.fields}
+    wrong = []
+    for field_id, text, expected in _RANGE_CASES:
+        got = validate_quantity(text, specs[field_id])["code"]
+        if got != expected:
+            wrong.append((text, got, expected))
+    check(not wrong, f"{len(_RANGE_CASES)}/{len(_RANGE_CASES)} quantity cases correct",
+          "  ".join(f"{t!r}: {g} != {e}" for t, g, e in wrong[:3]) if wrong else "")
+
+    # GAP_OUT_OF_RANGE was declared in the contract and reachable from no input,
+    # because plausible_range was read nowhere. Assert the path exists at all.
+    fired = {validate_quantity(t, specs[f])["code"] for f, t, _ in _RANGE_CASES}
+    check("GAP_OUT_OF_RANGE" in fired,
+          "GAP_OUT_OF_RANGE is reachable (plausible_range is actually read)")
+
 
 def gold_score() -> None:
     print("\nAgainst the supplied gold (1 paper, 18 labels)")
@@ -211,6 +281,7 @@ def main() -> int:
     acceptance_criteria(pack)
     model_contract()
     coverage(pack)
+    range_and_identifier_logic(pack)
     gold_score()
 
     failed = [name for ok, name, _ in _results if not ok]

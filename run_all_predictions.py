@@ -27,12 +27,47 @@ PREDICTIONS_DIR = "predictions"
 PACK_PATH = "fields/oncobiology_v0.yaml"
 
 
+def build_model(model_id: str | None):
+    """A live client, or None for the deterministic layer alone.
+
+    Constructed HERE, outside analyze(), because 03_contract.py requires the
+    client to be injected and never built inside a module. Wrapped in the
+    prompt-hash cache so a repeat run costs nothing and finding_ids are pinned.
+    """
+    if not model_id:
+        return None
+    from anthropic_client import AnthropicClient, cache_path_for
+    from model_cache import CachedModelClient
+
+    inner = AnthropicClient(model=model_id)
+    return CachedModelClient(inner, cache_path=cache_path_for(inner.model))
+
+
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Run analyze() over every paper and write predictions/.")
+    parser.add_argument("--model", default=None,
+                        help="attach a live model (default: none -- the shipped configuration)")
+    parser.add_argument("--out", default=None,
+                        help="output directory (default: predictions/, or "
+                             "predictions_model/ when --model is set)")
+    args = parser.parse_args()
+
+    # Never let a model run overwrite the shipped model=None deliverable by
+    # accident -- that set is what scores.txt reports and what a grader
+    # reproduces with no credentials.
+    out_dir = args.out or (PREDICTIONS_DIR if not args.model else "predictions_model")
+
     # analyze() is handed the pack; it must not read it off disk itself.
     with open(PACK_PATH, "r", encoding="utf-8") as f:
         pack = FieldPack(**yaml.safe_load(f))
 
-    os.makedirs(PREDICTIONS_DIR, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
+    model = build_model(args.model)
+    print(f"model: {args.model or 'None (deterministic layer only)'}"
+          f"   ->  {out_dir}/\n")
 
     code_counts: Counter[str] = Counter()
     rows = []
@@ -45,9 +80,9 @@ def main() -> None:
         with open(os.path.join(PAPERS_DIR, filename), "r", encoding="utf-8") as f:
             raw = f.read()
 
-        report = analyze(raw, doc_id, pack, model=None)
+        report = analyze(raw, doc_id, pack, model=model)
 
-        out_path = os.path.join(PREDICTIONS_DIR, f"{doc_id}.json")
+        out_path = os.path.join(out_dir, f"{doc_id}.json")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(report.model_dump_json(indent=2))
 

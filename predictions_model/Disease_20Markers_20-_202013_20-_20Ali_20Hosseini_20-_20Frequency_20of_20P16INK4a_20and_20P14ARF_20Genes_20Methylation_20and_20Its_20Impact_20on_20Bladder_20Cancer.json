@@ -1,0 +1,108 @@
+{
+  "doc_id": "Disease_20Markers_20-_202013_20-_20Ali_20Hosseini_20-_20Frequency_20of_20P16INK4a_20and_20P14ARF_20Genes_20Methylation_20and_20Its_20Impact_20on_20Bladder_20Cancer",
+  "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11",
+  "contract_version": "0.2",
+  "field_pack_version": "0.2-starter",
+  "profile": {
+    "features": {
+      "has_animals": false,
+      "has_cell_lines": false,
+      "has_qpcr": false,
+      "has_western_blot": false,
+      "has_ihc": false,
+      "has_flow_cytometry": false,
+      "has_xenograft": false,
+      "has_drug_treatment": false,
+      "has_wet_lab": true
+    },
+    "evidence": {
+      "has_wet_lab": {
+        "start": 11169,
+        "end": 11178,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "6246a0d9734fea90ad2edcb19ccb0110",
+      "field_id": "stats.replicate_type",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 13058,
+        "end": 13145,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Statistical analysis was carried out with SPSS 11.5\nand EPI info 3.2 software programs.",
+        "anchor_detector": "anchor:node:det-unique:head:Statistical analysis"
+      }
+    },
+    {
+      "finding_id": "d192f73513beb87af31c55ca6288aeb1",
+      "field_id": "stats.test_named",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 13058,
+        "end": 13145,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Statistical analysis was carried out with SPSS 11.5\nand EPI info 3.2 software programs.",
+        "anchor_detector": "anchor:node:det-unique:head:Statistical analysis"
+      }
+    },
+    {
+      "finding_id": "ae34c69c9895ed1f5009ef14a632271f",
+      "field_id": "assay.protocol_parameters",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 12034,
+        "end": 12093,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "and P14ARF have been reported elsewhere [31,32], Ta-\nble 1.",
+        "anchor_detector": "anchor:node:model-7of8:head:Primer sequences and PCR condition"
+      }
+    },
+    {
+      "finding_id": "d039cb7d754245f380114a658fec563e",
+      "field_id": "centrifugation.force",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 11114,
+        "end": 11160,
+        "text_sha": "1b4e2463038621492e1325dad07e684d93ead34effcd70a1d3878cf2cfd74a11"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "and blood samples were obtained from controls.",
+        "anchor_detector": "anchor:node:model-5of8:head:Methods Tissues and matched blood "
+      }
+    }
+  ]
+}

@@ -59,12 +59,12 @@
       }
     },
     {
-      "finding_id": "0a5bceac2b7ff6e2690f50e92e705c97",
+      "finding_id": "e76a90ab49d965c3eaa3a8112ed17d10",
       "field_id": "treatment.vehicle",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 29626,
-        "end": 29822,
+        "start": 18250,
+        "end": 18569,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
       "verdict": "FIELD_ABSENT",
@@ -74,8 +74,8 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "A high-throughput screening (HTS) was performed with the Prestwick Chemi-\ncal Library (Prestwick Chemical Libraries, Illkirch-Graffenstaden, France) containing\n1280 compounds, mainly FDA-approved.",
-        "anchor_detector": "anchor:node:det-unique:head:High-Throughput Screening of Drugs"
+        "anchor_text": "Then, a differential trypsin treatment\nwas conducted: (1) trypsin was added for 30 s–1 min, leading to detachment of the feeder\ncells that were discarded (visualized under a bright-field microscope); (2) the remaining\nepithelial cells were subjected to another trypsinization for 5 min at 37 ◦C, for their de-\ntachment.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -98,12 +98,12 @@
       }
     },
     {
-      "finding_id": "c25e7b1e2b138fd1380c327163c4468f",
+      "finding_id": "9c769a45788763afca08d821102b0621",
       "field_id": "centrifugation.force",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 12961,
-        "end": 12987,
+        "start": 19692,
+        "end": 19779,
         "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
       },
       "verdict": "FIELD_ABSENT",
@@ -113,8 +113,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Materials and Methods\n2.1.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "DNA was collected in the initial passages for each cell line, from around 1× 106 cells.",
+        "anchor_detector": "anchor:node:model-4of9:head:Mycoplasma Contamination"
       }
     }
   ]

@@ -71,7 +71,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "All mice were bred and\nhoused in the same animal facility.",
-        "anchor_detector": "anchor:node:det-unique:kw:EXPERIMENTAL PROCEDURES Mice"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -129,16 +129,16 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "All mice were bred and\nhoused in the same animal facility.",
-        "anchor_detector": "anchor:node:det-unique:kw:EXPERIMENTAL PROCEDURES Mice"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
-      "finding_id": "1178a733b402c221a8d393ef0f20cc91",
+      "finding_id": "2d6ecf14ff818dec1ad98c69f92c4fc6",
       "field_id": "cellline.name",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 36596,
-        "end": 36819,
+        "start": 38864,
+        "end": 38951,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "verdict": "FIELD_ABSENT",
@@ -148,8 +148,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "2B4 GFP-NFAT reporter T cells were stably transfected with murine or human\nTREM2 cDNAs.",
+        "anchor_detector": "anchor:node:model-6of8:head:Reporter Assay"
       }
     },
     {
@@ -173,12 +173,12 @@
       }
     },
     {
-      "finding_id": "aa870a6502ec3aaed7b4607199ab55ae",
+      "finding_id": "62c412d875a545dd1aa36cf926695e77",
       "field_id": "cellline.authentication",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 36596,
-        "end": 36819,
+        "start": 38864,
+        "end": 38951,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "verdict": "FIELD_ABSENT",
@@ -188,17 +188,17 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "2B4 GFP-NFAT reporter T cells were stably transfected with murine or human\nTREM2 cDNAs.",
+        "anchor_detector": "anchor:node:model-6of8:head:Reporter Assay"
       }
     },
     {
-      "finding_id": "021209cf19c88dc26c85b6db295fd92c",
+      "finding_id": "503f125187eeb2b2748e3dac8742ea6a",
       "field_id": "cellline.mycoplasma",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 36596,
-        "end": 36819,
+        "start": 38864,
+        "end": 38951,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "verdict": "FIELD_ABSENT",
@@ -208,8 +208,8 @@
       "sensitivity": "LOW",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "2B4 GFP-NFAT reporter T cells were stably transfected with murine or human\nTREM2 cDNAs.",
+        "anchor_detector": "anchor:node:model-6of8:head:Reporter Assay"
       }
     },
     {
@@ -229,7 +229,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "ACCESSION NUMBERS",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -327,7 +327,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Reporter activity (%) is defined as %GFP+ cells subtracted from background (vehicle controls).",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -367,16 +367,16 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Primers for qPCR analysis are provided in Table S1.",
-        "anchor_detector": "anchor:node:det-unique:kw:Gene Expression Analysis"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
-      "finding_id": "35cdad75eab9b2c6b7dcccb18faea0df",
+      "finding_id": "3d83176b8377850b4abc592763ba46ec",
       "field_id": "stats.replicate_type",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 37820,
-        "end": 37931,
+        "start": 39296,
+        "end": 39340,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "verdict": "FIELD_ABSENT",
@@ -386,17 +386,17 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "For frozen brain tissues, RNA was extracted using a RNeasy mini kit according\nto manufacture protocol (QIAGEN).",
-        "anchor_detector": "anchor:node:det-first-of-2:head:Gene Expression Analysis"
+        "anchor_text": "Data in figures are presented as mean ± SEM.",
+        "anchor_detector": "anchor:node:model-7of8:head:Statistics"
       }
     },
     {
-      "finding_id": "8eeaf3ce10ecd8a46986ceab9dae7555",
+      "finding_id": "b420edecadb761a8eb7e09d3e2c4699f",
       "field_id": "centrifugation.force",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 36596,
-        "end": 36819,
+        "start": 37113,
+        "end": 37256,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
       "verdict": "FIELD_ABSENT",
@@ -406,8 +406,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "EXPERIMENTAL PROCEDURES\nMice\nTrem2–/– mice were generated as previously described. 5XFAD mice were purchased from the Jackson Laboratory (MMRRC) and crossed to Trem2–/– mice\nto generate Trem2+/–5XFAD and Trem2–/–5XFAD mice.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "For histological analysis 5XFAD mice, APPPS1-21 and transgene negative\ncontrols were anesthetized with ketamine and perfused with ice-cold PBS.",
+        "anchor_detector": "anchor:node:model-2of8:head:Preparation of Brain Samples"
       }
     },
     {

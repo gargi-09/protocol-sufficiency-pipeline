@@ -50,11 +50,11 @@
   },
   "findings": [
     {
-      "finding_id": "6d773db8cda273c560ec1d1beb21815f",
+      "finding_id": "6a5fda495dd30de916d8927e16c3f38c",
       "field_id": "animal.strain",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 10269,
+        "start": 10242,
         "end": 10448,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
@@ -65,8 +65,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
-        "anchor_detector": "anchor:node:det-unique:kw:Tumor-bearing mouse models"
+        "anchor_text": "Tumor-bearing mouse models\nThe conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -108,11 +108,11 @@
       }
     },
     {
-      "finding_id": "a7174b6039352c14d7bf1d64d6e0bcb7",
+      "finding_id": "f300954ca98c328be5bbc2738e50e8e8",
       "field_id": "animal.sample_size_justification",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 10269,
+        "start": 10242,
         "end": 10448,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
@@ -123,8 +123,8 @@
       "sensitivity": "MED",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
-        "anchor_detector": "anchor:node:det-unique:kw:Tumor-bearing mouse models"
+        "anchor_text": "Tumor-bearing mouse models\nThe conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -166,12 +166,12 @@
       }
     },
     {
-      "finding_id": "aa23e697edcf52978baddf6402b1d1d5",
+      "finding_id": "d7f66be36bd3a4acac1bf027a6dc8a70",
       "field_id": "xenograft.tumour_measurement_method",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 10269,
-        "end": 10448,
+        "start": 6157,
+        "end": 6413,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "verdict": "FIELD_ABSENT",
@@ -181,8 +181,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
-        "anchor_detector": "anchor:node:det-unique:head:Tumor-bearing mouse models"
+        "anchor_text": "Materials and methods\nPan-cancer analysis\nWe retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -285,12 +285,12 @@
       }
     },
     {
-      "finding_id": "bbbe6d95fd76c237fd66de72129a6f41",
+      "finding_id": "908e342be6d7c73ce1e34bd0ba138f9c",
       "field_id": "centrifugation.force",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 6157,
-        "end": 6413,
+        "start": 8320,
+        "end": 8439,
         "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
       },
       "verdict": "FIELD_ABSENT",
@@ -300,8 +300,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "Materials and methods\nPan-cancer analysis\nWe retrieved RNA-sequencing expression profiles at level 3 and associated clinical data for different cancer types\nfrom the Cancer Genome Atlas (TCGA) database, accessible via the website https:// portal. gdc. com.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "To isolate total protein from esophageal carcinoma cells, RIPA lysis buffer (Beyotime, Shanghai, China) was uti-\nlized.",
+        "anchor_detector": "anchor:node:model-5of11:head:Western blot"
       }
     },
     {
@@ -321,7 +321,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "To isolate total protein from esophageal carcinoma cells, RIPA lysis buffer (Beyotime, Shanghai, China) was uti-\nlized.",
-        "anchor_detector": "anchor:node:det-first-of-2:head:Western blot"
+        "anchor_detector": "anchor:node:model-5of11:head:Western blot"
       }
     }
   ]

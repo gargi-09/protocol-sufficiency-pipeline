@@ -122,6 +122,14 @@ signal about which conversions are sanctioned.
 **Impact:** low, but it forces a judgement call the spec elsewhere warns against
 making silently.
 
+**How we resolved it** (`validate.py`, `_CANONICAL_CONVERSION`): we convert, on
+the reading that °C→K is a scale change within one dimension while rpm→×g needs
+a rotor radius the paper never states. So as not to make the call silently, the
+conversion table is keyed on `(dimension, canonical_unit)` rather than on
+dimension alone. A pack that redeclared this field in °C would find no key and
+get **no range check**, instead of a silent +273.15 against the wrong baseline —
+failing to check beats checking against a unit we only assumed.
+
 ### B4. `stats.replicate_type` and `stats.test_named` apply to computational-only papers
 
 `applies_when: []` means always applicable. `contract.py`'s own comment on
@@ -288,3 +296,21 @@ The `µ`→`m` case is the dangerous one: it produces a **syntactically valid** 
 that is wrong by three orders of magnitude, so it passes unit parsing and then
 fails a plausibility check — which would manufacture a `GAP_OUT_OF_RANGE` on a
 correctly reported measurement.
+
+That interaction is now real code rather than a prediction, so we checked
+whether it fires. It does not, and only by luck of which fields carry a range:
+the pack declares `plausible_range` on four fields, whose dimensions are
+`count`, `temperature`, `fraction` and `relative_centrifugal_force`. The `µ`→`m`
+remap corrupts **length and volume**, which no range-checked field uses. So
+there is no live path on this corpus and one field away from having one — a
+range check on any length or volume field would start reporting wang2015's
+correctly-measured 40 µm sections as implausible. The guard belongs in
+normalization, upstream, not in the comparison.
+
+Yadav's glyph leak has the opposite effect and is live today: `30,000 /H11003g`
+is `30,000 × g`, but `_RCF_UNIT` needs a real `×`, so `centrifugation.force`
+reports `GAP_ABSENT` on a paper that **states the force**. A false absence, on
+the field the pack applies most widely. Normalizing `/H11003` → `×` would make
+it parse and then range-check to `FIELD_OK` (30,000 is inside 100–200,000),
+which is the one place where character normalization and the range check
+compound into a correctness fix rather than a cosmetic one.

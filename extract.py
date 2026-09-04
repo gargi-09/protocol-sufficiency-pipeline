@@ -340,6 +340,34 @@ def _first_non_empty_sentence(sentences) -> tuple[str, int, int] | None:
     return None
 
 
+# A deterministic keyword hit worth at least this much is trusted over the
+# model. field_keywords weights a full field-name fragment 2 and a remapped
+# compound ("cell line") 1, so a floor of 2 means "at least one whole fragment
+# of this field's own name appears in the sentence".
+#
+# Earned by a measured regression: with the model attached, wang2015's
+# treatment.vehicle moved from span delta 0 to delta 687. The deterministic
+# scan had already found "...subtracted from background (vehicle controls)"
+# exactly, scoring 2 on "vehicle" -- and the gate consulted the model anyway,
+# which redirected to a subsection whose first sentence was worse. Asking a
+# model to improve on an answer that is already right can only lose.
+_CONFIDENCE_FLOOR = 2
+
+
+def _scored_best_sentence(sentences, weighted_keywords):
+    """Same as _best_scoring_sentence, but also returns the winning score."""
+    best, best_score = None, 0
+    for sent_text, start, _end in sentences:
+        low = sent_text.lower()
+        score = sum(weight for kw, weight in weighted_keywords if kw.lower() in low)
+        if score <= best_score:
+            continue
+        tightened = _tighten(sent_text, start)
+        if tightened:
+            best, best_score = tightened, score
+    return best, best_score
+
+
 def _best_scoring_sentence(sentences, weighted_keywords) -> tuple[str, int, int] | None:
     """Relaxed sibling of _ranked_candidates, for anchoring only.
 
@@ -406,6 +434,22 @@ def find_absence_anchor(
 
     root = build_tree(canonical_text, m_start, m_end)
     methods = root.children[0]
+
+    # Confidence floor, checked ONLY when a model is attached.
+    #
+    # If the deterministic keyword scan already has a confident answer, take it
+    # and spend no call. Gated on `model is not None` deliberately: the
+    # model=None path must stay byte-identical, so this can only ever remove a
+    # model override, never change the deterministic result.
+    if model is not None:
+        confident, score = _scored_best_sentence(
+            split_sentences(canonical_text[m_start:m_end], base_offset=m_start),
+            weighted_keywords,
+        )
+        if confident and score >= _CONFIDENCE_FLOOR:
+            return _as_anchor(
+                confident, text_sha, f"anchor:det-confident(score={score}):no-model-call"
+            )
 
     node, how = select_node(
         spec, methods.children, model=model, canonical_text=canonical_text

@@ -1,7 +1,6 @@
 # Protocol sufficiency analysis — writeup
 
-**DRAFT.** Two placeholders marked `TODO` need filling before submission: time
-spent, and a decision on whether to wire a live model client.
+**DRAFT.** One placeholder marked `TODO` remains: time spent (§9).
 
 ---
 
@@ -35,7 +34,7 @@ Two additions the spec does not ask for:
 **A document tree** (`sections.py`), inspired by PageIndex. The indexing half
 transfers cleanly: the unit is a natural section, not a fixed chunk, and the
 structure comes from layout with no model. The *retrieval* half does not — they
-search a tree for content that exists, whereas our hardest case is a field that
+search a tree for content that exists, whereas my hardest case is a field that
 is absent and therefore leaves nothing to retrieve. So here the tree is not a
 search index; it is an **address space for absences**, naming the places where a
 missing item ought to have been stated so a gap can be given a location at all.
@@ -46,6 +45,81 @@ clinical NLP. Their insight is that a trigger defines a *scope*, not a hit.
 Applied here it needs a second gate: a trigger also has an implied dimension.
 `"overnight"` can fill a duration slot; it cannot fill an antibody-identity slot,
 however close it sits. Details in §4.
+
+---
+
+## 1a. The pipeline end to end, and why each stage exists
+
+Nine stages. The input is a PDF and the output is a `Report`; every stage below
+is deterministic unless named otherwise.
+
+**0. PDF → text** (`extract_pdf_text.py`, `pdfplumber`). Run once, offline, and
+deliberately **outside** the pipeline. `analyze()` receives a string and cannot
+open a PDF, because a function that does its own I/O cannot be the pure,
+harness-callable entry point `03_contract.py` demands. It also means a defect in
+PDF extraction can never be mistaken for a defect in gap detection — they are
+separately inspectable, which is how the whole text-fidelity audit in
+`defects_found.md` was possible at all.
+
+**1. Canonicalization** (`contract.canonicalize`, supplied). Collapses space runs
+but **preserves newlines**, and returns a SHA. Every offset downstream is in this
+coordinate space, and every `Span` carries the SHA, so a span can never be
+silently read against a different version of the text.
+
+**2. Study classification** (`classify_study.py`). Nine boolean
+`StudyFeature`s — `has_xenograft`, `has_qpcr`, `has_cell_lines`, and so on — each
+with an evidence span. This exists to make the checklist *conditional*: a
+computational paper must not accumulate false gaps on wet-lab fields. Feature
+detection is confined to the Methods region, because "mice" in a discussion
+paragraph is not evidence of an animal experiment. 51 of 54 feature decisions
+agree with the R3 annotations.
+
+**3. Methods boundary** (`extract.find_methods_section`). Ordered header patterns
+for the start, `min()` over end candidates, and a 400-character floor so a
+table-of-contents entry cannot be mistaken for the section itself. Scope is
+main-text Methods only — a decision with a known cost, priced in §3.6.
+
+**4. Document tree** (`sections.py`). `Document → Methods → Subsections`, from
+layout alone, no model. Two guards do the real work here: running headers are
+removed by **periodicity** — a line repeating at a near-constant character
+interval is page furniture, whereas `"Mice"` appearing three times in one methods
+section is a real heading — and `_is_chrome()` rejects candidate headings that
+contain a finite verb or begin with a subordinator, since those are sentences,
+not titles.
+
+**5. The field loop** (`analyze.py`). `for spec in pack.applicable(profile)`. This
+is the inversion `00_START_HERE.md` calls the most important decision in the
+project, and it is one line. Everything above is preparation; everything below
+runs once per checklist item.
+
+**6. Candidate retrieval** (`extract.find_candidate`). Three detectors, tried in
+order and **recorded by name** on the finding: category-matched subsection,
+trigger-driven (a vagueness cue that could fill this field's slot), and a
+weighted-keyword scan over the whole Methods section as a fallback. That record
+is Step 3's requirement, and §3.7 shows what it immediately revealed.
+
+**7. Validation — the only place a verdict is decided** (`validate.py`,
+`vagueness.py`, `relevance.py`). No model reaches this file. Quantities are
+parsed by dimension; ranges are checked before point values because `"4–6 h"`
+also contains `"6 h"`; `plausible_range` is compared in the pack's canonical
+unit; vagueness triggers must pass **two** gates, clause scope (NegEx/ConText)
+*and* slot type, so `"overnight"` can fill a duration but never an antibody
+identity. Absence is a first-class return, not an exception.
+
+**8. Location** (`extract.find_absence_anchor`). For a present-but-unusable
+finding the span narrows to the offending phrase. For an absent finding there is
+no text to point at, so the tree is walked upward — matching subsection, then
+Methods, then document — until a location exists. **This is the only stage a
+model may touch**, and only to pick an index from a list the code built. It is
+skipped entirely when the deterministic scan is already confident.
+
+**9. Emit** (`contract.finding_id`, `Report`). Content-addressed IDs, so two runs
+produce identical output; verified across separate processes.
+
+The shape worth noticing: the model enters at stage 8, *after* the absence
+decision is already settled at stage 7. It cannot erase a gap it is never shown —
+which is the failure `02_BUILD_SPEC` warns about, closed structurally rather than
+by discipline.
 
 ---
 
@@ -68,7 +142,7 @@ Four of eighteen gold labels matched, three of them at **span delta 0**:
 | `qpcr.reference_genes` | 1.000 | 1.000 | 1.000 | 0 |
 | `treatment.concentration` | 1.000 | 0.500 | 0.667 | 1 |
 
-99 findings across 9 papers. Determinism verified (identical `finding_id`s on
+100 findings across 9 papers. Determinism verified (identical `finding_id`s on
 repeat runs); zero zero-width spans.
 
 **The absolute numbers are low and we are not going to dress that up.** Gold is
@@ -77,18 +151,29 @@ figure above rests on a very small denominator. What we would ask you to weigh
 instead is the diagnosis in §3: for each miss we can say which stage failed and
 by how many characters, which is the thing that makes the next iteration cheap.
 
-**`model=None` is the shipped configuration.** Every prediction in
-`predictions/` comes from the deterministic layer alone, so the primary result
-and the ablation are the same run. The model path is built, exercised through
-`mock_client.py`, and costs 31 calls across all nine papers at ~1.6 kB per
-prompt, with a verified zero calls on any repeat run through
-`CachedModelClient`. `01_README.md` says the deterministic floor "is not a
-failure condition", and we took that at face value. **TODO:** decide whether to
-wire a live client before submitting.
+**`model=None` is the shipped configuration, and the live path also ran.**
+Every prediction in `predictions/` comes from the deterministic layer alone —
+that is the number a grader reproduces with no credentials, and `01_README.md`
+says it "is not a failure condition". The model panel is a genuine second
+configuration, not a duplicate: it differs in 22 of 100 spans and moves ABSENT
+F1 from 0.214 to **0.286**.
+
+The live run cost **19 calls** across nine papers at ~1.6 kB per prompt, each
+response a single digit. `cache/model_cache.claude-opus-5.json` ships with the
+repository, so `build_all.py --with-model` replays those exact decisions with no
+API key and no spend — which is both how the determinism requirement is
+demonstrated and how the 0.286 figure is independently checkable. The honest
+caveat: nineteen single-digit responses are trivially forgeable, so the cache is
+convenience rather than proof; `--fresh` regenerates it against the live API for
+anyone who wants to confirm it.
+
+The model is consulted only after a **confidence floor** — it is skipped
+entirely wherever the deterministic scan already matches a full field-name
+fragment, which is why 19 calls covers nine papers rather than several hundred.
 
 **Study classifier:** 51 of 54 feature decisions agree with the supplied R3
 annotations (94%). Of the three disagreements, two are cases where we would argue
-our answer is better — one of them flagged as inconsistent by the annotator's own
+my answer is better — one of them flagged as inconsistent by the annotator's own
 note (see `defects_found.md` E1–E2).
 
 **One metric is not interpretable.** `score.py`'s false-positive rate on
@@ -101,13 +186,15 @@ directions. See `defects_found.md` D1.
 
 ## 3. Failure analysis
 
-Four failures, covering all three causes the README asks for — our extractor
-(§3.1, §3.2), our validator (§3.3), the field specification (§3.4), your gold
+Four failures, covering all three causes the README asks for — my extractor
+(§3.1, §3.2), my validator (§3.3), the field specification (§3.4), your gold
 label (§3.5). Two further notes are included because they were instructive
 rather than because they are failures: a fix we measured and dropped (§3.4b), and
-a scope decision with a known cost (§3.6).
+a scope decision with a known cost (§3.6). §3.7 covers two requirements of
+`02_BUILD_SPEC` that were simply not implemented, found by re-reading the spec
+against my own output rather than against the gold.
 
-### 3.1 Our extractor — ambiguity it cannot resolve
+### 3.1 my extractor — ambiguity it cannot resolve
 
 `treatment.duration`, wang2015. Gold: `GAP_VAGUE` @39133 on *"Reporter cells
 were assessed after overnight incubation."* We emit `GAP_VAGUE` @37257 on
@@ -121,10 +208,10 @@ treatment". We take the first occurrence in document order.
 This is not a bug to patch; it is the retrieval layer lacking information it
 cannot derive. Choosing between two topically valid candidates is exactly the
 job the closed-set model ranker exists for, and it is the clearest argument in
-the submission for that component. **Cause: our extractor** (specifically,
+the submission for that component. **Cause: my extractor** (specifically,
 retrieval, not Layer 2).
 
-### 3.2 Our extractor — a relevance gate that suppresses a real gap
+### 3.2 my extractor — a relevance gate that suppresses a real gap
 
 `animal.strain`, wang2015. Gold: `GAP_DEFERRED_TO_REF` @36625 on *"Trem2–/– mice
 were generated as previously described."* We emit `GAP_ABSENT` @36820 on *"All
@@ -137,11 +224,11 @@ which is the point of the gap. The gate designed to stop wrong-context matches
 also blocks the sentence where the strain *should* have been named.
 
 Then the absence path anchors 195 characters away, so we miss on span as well as
-code. **Cause: our extractor.** The fix is to treat a deferral cue as sufficient
+code. **Cause: my extractor.** The fix is to treat a deferral cue as sufficient
 evidence of relevance for an identifier field — the same insight that made
 trigger-driven retrieval work for vagueness (§4).
 
-### 3.3 Our validator — a permissive default that discarded perfect locations
+### 3.3 my validator — a permissive default that discarded perfect locations
 
 The most instructive failure, because the extractor was already right.
 
@@ -168,7 +255,7 @@ terms), not anything drawn from these papers. Coverage went from 4 to 11 of the
 ABSENT recall 0.077 → 0.231, and both `treatment.vehicle` and
 `qpcr.reference_genes` went to 1.000 / 1.000 / 1.000.
 
-**Cause: our validator.** Two fields still default to permissive
+**Cause: my validator.** Two fields still default to permissive
 (`assay.protocol_parameters`, `antibody.identifier`) because we could not write
 an honest evidence pattern for them; that is stated rather than hidden.
 
@@ -241,6 +328,96 @@ before the Methods boundary was fixed, six of nine papers searched the entire
 text and produced findings anchored on journal mastheads and bibliography
 entries.
 
+### 3.7 Two spec requirements not implemented, and the bug that fell out
+
+A late pass read `02_BUILD_SPEC` step by step against the emitted JSON rather
+than against the gold. Two requirements were unmet — both ours, both small, and
+the second one was hiding a real defect.
+
+**Step 3's detector record.** The spec is unusually direct: *"Make a record of
+the detector that made each observation. You will need this record later, and it
+is two lines of code."* We recorded it on the absence path (`anchor_detector`,
+48 findings) and dropped it on the observation path — so 51 of 99 findings
+shipped without the thing the spec singles out. `find_candidate` had been
+computing the label and `analyze()` was discarding it.
+
+The record is not bookkeeping. Reconstructing it across the corpus:
+
+| detector | observations | became findings |
+|---|---|---|
+| `keyword:fallback-whole-methods` | 45 | 19 |
+| `section:<26 distinct subsections>` | 53 | 21 |
+| `trigger:fills-slot` | 13 | 11 |
+
+40% of observations come from the unscoped whole-Methods keyword scan — which
+violates Step 3's *other* rule, that the span sit inside the region where the
+field is expected. That is a precision lead invisible before, and it is the
+single highest-value item in the three-week plan (§8) as a result. This is what
+the spec meant by *"you will need this record later"*.
+
+**`plausible_range` was declared and never read.** The pack sets it on four
+fields and `contract.FieldSpec` has carried the attribute since 0.1, but nothing
+in the pipeline read it, so `GAP_OUT_OF_RANGE` was **structurally unreachable**
+— one of the eight declared gap codes could not be emitted by any input. The
+spec puts this squarely on the code side of its own line: *"To check a range is
+a comparison. The model does none of these operations."*
+
+Wiring it up is `_check_plausible_range` in `validate.py`. Two design points,
+both about not making things worse:
+
+- The conversion table is keyed on `(dimension, canonical_unit)`, not dimension,
+  so a pack that redeclared temperature in °C gets no range check instead of a
+  silent +273.15 (see `defects_found.md` B3).
+- **Any** in-range value returns `FIELD_OK`; the gap fires only when *every*
+  readable value of the dimension is outside the range. Candidate sentences
+  routinely carry several values of one dimension — `"grown to 80% confluence in
+  5% CO2"` holds two fractions and only the second is the CO₂ fraction. Firing
+  on the first out-of-range number would convert correct protocols into
+  findings, and a false `GAP_OUT_OF_RANGE` is worse than a missed one: it does
+  not merely add noise, it *replaces* a correct `FIELD_OK`.
+
+**What it exposed.** The first run produced exactly one new finding:
+`xenograft.cell_number` on Du, `GAP_OUT_OF_RANGE`, *"states count of 109 cells,
+outside the plausible range 10000–1e+08"*. The `109` came from the **cell line
+name `EC109`**. `_NUM` had no left boundary, so digits inside an alphanumeric
+identifier parsed as a quantity — the same class as the `"rat"`-inside-
+`"proliferation"` bug in `sections.py`, a match that is textually real and
+semantically nothing.
+
+This bug predates the range check and was *silently* wrong before it: it
+returned `FIELD_OK`, suppressing a true `GAP_ABSENT`. Making one code reachable
+surfaced a false negative elsewhere, which is the argument for implementing
+declared-but-dead paths even when they score nothing.
+
+The fix is a token guard rather than a lookbehind, because `MDA-MB-231` puts a
+hyphen and not a letter against its digits, and excluding hyphens too would
+break the `"1000-4000"` range forms whose second number legitimately follows
+one. Python's `re` has no variable-length lookbehind, so
+`_embedded_in_identifier` walks the token instead: a letter anywhere in the run
+of alphanumerics-and-hyphens to the left means the digits belong to a name.
+
+Fixing it then required a second change, and this one matters more for held-out
+papers than for this corpus. `_COUNT_UNIT` demanded the magnitude sit adjacent
+to `"cells"`, so `"5 × 10⁶ EC109 cells"` — the canonical way a xenograft cell
+number is written — never matched the count pattern at all; the old code got the
+right verdict for entirely the wrong reason, by misreading `EC109`. The pattern
+now allows one intervening token, required to contain both a digit and a letter
+so that `EC109`, `A549`, `4T1` and `MDA-MB-231` pass while `"100 ml of cells"`
+cannot bind `100` to `cells` across `"ml of"`.
+
+**Measured effect.** Net +1 finding across nine papers, and it is a true
+positive: Du's `xenograft.cell_number` is now `GAP_ABSENT`, which is correct —
+the paper injects `"EC109 cells"` and states no number. Nothing removed, no code
+flipped, no span moved, both dev scores unchanged (0.214 / 0.286 ABSENT, 0.222
+unusable), 19/19 acceptance checks and the full robustness suite still passing.
+
+`GAP_OUT_OF_RANGE` is now reachable and unit-tested but emits **zero** on this
+corpus — no paper states an implausible value. That is reported plainly rather
+than as a win: the finding was that the code path did not exist, and it now
+does. Sixteen unit cases in `verify.py` pin it, including the two multi-value
+sentences that must *not* fire, so a regression cannot hide behind a corpus that
+never triggers it.
+
 ---
 
 ## 4. Layer 2: the line between lexicon and classifier
@@ -250,7 +427,7 @@ phrases that are not in the list. A classifier alone gives findings on correct
 qualitative text. To find the line between the two is a real part of this
 exercise."*
 
-Our answer is **neither** — it is scope-based trigger propagation, adapted from
+my answer is **neither** — it is scope-based trigger propagation, adapted from
 NegEx/ConText. A trigger does not flag itself; it defines a bounded region its
 meaning applies to. Two gates:
 
@@ -318,7 +495,7 @@ name a test, once test-name markers existed.
 against `enum_values`, which can never be true, so all four emitted
 `GAP_UNPARSEABLE` on 100% of papers. `animal.sex` was located at **delta 0** and
 still scored as a false positive purely from the wrong code. Fixed with a
-surface-form map plus absent-on-no-match; that single change produced our
+surface-form map plus absent-on-no-match; that single change produced my
 cleanest field result.
 
 **`culture.temperature`** — the pack flags it as almost always absent and almost
@@ -368,7 +545,7 @@ find them:**
   is a judgement call, not a fact, and it is flagged as such in the code.
 
 **Perturbation testing** (`python -X utf8 stress_test.py`). The ablation above
-asks what happens if we remove our own lists. The stronger question is what
+asks what happens if we remove my own lists. The stronger question is what
 happens when the *input* changes in the ways a different assay class will. We
 rewrite the one labelled paper along each axis, **re-resolve the gold anchors
 against the mutated text**, and re-score — which isolates "can the system still
@@ -427,6 +604,53 @@ empirical case for the model call rather than a bigger lexicon.
 
 ---
 
+## 6a. Four objections, answered directly
+
+`02_BUILD_SPEC` invites disagreement — *"If you do not agree with this
+constraint, give us your argument. We will read it with attention."* In that
+spirit, the four challenges this submission most deserves, and what I would say
+to each.
+
+**"The F1 is low."** It is. Gold is one paper and eighteen labels, the only
+labelled paper supplied, so 0.214 and 0.286 are four and five matched labels
+respectively — a single label moves the number by ~0.07. I would rather be
+judged on §3, where each of six misses is attributed to a specific stage with a
+character delta, than on a point estimate at n=18. That attribution is what
+makes the next iteration cheap; a higher number on this denominator would not be.
+
+**"You are overfitted to the dev set."** Not to surface forms, and that is
+testable: the inference path contains **zero** paper-specific literals (grepped
+for cell lines, genes, vendors, compounds, strains and author names with
+comments and docstrings stripped), and ablating every hand-written list moves
+the dev score by approximately zero. The robustness suite passes six unseen
+heading forms, unseen publisher chrome, vocabulary swaps, ligature damage,
+layout changes, six adversarial model clients and seven degenerate inputs.
+
+But **yes, plausibly to the label distribution** — and the strongest evidence
+for that is mine, in §2: 0.000 on both R3 slices. R3 is 29 of 49 `GAP_VAGUE`
+where gold is 13 of 18 `GAP_ABSENT`. Two annotator groups produced different
+distributions of *failure shape*, and a system tuned against one of them does
+not transfer. The perturbation suite cannot catch this, because it re-scores the
+same paper. I would want a second labelled paper before trusting any number
+here, and that is week one of §8.
+
+**"Why use a model at all, if the deterministic layer decides everything?"**
+Because one decision genuinely needs world knowledge and no lexicon supplies it.
+§6 measures the alternative: `WordOverlapClient` scores **best overlap 0** across
+five fields × eight nodes. Connecting `"mycoplasma"` to `"Ex Vivo Microglia
+Cultures"` requires knowing that mycoplasma testing is done to cultured cells.
+That is the empirical case for the call — 19 calls, index-only, worth +0.072
+ABSENT F1 — and it is deliberately the *only* thing the model touches.
+
+**"What is the biggest weakness?"** Retrieval, and I can only say so because the
+spec told me to record the detector and §3.7 describes finally doing it. 40% of
+observations come from the unscoped whole-Methods keyword fallback, which
+violates Step 3's own rule that the span sit inside the region where the field is
+expected. Two of the six failures in §3 are retrieval failures where the verdict
+logic was already correct. It is the first item in §8 for that reason.
+
+---
+
 ## 7. Defects found
 
 Fifteen entries with evidence in **`defects_found.md`**, grouped by artifact.
@@ -436,7 +660,7 @@ Highest-impact four:
    papers have no spin step (§3.3).
 2. **A2** — gold ships `anchor_text`, `score.py` requires `span`. The scorer
    cannot run on the supplied files. The resolver your notes reference is not in
-   the bundle; `resolve_gold_anchors.py` is our replacement.
+   the bundle; `resolve_gold_anchors.py` is my replacement.
 3. **D0** — `score.py` calls `Path.read_text()` with no `encoding=`, so it
    crashes on Windows against its own output format. One-line fix; invisible on
    Linux/macOS.
@@ -490,15 +714,17 @@ architecture, debugging text fidelity, and measurement]_
 
 Deliberately not built, each a scope decision rather than an oversight:
 
-- **A live model run.** `model=None` is shipped. The path is built and mocked;
-  the README says the deterministic floor is not a failure condition.
+- **A model in any decision except one.** The live path ran and is reported
+  above, but it is confined to choosing which subsection an absent field anchors
+  to — an index into a code-built list. Extending it to verdicts, values, units
+  or spans was never on the table; §1 gives the argument.
 - **Supplement / resource-table parsing.** Declared out of scope. Named cost:
   wang2015's `qpcr.reference_genes` is probably in Table S1, and three of its
   method subsections consist solely of a pointer to Extended Experimental
   Procedures.
 - **Multi-instance findings per field.** Would multiply the current
   false-positive rate by N.
-- **A learned criticality model.** The README says it will look at our *output
+- **A learned criticality model.** The README says it will look at my *output
   design* for this, not at a model. Ordering by `sensitivity` is the intended
   scope and remains week 3.
 - **Character normalisation.** Worth an estimated 1.5 findings; deferred once

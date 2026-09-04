@@ -109,7 +109,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -129,7 +129,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Anti-mouse horseradish peroxidase, anti-\nrabbit horseradish peroxidase, and anti-rabbit-FITC were from Pierce,\nand anti-rabbit Texas Red was from The Jackson Laboratories.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -149,7 +149,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Cell Line Culture—SH-SY5Y human neuroblastoma cells were cul-\ntured in Dulbecco’s modified Eagle’s medium with high glucose, 10%\nfetal bovine serum, antibiotic, antimycotics, essential amino acids, and\n5m ML -glutamine.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:node:model-1of2:kw:MATERIALS AND METHODS"
       }
     },
     {
@@ -169,7 +169,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Cell Line Culture—SH-SY5Y human neuroblastoma cells were cul-\ntured in Dulbecco’s modified Eagle’s medium with high glucose, 10%\nfetal bovine serum, antibiotic, antimycotics, essential amino acids, and\n5m ML -glutamine.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:node:model-1of2:kw:MATERIALS AND METHODS"
       }
     },
     {
@@ -227,15 +227,15 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Briefly,\nthe cells were spun down after treatment, washed with PBS, and\nresuspended in cytoplasmic extraction buffer.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
-      "finding_id": "b63233ba53872c56515429b99ae82f5e",
+      "finding_id": "29d81d1d2de8a432b3a62bc04597b2b9",
       "field_id": "qpcr.reference_genes",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 7133,
+        "start": 7155,
         "end": 7224,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
@@ -246,17 +246,17 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "MATERIALS AND METHODS\nReagents—TNF /H9251, IGF-1, and IL-6 were purchased from CytoLab\nLtd.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "Reagents—TNF /H9251, IGF-1, and IL-6 were purchased from CytoLab\nLtd.",
+        "anchor_detector": "anchor:node:model-1of2:head:MATERIALS AND METHODS"
       }
     },
     {
-      "finding_id": "683be373de9a892b19a81ec1733e9ffc",
+      "finding_id": "2790a525c33fea5584c0653af29531db",
       "field_id": "stats.replicate_type",
       "code": "GAP_ABSENT",
       "span": {
-        "start": 7133,
-        "end": 7224,
+        "start": 21412,
+        "end": 21457,
         "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
       },
       "verdict": "FIELD_ABSENT",
@@ -266,8 +266,8 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no candidate text found",
-        "anchor_text": "MATERIALS AND METHODS\nReagents—TNF /H9251, IGF-1, and IL-6 were purchased from CytoLab\nLtd.",
-        "anchor_detector": "anchor:node:det-none:head:methods"
+        "anchor_text": "blotted with anti-phospho-STAT3 anti-\nbodies.",
+        "anchor_detector": "anchor:node:model-2of2:head:SDS-polyacrylamide gel and Western"
       }
     },
     {
@@ -287,7 +287,7 @@
       "detail": {
         "reason": "no candidate text found",
         "anchor_text": "Statistically signif-\nicant differences were determined using Student’s t test, with p /H110210.05\nconsidered as significant.",
-        "anchor_detector": "anchor:node:det-none:kw:methods"
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
