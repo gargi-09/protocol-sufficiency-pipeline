@@ -1,7 +1,10 @@
 """
-extract.py -- Step 3, generalized.
+extract.py -- Step 3 (candidate extraction) and Step 5 (location).
 
-[Keep existing docstring, add:]
+find_candidate() proposes a span for a field that IS stated; find_absence_anchor()
+locates where a reader should look for one that is not. Both derive spans from
+sentence and section boundaries only, never from free-form model output, which is
+what makes finding_id stable across runs.
 
 REAL BUG FOUND AND FIXED: relevance-checking was only happening in
 validate.py, AFTER extraction had already committed to one candidate.

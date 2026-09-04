@@ -111,6 +111,26 @@
       }
     },
     {
+      "finding_id": "4533a18bf6e453a0215502f91120f07e",
+      "field_id": "animal.sample_size_justification",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 36820,
+        "end": 36878,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "All mice were bred and\nhoused in the same animal facility.",
+        "anchor_detector": "anchor:node:det-unique:kw:EXPERIMENTAL PROCEDURES Mice"
+      }
+    },
+    {
       "finding_id": "1178a733b402c221a8d393ef0f20cc91",
       "field_id": "cellline.name",
       "code": "GAP_ABSENT",
@@ -284,6 +304,26 @@
       }
     },
     {
+      "finding_id": "efbb8a75b527d2441ddd3556113fb350",
+      "field_id": "treatment.vehicle",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 39190,
+        "end": 39284,
+        "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Reporter activity (%) is defined as %GFP+ cells subtracted from background (vehicle controls).",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
+      }
+    },
+    {
       "finding_id": "f4b96808ec3ede3a85eeacdb18afb598",
       "field_id": "qpcr.primer_sequences",
       "code": "GAP_DEFERRED_TO_DISPLAY",
@@ -303,22 +343,23 @@
       }
     },
     {
-      "finding_id": "d07312d8f430ffb9224f02c17d6e3c0c",
+      "finding_id": "d5fd61620b34a80648c6533842f9ccc1",
       "field_id": "qpcr.reference_genes",
-      "code": "GAP_DEFERRED_TO_DISPLAY",
+      "code": "GAP_ABSENT",
       "span": {
         "start": 38128,
         "end": 38179,
         "text_sha": "10674b986393e0966b8928f4efd68c73a08f4930c765b7e5e48221db1cb81c3d"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "Primers for qPCR analysis are provided in Table S1.",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'provided in Table' (deferred_display) occupies the qpcr.reference_genes slot without supplying a value",
-        "phrase": "Primers for qPCR analysis are provided in Table S1."
+        "reason": "no candidate text found",
+        "anchor_text": "Primers for qPCR analysis are provided in Table S1.",
+        "anchor_detector": "anchor:node:det-unique:kw:Gene Expression Analysis"
       }
     },
     {

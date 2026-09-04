@@ -155,6 +155,26 @@
       }
     },
     {
+      "finding_id": "dd4b60970c937d9e9dcb473f97a546b9",
+      "field_id": "treatment.vehicle",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 7229,
+        "end": 7298,
+        "text_sha": "f25cf378016a723c599e08b4aeaedc17410184e1fb1def3336e757c0faa1442c"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "We used 6 human oncogene-driven NSCLC cell lines, all provided by Dr.",
+        "anchor_detector": "anchor:node:det-first-of-2:head:Materials and Methods Cell lines a"
+      }
+    },
+    {
       "finding_id": "d8b4b649db25d635184dcada4b36696e",
       "field_id": "qpcr.primer_sequences",
       "code": "GAP_ABSENT",

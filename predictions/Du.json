@@ -106,6 +106,26 @@
       }
     },
     {
+      "finding_id": "a7174b6039352c14d7bf1d64d6e0bcb7",
+      "field_id": "animal.sample_size_justification",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 10269,
+        "end": 10448,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+        "anchor_detector": "anchor:node:det-unique:kw:Tumor-bearing mouse models"
+      }
+    },
+    {
       "finding_id": "f865d9cd3c1c46d4c8d597bb11db27e4",
       "field_id": "xenograft.injection_site",
       "code": "GAP_ABSENT",
@@ -121,6 +141,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "none of ['subcutaneous_flank', 'orthotopic', 'intravenous', 'intraperitoneal', 'other'] is stated in 'Subsequent to the injection,\\ntumor size and survival rate were monitored bi-daily.'"
+      }
+    },
+    {
+      "finding_id": "aa23e697edcf52978baddf6402b1d1d5",
+      "field_id": "xenograft.tumour_measurement_method",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 10269,
+        "end": 10448,
+        "text_sha": "c87e574969fdcbe5069b762646a38cb9ebfff922160e4e90ae91140fdffcba10"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The conduct of mouse-related experiments was approved by the animal ethics committee at Changzhi Medi-\ncal College, ensuring adherence to all pertinent guidelines and regulations.",
+        "anchor_detector": "anchor:node:det-unique:head:Tumor-bearing mouse models"
       }
     },
     {

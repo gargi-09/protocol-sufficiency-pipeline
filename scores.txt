@@ -9,15 +9,13 @@
 # dies on the non-Latin-1 characters our predictions quote. See
 # defects_found.md D0.
 #
-# CONFIGURATION: model=None.
-# Every prediction is produced by the deterministic layer alone, so the primary
-# result and the model=None ablation are the same run. The model path
-# (node_select.py) is built and exercised via mock_client.py but not wired to a
-# live client, so there is no second column yet.
+# CONFIGURATION: model=None. Every prediction comes from the deterministic
+# layer alone, so the primary result and the model=None ablation are the same
+# run. The model path (node_select.py) is built and exercised via
+# mock_client.py but not wired to a live client.
 #
 # Gold is 1 paper / 18 labels -- the only labelled paper supplied. Field rows
-# with n=0 are fields where gold has no label and we emit anyway: pure
-# precision cost with no upside on this paper.
+# with n=0 are fields where gold has no label and we emit anyway.
 #
 # 'False-positive rate on non-blocking findings' is NOT interpretable: the
 # supplied gold carries no 'blocking' flag, so score.py treats every label as
@@ -28,8 +26,8 @@
 BY GAP CODE
 key                                         P      R     F1      n
 ------------------------------------------------------------------
-code:GAP_ABSENT                         0.083  0.077  0.080     13
-code:GAP_DEFERRED_TO_DISPLAY            0.333  1.000  0.500      1
+code:GAP_ABSENT                         0.200  0.231  0.214     13
+code:GAP_DEFERRED_TO_DISPLAY            0.500  1.000  0.667      1
 code:GAP_DEFERRED_TO_REF                0.000  0.000  0.000      2
 code:GAP_DIMENSION_MISMATCH             0.000  0.000  0.000      1
 code:GAP_VAGUE                          0.000  0.000  0.000      1
@@ -53,16 +51,16 @@ centrifugation.force                    0.000  0.000  0.000      1
 culture.co2_fraction                    0.000  0.000  0.000      1
 culture.temperature                     0.000  0.000  0.000      1
 qpcr.primer_sequences                   0.000  0.000  0.000      0
-qpcr.reference_genes                    0.000  0.000  0.000      1
+qpcr.reference_genes                    1.000  1.000  1.000      1
 stats.replicate_type                    0.000  0.000  0.000      0
 treatment.concentration                 1.000  0.500  0.667      2
 treatment.duration                      0.000  0.000  0.000      1
-treatment.vehicle                       0.000  0.000  0.000      1
+treatment.vehicle                       1.000  1.000  1.000      1
 
 PRIMARY SLICE
 slice                                       P      R     F1      n
 ------------------------------------------------------------------
-ABSENT                                  0.083  0.077  0.080     13
-PRESENT_BUT_UNUSABLE                    0.200  0.200  0.200      5
+ABSENT                                  0.200  0.231  0.214     13
+PRESENT_BUT_UNUSABLE                    0.250  0.200  0.222      5
 
 False-positive rate on non-blocking findings: 1.000

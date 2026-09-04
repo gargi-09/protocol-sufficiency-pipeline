@@ -58,6 +58,26 @@
       }
     },
     {
+      "finding_id": "0a5bceac2b7ff6e2690f50e92e705c97",
+      "field_id": "treatment.vehicle",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 29626,
+        "end": 29822,
+        "text_sha": "4da68035403acd7af8254424d19c97eb442b55c3ac28b17d95be5ebb56478d98"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "A high-throughput screening (HTS) was performed with the Prestwick Chemi-\ncal Library (Prestwick Chemical Libraries, Illkirch-Graffenstaden, France) containing\n1280 compounds, mainly FDA-approved.",
+        "anchor_detector": "anchor:node:det-unique:head:High-Throughput Screening of Drugs"
+      }
+    },
+    {
       "finding_id": "f06edb1b184bb9b904290487d6061c15",
       "field_id": "stats.replicate_type",
       "code": "GAP_ABSENT",

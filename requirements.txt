@@ -1,0 +1,13 @@
+# Runtime dependencies for analyze() and the scoring harness.
+#
+#   python -m venv .venv
+#   .venv/Scripts/activate        (Windows)   |   source .venv/bin/activate  (POSIX)
+#   pip install -r requirements.txt
+#
+# Version floors match what 03_contract.py requires: Python 3.11+ and pydantic v2.
+pydantic>=2.0
+PyYAML>=6.0
+
+# Only needed to regenerate papers/*.txt from papers_source/*.pdf via
+# extract_pdf_text.py. analyze() never touches a PDF.
+pdfplumber>=0.11 ; extra == "pdf"

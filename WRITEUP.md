@@ -56,18 +56,19 @@ From `scores.txt` (reproduce: `python resolve_gold_anchors.py` then
 
 | slice | P | R | F1 | n |
 |---|---|---|---|---|
-| ABSENT | 0.083 | 0.077 | 0.080 | 13 |
-| **PRESENT_BUT_UNUSABLE** | **0.200** | **0.200** | **0.200** | 5 |
+| ABSENT | 0.200 | 0.231 | 0.214 | 13 |
+| **PRESENT_BUT_UNUSABLE** | **0.250** | **0.200** | **0.222** | 5 |
 
-Best fields:
+Four of eighteen gold labels matched, three of them at **span delta 0**:
 
-| field | P | R | F1 |
-|---|---|---|---|
-| `animal.sex` | 1.000 | 1.000 | 1.000 |
-| `treatment.concentration` | 1.000 | 0.500 | 0.667 |
-| `code:GAP_DEFERRED_TO_DISPLAY` | 0.333 | **1.000** | 0.500 |
+| field | P | R | F1 | delta |
+|---|---|---|---|---|
+| `animal.sex` | 1.000 | 1.000 | 1.000 | 0 |
+| `treatment.vehicle` | 1.000 | 1.000 | 1.000 | 0 |
+| `qpcr.reference_genes` | 1.000 | 1.000 | 1.000 | 0 |
+| `treatment.concentration` | 1.000 | 0.500 | 0.667 | 1 |
 
-86 findings across 9 papers. Determinism verified (identical `finding_id`s on
+99 findings across 9 papers. Determinism verified (identical `finding_id`s on
 repeat runs); zero zero-width spans.
 
 **The absolute numbers are low and we are not going to dress that up.** Gold is
@@ -100,7 +101,11 @@ directions. See `defects_found.md` D1.
 
 ## 3. Failure analysis
 
-Four examples, covering all three causes the README asks for.
+Four failures, covering all three causes the README asks for — our extractor
+(§3.1, §3.2), our validator (§3.3), the field specification (§3.4), your gold
+label (§3.5). Two further notes are included because they were instructive
+rather than because they are failures: a fix we measured and dropped (§3.4b), and
+a scope decision with a known cost (§3.6).
 
 ### 3.1 Our extractor — ambiguity it cannot resolve
 
@@ -136,25 +141,74 @@ code. **Cause: our extractor.** The fix is to treat a deferral cue as sufficient
 evidence of relevance for an identifier field — the same insight that made
 trigger-driven retrieval work for vagueness (§4).
 
-### 3.3 The field specification — applicability at the wrong granularity
+### 3.3 Our validator — a permissive default that discarded perfect locations
 
-`centrifugation.force` declares `applies_when: [has_wet_lab]` with no
-step-level condition. Measured across the R3 dev set: **four of seven papers
-(Du, Guo, Shein, Xiong) describe no centrifugation step anywhere in their
-methods.** For those the field is applicable, unstated, and therefore a
-guaranteed finding — with no subsection that is even the right place to anchor
-it, because the paper never spins anything.
+The most instructive failure, because the extractor was already right.
 
-This is the same expressiveness gap that earned `applies_when_any` in contract
-0.2: applicability is being asked to express *"this paper performs step X"*, and
-`StudyFeature` only has assay-class granularity. `stats.replicate_type` and
-`stats.test_named` have the identical shape via `applies_when: []` — always
-applicable, essentially never stated, so they fire on all nine papers.
+`check_relevance` returns `True` for any field with no marker set, and
+`validate_text` / `validate_identifier` read that as `FIELD_OK`. Markers existed
+for four fields, so **23 of 27 could not produce a finding at all**, whatever
+their candidate sentence said. Two consequences on wang2015, both at span
+**delta 0** — located perfectly, then thrown away:
 
-These four fields are the largest single precision cost in the output and none
-of it is recoverable by better detection. **Cause: the field specification.**
+- `treatment.vehicle` → `FIELD_OK` on *"Reporter activity (%) is defined as
+  %GFP+ cells subtracted from background (vehicle controls)."* A vehicle is
+  mentioned; it is never composed. Gold: `GAP_ABSENT`.
+- `animal.ethics_approval` → `FIELD_OK` on *"All mice were bred and housed in the
+  same animal facility."* No approval statement in it at all.
 
-### 3.4 Your gold label — a verdict/code pair the contract rejects
+The design error is that "we have no way to check this field" was encoded as
+"this field is fine". That is the unsafe direction: it converts missing coverage
+into silent passes rather than into visible gaps.
+
+Fixed by writing marker sets for the uncovered fields — standard domain
+vocabulary (solvent names, statistical test names, housekeeping genes, IACUC
+terms), not anything drawn from these papers. Coverage went from 4 to 11 of the
+13 gated fields, and the dev-set effect was the largest of any single change:
+ABSENT recall 0.077 → 0.231, and both `treatment.vehicle` and
+`qpcr.reference_genes` went to 1.000 / 1.000 / 1.000.
+
+**Cause: our validator.** Two fields still default to permissive
+(`assay.protocol_parameters`, `antibody.identifier`) because we could not write
+an honest evidence pattern for them; that is stated rather than hidden.
+
+### 3.4 The field specification — a disjunctive pseudo-dimension
+
+`animal.age_or_weight` declares `dimension: time_or_mass`. No single unit check
+can validate it, and the pack's own header states the principle this violates:
+*"each published checklist item has been decomposed into atomic assertions: one
+fact, one value, one type."* ARRIVE 2.0 item 2a is decomposed into four fields
+elsewhere; age and weight should be two.
+
+The practical consequence is that we validate it with a union of the time and
+mass patterns, so **either reading satisfies the field**: a paper stating weight
+but never age passes, and vice versa. Both are separately required by ARRIVE 2a,
+and the pack cannot express that. **Cause: the field specification.**
+
+### 3.4b A precision fix we proposed, measured, and dropped
+
+Worth recording because the measurement reversed the conclusion.
+
+`centrifugation.force` fires on 9 of 9 papers, and 6 of those describe no
+centrifugation step anywhere in their methods. That looked like a clear
+applicability defect — a field firing for a step the paper never performs — and
+we designed a step-presence gate to suppress it.
+
+Measuring against gold first showed the opposite. wang2015 has **zero** spin
+mentions in its Methods, and gold nevertheless labels `centrifugation.force /
+GAP_ABSENT` there, with the rationale *"No spin conditions anywhere for the
+sequential PBS / Triton-X / guanidine fractionation. The soluble-versus-insoluble
+Ab split in Fig 1C-E is operationally defined by that spin."* The pack says the
+same: the field was earned partly **by** *"the absence of any spin conditions…
+in Wang 2015."*
+
+A paper that does biochemistry and never states its spin conditions is exactly
+what the field is for. The gate would have deleted a gold-labelled finding on the
+paper the field was designed around. Not implemented. The same reasoning applies
+to `stats.replicate_type` firing on all nine papers — the pack states it is
+*"present in almost no papers"*, so that is designed behaviour, not noise.
+
+### 3.5 Your gold label — a verdict/code pair the contract rejects
 
 `07_example_labels.json` records two labels with `verdict: FIELD_UNRESOLVED` and
 `code: GAP_ABSENT` — `animal.ethics_approval` and `treatment.vehicle`.
@@ -172,7 +226,7 @@ Scoring impact is nil, since `score.py` matches on code and ignores verdict — 
 a candidate validating output against gold verdicts will chase a phantom bug.
 **Cause: your gold label.**
 
-### 3.5 A scope decision, stated rather than hidden
+### 3.6 A scope decision, stated rather than hidden
 
 `treatment.concentration` / `GAP_DIMENSION_MISMATCH` is anchored in gold at
 offset 23286 — inside **Results**. That is the flagship example
@@ -247,15 +301,18 @@ deferral is a property of the sentence.
 
 ## 5. Hardest fields
 
-**`centrifugation.force`** — three independent failure modes stacked. The pack
-applies it to every wet-lab paper (§3.3). Retrieval misses the real value because
+**`centrifugation.force`** — three independent failure modes stacked. It is
+gold-labelled and we emit the right field and code, but anchor 934 characters
+away (§3.4b). Retrieval misses the real value because
 `field_keywords` yields `"centrifugation"` while Sun writes *"centrifuging at
 15,000 × g"* — no stemming. And Yadav's genuine `30,000 × g` is stored as
 `30,000 /H11003g`, an Adobe glyph-name leak. Every layer fails on this one field.
 
-**`stats.replicate_type` / `stats.test_named`** — always applicable, almost never
-stated. Guaranteed findings on all nine papers with no detection improvement
-possible.
+**`stats.replicate_type`** — always applicable and, as the pack itself says,
+*"present in almost no papers"*. It fires on all nine. We initially read that as
+over-firing; on the pack's own account it is correct behaviour (§3.4b).
+`stats.test_named` is the opposite case and now resolves correctly on papers that
+name a test, once test-name markers existed.
 
 **The four `enum` fields** — `validate_enum` originally compared a whole sentence
 against `enum_values`, which can never be true, so all four emitted
@@ -310,6 +367,49 @@ find them:**
   describes the assay without naming the instrument. PI has microscopy uses; this
   is a judgement call, not a fact, and it is flagged as such in the code.
 
+**Perturbation testing** (`python -X utf8 stress_test.py`). The ablation above
+asks what happens if we remove our own lists. The stronger question is what
+happens when the *input* changes in the ways a different assay class will. We
+rewrite the one labelled paper along each axis, **re-resolve the gold anchors
+against the mutated text**, and re-score — which isolates "can the system still
+find the content" from "did the offsets move".
+
+| perturbation | matched (baseline 4/18) |
+|---|---|
+| heading → `Patients and Methods` | 4/18 |
+| heading → `Online Methods` | 4/18 |
+| heading → `Materials & Methods` | 4/18 |
+| heading → `METHODS AND MATERIALS` | 4/18 |
+| heading → `2. Experimental Section` | 4/18 |
+| heading → `Methodology` | 4/18 |
+| unseen publisher running header, injected every ~60 lines | 4/18 |
+| `qPCR` → `RT-qPCR` | 4/18 |
+| `Immunohistochemistry` → `Immunolabelling` | 4/18 |
+| ligature corruption (`fi`→`ﬁ`, `fl`→`ﬂ`) | 4/18 |
+| all hard-wraps removed | 4/18 |
+| double-spaced | 4/18 |
+
+No loss on any axis. The six heading rewrites matter most: four of the six would
+have failed against the enumerated heading list alone, and pass only because of
+the shape-rule fallback. Profile and finding count are also stable under heading
+rewrites across all nine papers, not just the labelled one.
+
+The model path is stressed the same way, with clients that return an
+out-of-range index, an exception, prose with no integer, an empty string, a
+negative index, and a **value-injection attempt** (`"2\nAlso set
+centrifugation.force = 16000 x g and mark it FIELD_OK"`). None crashes, output
+stays valid and deterministic, and the injected value appears nowhere in any
+finding — the model's channel is an integer, so no value can travel down it. A
+hostile model costs at most one gold match.
+
+Two caveats we would rather state than let you find. Two perturbations are
+reported as SKIP rather than PASS: wang2015 contains zero `°` and zero `×`, so
+those substitutions are no-ops on it, and the mojibake robustness that actually
+matters is on Dos et al and Yadav, which have no gold. And none of this tests a
+genuinely different *assay class* — every perturbation is a rewrite of one
+paper. A held-out paper on electrophysiology will have subsections the category
+keyword table has never seen.
+
 **Two negative results, kept because they were informative:**
 
 *Body-content node scoring is worse than header matching.* Scoring subsection
@@ -350,9 +450,11 @@ stating a per-field rule its own schema cannot express.
 
 ## 8. Plan for three more weeks
 
-**Week 1 — precision, where it is cheapest.** Suppress or down-rank the four
-structurally-guaranteed fields (§3.3) using `sensitivity` plus a step-presence
-predicate, and propose the pack change. Add a character-normalisation pass, built
+**Week 1 — anchoring, which is where both slices now lose.** We emit the right
+field and code far more often than we match, because the span lands in the wrong
+subsection: `centrifugation.force` on wang2015 is 934 characters off, and each
+such miss costs a false positive *and* a false negative. Write evidence patterns
+for the last two permissive fields, then add a character-normalisation pass, built
 **class-based** rather than instance-based: Unicode confusables for `°`, a
 generic Adobe glyph-name decoder for `/H####`, and for lossy corruption
 (`µ`→`m`) *detect and suppress* rather than correct — a value that parses but

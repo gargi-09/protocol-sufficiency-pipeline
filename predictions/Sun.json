@@ -139,6 +139,46 @@
       }
     },
     {
+      "finding_id": "cfa31316d43a39c32f98db03e5e8f00e",
+      "field_id": "animal.ethics_approval",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 15468,
+        "end": 15588,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "LOW",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+        "anchor_detector": "anchor:node:det-unique:head:Animal models"
+      }
+    },
+    {
+      "finding_id": "11798ff1ef85709407bd427279947100",
+      "field_id": "animal.sample_size_justification",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 15468,
+        "end": 15588,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+        "anchor_detector": "anchor:node:det-unique:head:Animal models"
+      }
+    },
+    {
       "finding_id": "c5a5b43a0a361e51abd9b25f955830fb",
       "field_id": "xenograft.cell_number",
       "code": "GAP_ABSENT",
@@ -154,6 +194,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no count value stated in 'About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\\nmatrigel (Yeasen, China) at the volume ratio of 4:1.'"
+      }
+    },
+    {
+      "finding_id": "2c8cb01cb8b1b6e312389461ba7675c2",
+      "field_id": "xenograft.tumour_measurement_method",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 15468,
+        "end": 15588,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "About 1 × 10 7 cancer cells suspended in 800 μl PBS were mixed with\nmatrigel (Yeasen, China) at the volume ratio of 4:1.",
+        "anchor_detector": "anchor:node:det-unique:head:Animal models"
       }
     },
     {
@@ -250,6 +310,26 @@
       "sensitivity": "HIGH",
       "detail": {
         "reason": "no time value stated in 'The cells that successfully\\nexpressed shRNAs were screened out using puromycin treatment (MCE,\\nUSA) at the concentration of 5 μg/ml.'"
+      }
+    },
+    {
+      "finding_id": "efc87fb0373d9ada73bdc2690b17f293",
+      "field_id": "treatment.vehicle",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 9904,
+        "end": 10036,
+        "text_sha": "4363403be12c0577c80e1151395735bbf8432eef46731c84bdfc7c38a1a07063"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "The cells that successfully\nexpressed shRNAs were screened out using puromycin treatment (MCE,\nUSA) at the concentration of 5 μg/ml.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
       }
     },
     {

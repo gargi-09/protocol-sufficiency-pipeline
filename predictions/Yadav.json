@@ -91,6 +91,26 @@
       }
     },
     {
+      "finding_id": "dac16efd77549ace49b6970f55167f89",
+      "field_id": "animal.sample_size_justification",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 7983,
+        "end": 8184,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Animals—Timed mated Sprague-Dawley rats (Charles River Breed-\ning Laboratories, Sulzfeld, Germany) were maintained at a 12-h dark,\n12-h light cycle and were allowed to access food and water ad libitum.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
+      }
+    },
+    {
       "finding_id": "f318881b8287a169b0e0593b27bd1ff4",
       "field_id": "cellline.source_or_rrid",
       "code": "GAP_ABSENT",
@@ -187,6 +207,26 @@
       }
     },
     {
+      "finding_id": "6d035f1d2023e478f6872ef064335687",
+      "field_id": "treatment.vehicle",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 17298,
+        "end": 17415,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "MED",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Briefly,\nthe cells were spun down after treatment, washed with PBS, and\nresuspended in cytoplasmic extraction buffer.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
+      }
+    },
+    {
       "finding_id": "b63233ba53872c56515429b99ae82f5e",
       "field_id": "qpcr.reference_genes",
       "code": "GAP_ABSENT",
@@ -224,6 +264,26 @@
         "reason": "no candidate text found",
         "anchor_text": "MATERIALS AND METHODS\nReagents—TNF /H9251, IGF-1, and IL-6 were purchased from CytoLab\nLtd.",
         "anchor_detector": "anchor:node:det-none:head:methods"
+      }
+    },
+    {
+      "finding_id": "64a66ed5a3b5bc3c6935d17bec2de5f8",
+      "field_id": "stats.test_named",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 23034,
+        "end": 23159,
+        "text_sha": "6cfead4beb9de9163feb48ad59c3454179d17515425cd6e248b71a0d47e1272a"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Statistically signif-\nicant differences were determined using Student’s t test, with p /H110210.05\nconsidered as significant.",
+        "anchor_detector": "anchor:node:det-none:kw:methods"
       }
     },
     {
