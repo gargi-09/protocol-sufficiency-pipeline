@@ -17,6 +17,17 @@ The model's entire output is an index into a list the code built; it cannot emit
 value, unit, verdict or span, and never sees the absence decision — settled in
 `validate.py` first. It cannot erase a gap it is never shown.
 
+**The document tree, and where I left PageIndex behind.** PageIndex builds a tree
+from a document and searches it. I took the indexing half — the unit is a natural
+section rather than a fixed-size chunk, derived from layout with no model — and
+dropped the retrieval half, because they search for content that *exists* and my
+hardest case is content that is absent and therefore leaves nothing to retrieve.
+So the tree is not a search index here; it is an **address space for absences**,
+naming the places a missing item should have been stated so that a gap can be
+given a location at all. The ladder is a walk up that chain: `node.walk_up()`
+yields the matching subsection, then Methods, then the document, and the first
+level holding a usable sentence wins (`extract.py:473`).
+
 ---
 
 ## 1. Failure analysis
@@ -62,11 +73,10 @@ suspended in 800 μl PBS"* satisfies `animal.humane_endpoint`, and Guo's *"RIPA
 buffer containing 1 nM PMSF"* satisfies `treatment.concentration`. Each one
 suppresses a gap, which is the direction that costs recall silently.
 
-Not fixed, and deliberately not: the honest fix is a target-position check tying
-the value to the field's own noun, which is week-two work in §5, and patching it
-per-field would recreate exactly the lexicon-shaped fragility §1.3 criticises.
-Naming it as one class — "cannot check" encoded as "is fine", in three
-validators — is more useful than three separate entries.
+Deliberately not fixed: the honest remedy is a target-position check tying the
+value to the field's own noun, which is week-two work in §5. Naming it as one
+class — "cannot check" encoded as "is fine", across three validators — is more
+useful than three separate entries.
 
 ### 1.2 My extractor — ambiguity it cannot resolve
 
@@ -95,7 +105,7 @@ reading satisfies the field** — weight without age passes, and vice versa. ARR
 2a requires both and the pack cannot express it. **Cause: the field
 specification.**
 
-### 1.4 Your gold label — a verdict/code pair the contract rejects
+### 1.4 The gold label — a verdict/code pair the contract rejects
 
 `07_example_labels.json` records two labels with `verdict: FIELD_UNRESOLVED` and
 `code: GAP_ABSENT` (`animal.ethics_approval`, `treatment.vehicle`).
@@ -119,9 +129,10 @@ chases a phantom bug. **Cause: your gold label.**
 | ABSENT | 0.200 | 0.231 | 0.214 | 13 |
 
 `model=None`, the shipped configuration. With the model confined to node
-selection, ABSENT rises to **0.286** (0.267 / 0.308) — 22 of 100 spans differ, so
-it is a genuine second configuration. Four of eighteen gold labels matched, three
-at **span delta 0**. 100 findings across nine papers; determinism verified across
+selection, ABSENT rises to **0.286** (0.267 / 0.308) — 30 of 101 spans differ and
+no code does, so it is a genuine second configuration and the model's remit is
+visible in the diff. Four of eighteen gold labels matched, three at **span delta
+0**. 101 findings across nine papers; determinism verified byte-for-byte across
 separate processes; zero zero-width spans.
 
 **The numbers are low and I will not dress that up.** Gold is one paper and
@@ -228,8 +239,7 @@ exhausted deterministically.
 
 ## 6. Time, and what was cut
 
-**TODO — time spent:** _[fill in: total hours, and roughly how they split across
-architecture, text-fidelity debugging, and measurement]_
+**Time spent:** 3-4 days starting September 1st 2026 ending at 4 September 2026
 
 Cut deliberately: supplement and resource-table parsing (named cost —
 wang2015's `qpcr.reference_genes` is probably in Table S1); multi-instance

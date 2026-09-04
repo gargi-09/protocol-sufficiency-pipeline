@@ -47,7 +47,7 @@ search a tree for content that exists, whereas my hardest case is a field that
 is absent and therefore leaves nothing to retrieve. So here the tree is not a
 search index; it is an **address space for absences**, naming the places where a
 missing item ought to have been stated so a gap can be given a location at all.
-The anchor ladder is literally `for level in node.walk_up()`.
+The anchor ladder walks that chain: `node.walk_up()` yields the subsection, then Methods, then the document (`extract.py:473`).
 
 **Typed, scoped triggers** (`vagueness.py`), borrowed from NegEx/ConText in
 clinical NLP. Their insight is that a trigger defines a *scope*, not a hit.
