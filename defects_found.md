@@ -83,11 +83,12 @@ patterns, and that it fail loudly on a miss.
 
 ### B1. `centrifugation.force` applies to every wet-lab paper, spin or no spin
 
-`applies_when: [has_wet_lab]` with no step-level condition. Measured across the
-R3 dev set: **4 of 7 papers (Du, Guo, Shein, Xiong) describe no centrifugation
-step anywhere in their methods.** For those the field is applicable, unstated,
-and therefore a guaranteed finding — with no subsection that is even the right
-place to anchor it.
+`applies_when: [has_wet_lab]` with no step-level condition. Measured over all
+nine papers: **6 of 9 describe no centrifugation step anywhere in their methods**
+(Hosseini, Du, Guo, Shein, Xiong, wang2015) — zero matches for
+`centrifug|spun|spin|rcf|rpm|× g` inside the Methods window, and zero in the whole
+file. For those the field is applicable, unstated, and therefore a guaranteed
+finding — with no subsection that is even the right place to anchor it.
 
 This is the same expressiveness gap that earned `applies_when_any` in contract
 0.2: applicability is being asked to express "this paper performs step X", and

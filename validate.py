@@ -98,10 +98,26 @@ def _states_range(pattern: re.Pattern, raw_text: str) -> bool:
     )
     for form in forms:
         for match in re.finditer(form, raw_text, re.IGNORECASE):
-            try:
-                low = float(match.group(1).replace(",", ""))
-                high = float(match.group(2).replace(",", ""))
-            except (TypeError, ValueError):
+            low = _magnitude(match.group(1) or "")
+            if low is None:
+                continue
+            # group(2) is NOT reliably the upper bound. The unit pattern is
+            # embedded in `form`, so its own capture groups follow group 1 --
+            # and for a UNION dimension the non-matching branch's groups are
+            # all None. `time_or_mass` against "mice weighing 20-25 g" matched
+            # the mass branch, left the time branch's group 2 as None, and
+            # None.replace() raised AttributeError, which this handler did not
+            # catch: analyze() died on standard ARRIVE 2a phrasing. Take the
+            # first group after the low value that reads as a number instead of
+            # trusting an index. Unit groups ("g", "min") never parse, so they
+            # are skipped for free.
+            high = next(
+                (value for value in
+                 (_magnitude(group or "") for group in match.groups()[1:])
+                 if value is not None),
+                None,
+            )
+            if high is None:
                 continue
             if low < high:
                 return True

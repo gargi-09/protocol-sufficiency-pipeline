@@ -50,43 +50,43 @@
   },
   "findings": [
     {
-      "finding_id": "96c8951135b7d2bd69c0638794dfe2c3",
+      "finding_id": "9337ae52be13bc1f4f367b26ae5ea921",
       "field_id": "cellline.authentication",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8582,
-        "end": 8649,
+        "start": 6855,
+        "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.authentication slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
+        "reason": "no candidate text found",
+        "anchor_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+        "anchor_detector": "anchor:node:det-unique:kw:Materials and Methods Cell Culture"
       }
     },
     {
-      "finding_id": "2e0f27c7323fb8c5690ddd9cf39cde39",
+      "finding_id": "0d52dd5252007cd5a4675c999348e211",
       "field_id": "cellline.mycoplasma",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8582,
-        "end": 8649,
+        "start": 6855,
+        "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "LOW",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.mycoplasma slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
+        "reason": "no candidate text found",
+        "anchor_text": "T wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+        "anchor_detector": "anchor:node:det-unique:kw:Materials and Methods Cell Culture"
       }
     },
     {
@@ -185,43 +185,63 @@
       }
     },
     {
-      "finding_id": "c59f197ad4f903329a4a4c0282761b64",
+      "finding_id": "7f391b1483b06a68d4ad712f8e76815e",
       "field_id": "stats.test_named",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8582,
-        "end": 8649,
+        "start": 14782,
+        "end": 14822,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the stats.test_named slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
+        "reason": "no candidate text found",
+        "anchor_text": "Results were expressed as the mean ± SD.",
+        "anchor_detector": "anchor:node:det-first-of-2:head:Statistical Analysis"
       }
     },
     {
-      "finding_id": "26d9892eda62bb31ba98d5ea4db06b44",
+      "finding_id": "9eb1c6a705896dea278feea7b176bb6e",
       "field_id": "centrifugation.force",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8582,
-        "end": 8649,
+        "start": 6740,
+        "end": 7022,
         "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "After that, proteins were transferred to nitrocellulose (Amersham,\nAmersham, UK) and were probed with specific primary antibodies,\nand then with the appropriate HRP-conjugated secondary antibodies\n(Pierce).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the centrifugation.force slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " with the appropriate HRP-conjugated secondary antibodies\n(Pierce)."
+        "reason": "no candidate text found",
+        "anchor_text": "Materials and Methods\nCell Culture, Treatment with Pharmacologic Agents, and\nTransient Transfection of STAT3 siRNA\nT wo human colorectal cancer cell lines (SW1116 and HT29) were\nused in this study, cultured in RPMI 1640 medium (Gibco, Carlsbad,\nCA) or McCoy ’s 5A medium (Sigma, St.",
+        "anchor_detector": "anchor:node:det-none:head:methods"
+      }
+    },
+    {
+      "finding_id": "fd331b637a49d7430b28c302aa799df7",
+      "field_id": "antibody.identifier",
+      "code": "GAP_ABSENT",
+      "span": {
+        "start": 8100,
+        "end": 8191,
+        "text_sha": "cb4462b38b5f91e80193cfaeb1b9937f631a7f9a10365f9f8aedf5095659a0f7"
+      },
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
+      "canonical_value": null,
+      "canonical_unit": null,
+      "sensitivity": "HIGH",
+      "detail": {
+        "reason": "no candidate text found",
+        "anchor_text": "Western blot analysis was performed using standard techniques as\ndescribed previously [25].",
+        "anchor_detector": "anchor:node:det-first-of-2:head:Western Blot and Antibodies"
       }
     }
   ]

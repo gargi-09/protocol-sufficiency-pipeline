@@ -141,7 +141,7 @@ _CATEGORY_HEADER_KEYWORDS = {
     # Papers almost never head a subsection "Centrifugation". Measured across
     # the corpus, spin steps live inside lysis, immunoprecipitation and
     # protein-extraction sections -- Sun's are under "Western blot" and "RNA
-    # associated immunoprecipitation". Four of seven papers state no spin in
+    # associated immunoprecipitation". Six of the nine papers state no spin in
     # the given methods at all, so for those no keyword can help and GAP_ABSENT
     # anchored at the section level is the honest answer.
     "centrifugation": ["centrifug", "fractionation", "extraction", "lysis",

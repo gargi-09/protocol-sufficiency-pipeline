@@ -25,7 +25,7 @@ import re
 from contract import FieldSpec, Span
 from sections import build_tree, find_subsections, find_relevant_subsections
 from node_select import select_node
-from vagueness import get_trigger_lexicon
+from vagueness import ANY_SLOT, get_trigger_lexicon
 from relevance import check_relevance
 
 # Methods-section boundaries.
@@ -284,6 +284,22 @@ def _trigger_driven_candidate(canonical_text, m_start, m_end, spec):
             continue
         for trigger in lexicon.find_all(sent_text):
             if trigger.code != "GAP_VAGUE":
+                continue
+            # A trigger may only SELECT a sentence if it declares a specific
+            # slot. An ANY_SLOT trigger says "this is vague about something",
+            # which carries no information about WHICH field it belongs to --
+            # so every field left without a candidate latched onto whatever
+            # sentence held it. One Guo antibody clause, "incubated with
+            # appropriate HRP-conjugated affinipure goat anti-Rabbit IgG",
+            # became the candidate for five unrelated fields at once, including
+            # centrifugation.force; nine of eleven shipped GAP_VAGUE findings
+            # traced to that single adjective.
+            #
+            # Such triggers still CONFIRM vagueness in validate.py, on a
+            # sentence retrieved on the field's own merits. They just cannot
+            # choose it. Retrieval needs a reason to prefer this field over the
+            # other twenty-six, and "vague about something" is not one.
+            if trigger.fills == ANY_SLOT:
                 continue
             if trigger.can_fill(spec.dimension, spec.type):
                 return sent_text, start, end

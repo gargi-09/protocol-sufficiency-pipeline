@@ -55,63 +55,63 @@
   },
   "findings": [
     {
-      "finding_id": "8447461bbd88d960c17769644c22bfbc",
+      "finding_id": "4a2c56224b524d7588d6ef57cbacc87e",
       "field_id": "cellline.authentication",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5825,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.authentication slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "Cell culture and transfection\nThe human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
-      "finding_id": "8b58905448b0bc041dd4549de39f7d3c",
+      "finding_id": "9ffb71bc572c6f1cec60d445ae7dae11",
       "field_id": "cellline.mycoplasma",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5825,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "LOW",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.mycoplasma slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "Cell culture and transfection\nThe human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
-      "finding_id": "2addd47ab004bb765e17ca0470863909",
+      "finding_id": "cc55a2cdbfdd86341bf8b923dd7f57f9",
       "field_id": "cellline.passage_number",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5825,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.passage_number slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "Cell culture and transfection\nThe human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:det-confident(score=2):no-model-call"
       }
     },
     {
@@ -135,23 +135,23 @@
       }
     },
     {
-      "finding_id": "e086be13f6163c2e6d11d11873b7c5c0",
+      "finding_id": "a31e139a4c26a6829f27f1d452a1daf7",
       "field_id": "treatment.vehicle",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5855,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the treatment.vehicle slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:node:model-3of9:head:Cell culture and transfection"
       }
     },
     {
@@ -193,23 +193,23 @@
       }
     },
     {
-      "finding_id": "c84268ed22791f6af221b5000455cf5a",
+      "finding_id": "df2e0649a9edb16a0638a6c438770489",
       "field_id": "centrifugation.force",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 7420,
+        "end": 7582,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the centrifugation.force slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "Human cells and tissues were lysed in RIPA buffer containing 1 nM PMSF , and protein concentrations were\nmeasured using a BCA Protein Assay kit (Biosharp, China).",
+        "anchor_detector": "anchor:node:model-4of9:head:Western blot"
       }
     }
   ]

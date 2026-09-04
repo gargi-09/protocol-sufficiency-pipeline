@@ -55,63 +55,63 @@
   },
   "findings": [
     {
-      "finding_id": "8447461bbd88d960c17769644c22bfbc",
+      "finding_id": "9de6af76f000860d75eaadebddc8ef16",
       "field_id": "cellline.authentication",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5855,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.authentication slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:node:det-unique:kw:Cell culture and transfection"
       }
     },
     {
-      "finding_id": "8b58905448b0bc041dd4549de39f7d3c",
+      "finding_id": "a004adb6cb01ff3d5918f252d87cb310",
       "field_id": "cellline.mycoplasma",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5855,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "LOW",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.mycoplasma slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:node:det-unique:kw:Cell culture and transfection"
       }
     },
     {
-      "finding_id": "2addd47ab004bb765e17ca0470863909",
+      "finding_id": "a0136c413ce3c3b0b1b46adefec50ce2",
       "field_id": "cellline.passage_number",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 5855,
+        "end": 5960,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the cellline.passage_number slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "The human CC cell lines SiHa and HeLa were purchased from the Procell Life Science & Technology Co.,\nLtd.",
+        "anchor_detector": "anchor:node:det-unique:kw:Cell culture and transfection"
       }
     },
     {
@@ -135,23 +135,23 @@
       }
     },
     {
-      "finding_id": "e086be13f6163c2e6d11d11873b7c5c0",
+      "finding_id": "76119e8682ad3df2d2ff9b974c9426a8",
       "field_id": "treatment.vehicle",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 4479,
+        "end": 4736,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "MED",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the treatment.vehicle slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "Materials and methods\nRNA-seq and microarray datasets and bioinformatics analysis\nThe TCGA-CESC database was acquired from the cancer genome atlas genomic data commons (TCGA-\nGDC) Data Portal ( https://portal.gdc.cancer.gov/, accessed on November 30, 2022).",
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     },
     {
@@ -193,23 +193,23 @@
       }
     },
     {
-      "finding_id": "c84268ed22791f6af221b5000455cf5a",
+      "finding_id": "90d0ad8372b66a3063aa65a10fcf0b36",
       "field_id": "centrifugation.force",
-      "code": "GAP_VAGUE",
+      "code": "GAP_ABSENT",
       "span": {
-        "start": 8294,
-        "end": 8371,
+        "start": 4479,
+        "end": 4736,
         "text_sha": "d35f58ba877ad8456d7ec7f9edf0e59cc1a9a05d65fb4fbd4c14576249efd7d8"
       },
-      "verdict": "FIELD_UNRESOLVED",
-      "raw_text": "The membrane was then incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1:5000, SA00001-2, Proteintech, USA).",
+      "verdict": "FIELD_ABSENT",
+      "raw_text": null,
       "canonical_value": null,
       "canonical_unit": null,
       "sensitivity": "HIGH",
       "detail": {
-        "reason": "'appropriate' (qualitative_quantity) occupies the centrifugation.force slot without supplying a value",
-        "detector": "trigger:fills-slot",
-        "phrase": " incubated with appropriate HRP-conjugated affinipure\ngoat anti-Rabbit IgG (1"
+        "reason": "no candidate text found",
+        "anchor_text": "Materials and methods\nRNA-seq and microarray datasets and bioinformatics analysis\nThe TCGA-CESC database was acquired from the cancer genome atlas genomic data commons (TCGA-\nGDC) Data Portal ( https://portal.gdc.cancer.gov/, accessed on November 30, 2022).",
+        "anchor_detector": "anchor:node:det-none:head:methods"
       }
     }
   ]
