@@ -31,6 +31,9 @@ cause attributed to my extractor / the field specification / your gold label),
 reasoning that did not belong inside that limit.
 
 ---
+<p align="center">
+<img width="405" height="491" alt="architecture_image" src="https://github.com/user-attachments/assets/b6b32f85-ec17-4166-9b01-a4eaed634655" />
+</p>
 
 ## Setup
 
